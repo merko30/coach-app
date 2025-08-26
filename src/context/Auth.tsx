@@ -1,7 +1,7 @@
 // src/context/AuthContext.tsx
 import { createContext, useContext, useEffect, useState } from "react";
-import { redirect } from "react-router";
-import { supabase } from "~/lib/supabase";
+import { redirect } from "@tanstack/react-router";
+import { supabase } from "@/lib/supabase";
 
 type AuthContextType = {
   user: any;
