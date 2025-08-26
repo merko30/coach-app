@@ -1,0 +1,2193 @@
+{
+  "Kozmetika": [
+    {
+      "name": "ACNE",
+      "link": "https://www.acne.org/"
+    },
+    {
+      "name": "ADWDIABETES",
+      "link": "https://www.adwdiabetes.com"
+    },
+    {
+      "name": "ALL COSMETICS WHOLESALE",
+      "link": "http://www.allcosmeticswholesale.com/"
+    },
+    {
+      "name": "ALLURE",
+      "link": "https://www.allure.com/"
+    },
+    {
+      "name": "ANASTASIA BEVERLY HILLS",
+      "link": "http://anastasiabeverlyhills.com/"
+    },
+    {
+      "name": "ASDM BEVERLY HILLS",
+      "link": "https://www.asdmbeverlyhills.com"
+    },
+    {
+      "name": "B2N SHOP",
+      "link": "http://b2nshop.com/"
+    },
+    {
+      "name": "BATH AND BODYWORKS",
+      "link": "http://www.bathandbodyworks.com/"
+    },
+    {
+      "name": "BEAUTY JOINT",
+      "link": "http://beautyjoint.com/%20"
+    },
+    {
+      "name": "BECCA COSMETICS EU",
+      "link": "http://www.beccacosmetics.com/eu/"
+    },
+    {
+      "name": "BENEFIT COSMETICS",
+      "link": "http://www.benefitcosmetics.com/%20"
+    },
+    {
+      "name": "BH COSMETICS",
+      "link": "http://www.bhcosmetics.com/%20"
+    },
+    {
+      "name": "BIGELOW CHEMISTS",
+      "link": "https://www.bigelowchemists.com/"
+    },
+    {
+      "name": "BILLION DOLLAR BROWS",
+      "link": "https://www.billiondollarbrows.com/"
+    },
+    {
+      "name": "BIOTHERM",
+      "link": "https://www.biotherm-usa.com/home"
+    },
+    {
+      "name": "BIRCHBOX",
+      "link": "https://www.birchbox.com/"
+    },
+    {
+      "name": "BOBBI BROWN COSMETICS",
+      "link": "http://www.bobbibrowncosmetics.com/"
+    },
+    {
+      "name": "BOXY CHARM",
+      "link": "https://boxycharm.com/"
+    },
+    {
+      "name": "CAMERAREADYCOSMETICS",
+      "link": "http://camerareadycosmetics.com/"
+    },
+    {
+      "name": "CHERRYCULTURE",
+      "link": "https://www.cherryculture.com/"
+    },
+    {
+      "name": "CITYCOLORCOSMETICS",
+      "link": "http://citycolorcosmetics.com/"
+    },
+    {
+      "name": "CLINIQUE",
+      "link": "http://www.Clinique.com%20"
+    },
+    {
+      "name": "COASTALSCENTS",
+      "link": "http://www.coastalscents.com/%20"
+    },
+    {
+      "name": "COLORWOWHAIRUS",
+      "link": "https://www.colorwowhair.com/us"
+    },
+    {
+      "name": "COLOURPOP",
+      "link": "https://colourpop.com/"
+    },
+    {
+      "name": "DECIEM",
+      "link": "http://deciem.com/"
+    },
+    {
+      "name": "DEMETERFRAGRANCE",
+      "link": "https://demeterfragrance.com"
+    },
+    {
+      "name": "DERMALOGICA",
+      "link": "https://www.dermalogica.com/"
+    },
+    {
+      "name": "DERMSTORE",
+      "link": "https://www.dermstore.com/"
+    },
+    {
+      "name": "DORCOUSA",
+      "link": "http://www.dorcousa.com/"
+    },
+    {
+      "name": "DOSEOFCOLORS",
+      "link": "https://doseofcolors.com/"
+    },
+    {
+      "name": "DRHAUSCHKA",
+      "link": "http://www.drhauschka.com/"
+    },
+    {
+      "name": "ELFCOSMETICS",
+      "link": "https://www.elfcosmetics.com/"
+    },
+    {
+      "name": "ESTEE LAUDER",
+      "link": "http://www.esteelauder.com/%20"
+    },
+    {
+      "name": "EVERYDAYMINERALSSTORE",
+      "link": "https://www.everydayminerals.com/store/"
+    },
+    {
+      "name": "EVOLUTIONOFSMOOTH",
+      "link": "http://evolutionofsmooth.com/"
+    },
+    {
+      "name": "EYELASHESUNLIMITED",
+      "link": "http://www.eyelashesunlimited.com/"
+    },
+    {
+      "name": "FRAGRANCENET",
+      "link": "http://www.Fragrancenet.com"
+    },
+    {
+      "name": "FRENDSBEAUTY",
+      "link": "http://www.frendsbeauty.com/"
+    },
+    {
+      "name": "GKHAIR",
+      "link": "https://www.gkhair.com/"
+    },
+    {
+      "name": "GLOSSYBOX",
+      "link": "https://www.glossybox.com/"
+    },
+    {
+      "name": "HAIRMAX",
+      "link": "http://www.hairmax.com/"
+    },
+    {
+      "name": "HAKUHODOUSA",
+      "link": "http://www.hakuhodousa.com/"
+    },
+    {
+      "name": "HUDABEAUTY",
+      "link": "http://hudabeauty.com/"
+    },
+    {
+      "name": "IPSY",
+      "link": "https://www.ipsy.com/"
+    },
+    {
+      "name": "JEFFREESTARCOSMETICS",
+      "link": "https://jeffreestarcosmetics.com/"
+    },
+    {
+      "name": "KATVONDBEAUTY",
+      "link": "https://www.katvondbeauty.com/"
+    },
+    {
+      "name": "KIKOCOSMETICSEN-US",
+      "link": "https://www.kikocosmetics.com/en-us/"
+    },
+    {
+      "name": "KYLIECOSMETICS",
+      "link": "https://www.kyliecosmetics.com/"
+    },
+    {
+      "name": "LANCOME-USA",
+      "link": "http://www.lancome-usa.com/"
+    },
+    {
+      "name": "LAURAMERCIER",
+      "link": "https://www.lauramercier.com/"
+    },
+    {
+      "name": "LIMECRIME",
+      "link": "http://limecrime.com/%20"
+    },
+    {
+      "name": "LORAC",
+      "link": "https://www.lorac.com/"
+    },
+    {
+      "name": "LUCASPAPAW.AU",
+      "link": "http://www.lucaspapaw.com.au/"
+    },
+    {
+      "name": "LUCKYSCENT",
+      "link": "http://www.luckyscent.com/"
+    },
+    {
+      "name": "LUCYMINERALS",
+      "link": "http://www.lucyminerals.com/"
+    },
+    {
+      "name": "MACCOSMETICS",
+      "link": "http://www.maccosmetics.com/%20"
+    },
+    {
+      "name": "MILANICOSMETICS",
+      "link": "https://www.milanicosmetics.com/"
+    },
+    {
+      "name": "MORPHE",
+      "link": "https://www.morphe.com/"
+    },
+    {
+      "name": "NYXCOSMETICS",
+      "link": "http://www.nyxcosmetics.com/%20"
+    },
+    {
+      "name": "PALMBEACHPERFUMES",
+      "link": "http://www.palmbeachperfumes.com"
+    },
+    {
+      "name": "PAULASCHOICE",
+      "link": "http://www.paulaschoice.com/"
+    },
+    {
+      "name": "PGSHOP",
+      "link": "http://www.pgshop.com"
+    },
+    {
+      "name": "REALTECHNIQUES",
+      "link": "https://realtechniques.com/"
+    },
+    {
+      "name": "SEDONALACE",
+      "link": "http://www.sedonalace.com/"
+    },
+    {
+      "name": "SEPHORA",
+      "link": "http://www.sephora.com/%20"
+    },
+    {
+      "name": "SHISEIDO",
+      "link": "https://www.shiseido.com/?prfcountry=USA&prfmarket=USA"
+    },
+    {
+      "name": "SHOPMISSA",
+      "link": "https://www.shopmissa.com/"
+    },
+    {
+      "name": "SIGMABEAUTY",
+      "link": "http://www.sigmabeauty.com/%20"
+    },
+    {
+      "name": "SKYNICELAND",
+      "link": "http://www.skyniceland.com"
+    },
+    {
+      "name": "SUKISKINCARE",
+      "link": "http://sukiskincare.com/"
+    },
+    {
+      "name": "TARTECOSMETICSEN_USHOME",
+      "link": "https://tartecosmetics.com/en_US/home"
+    },
+    {
+      "name": "TEMPTU",
+      "link": "https://temptu.com/"
+    },
+    {
+      "name": "THEBALM",
+      "link": "https://thebalm.com/"
+    },
+    {
+      "name": "THEBODYSHOP",
+      "link": "https://www.thebodyshop.com/"
+    },
+    {
+      "name": "THEDETOXMARKET",
+      "link": "https://www.thedetoxmarket.com/"
+    },
+    {
+      "name": "TIMELESSHA",
+      "link": "http://timelessha.com/"
+    },
+    {
+      "name": "TRISHMCEVOY",
+      "link": "http://trishmcevoy.com/"
+    },
+    {
+      "name": "UNITEDSTATES.NHTGLOBAL",
+      "link": "https://unitedstates.nhtglobal.com/"
+    },
+    {
+      "name": "URBANDECAY",
+      "link": "http://www.urbandecay.com/%20"
+    },
+    {
+      "name": "USA.ERBORIAN",
+      "link": "https://usa.erborian.com/"
+    },
+    {
+      "name": "YVESROCHERUSA",
+      "link": "http://www.Yvesrocherusa.com"
+    }
+  ],
+  "Muzika": [
+    {
+      "name": "ABLETON",
+      "link": "http://www.ableton.com"
+    },
+    {
+      "name": "FRET12",
+      "link": "https://fret12.com/"
+    },
+    {
+      "name": "GIGASONIC",
+      "link": "http://www.gigasonic.com"
+    },
+    {
+      "name": "GUITARCENTER",
+      "link": "http://www.guitarcenter.com"
+    },
+    {
+      "name": "HIGHSPIRITS",
+      "link": "http://www.highspirits.com/"
+    },
+    {
+      "name": "IDJNOW",
+      "link": "http://www.idjnow.com"
+    },
+    {
+      "name": "METALLICA",
+      "link": "http://www.metallica.com/"
+    },
+    {
+      "name": "MUSICIANSFRIEND",
+      "link": "http://www.musiciansfriend.com"
+    },
+    {
+      "name": "PROWINDS",
+      "link": "http://www.prowinds.com/"
+    },
+    {
+      "name": "STEWMAC",
+      "link": "http://stewmac.com/"
+    },
+    {
+      "name": "STORE.WARNERMUSIC",
+      "link": "http://store.warnermusic.com/"
+    },
+    {
+      "name": "SWEETWATER",
+      "link": "https://www.sweetwater.com/"
+    },
+    {
+      "name": "USEDGUITARSALES",
+      "link": "http://www.usedguitarsales.com"
+    },
+    {
+      "name": "ZZOUNDS",
+      "link": "http://www.zzounds.com"
+    }
+  ],
+  "Megamarketi": [
+    {
+      "name": "AMAZON",
+      "link": "http://www.amazon.com"
+    },
+    {
+      "name": "AMWAY",
+      "link": "http://www.amway.com/"
+    },
+    {
+      "name": "BELK",
+      "link": "http://www.belk.com"
+    },
+    {
+      "name": "BLINQ",
+      "link": "https://www.blinq.com/"
+    },
+    {
+      "name": "BOSCOVS",
+      "link": "https://www.boscovs.com/"
+    },
+    {
+      "name": "BUYDIG",
+      "link": "http://www.buydig.com/"
+    },
+    {
+      "name": "CABLECLAMP",
+      "link": "http://www.cableclamp.com/"
+    },
+    {
+      "name": "COSTCO",
+      "link": "https://www.costco.com/"
+    },
+    {
+      "name": "DHGATE",
+      "link": "http://www.dhgate.com"
+    },
+    {
+      "name": "DIGICIRCLE",
+      "link": "https://digicircle.com/"
+    },
+    {
+      "name": "EBAY",
+      "link": "http://www.ebay.com"
+    },
+    {
+      "name": "ECRATER",
+      "link": "http://www.ecrater.com"
+    },
+    {
+      "name": "GDIAPERS",
+      "link": "http://www.gdiapers.com"
+    },
+    {
+      "name": "GLOBAL.RAKUTENEN",
+      "link": "https://global.rakuten.com/en/"
+    },
+    {
+      "name": "GROUPON",
+      "link": "http://www.groupon.com/"
+    },
+    {
+      "name": "IKEA",
+      "link": "http://www.IKEA.com"
+    },
+    {
+      "name": "JOANN",
+      "link": "http://www.joann.com/"
+    },
+    {
+      "name": "KOHLS",
+      "link": "http://www.kohls.com"
+    },
+    {
+      "name": "MACYS",
+      "link": "http://www.Macys.com"
+    },
+    {
+      "name": "MARKSANDSPENCER",
+      "link": "http://www.marksandspencer.com/"
+    },
+    {
+      "name": "NAUTICA",
+      "link": "http://www.nautica.com"
+    },
+    {
+      "name": "OVERSTOCK",
+      "link": "http://www.overstock.com"
+    },
+    {
+      "name": "PRICEGRABBER",
+      "link": "http://www.pricegrabber.com/"
+    },
+    {
+      "name": "SEARS",
+      "link": "http://www.sears.com/"
+    },
+    {
+      "name": "SHARKSTORES",
+      "link": "https://www.sharkstores.com/"
+    },
+    {
+      "name": "NORDSTROM",
+      "link": "https://shop.nordstrom.com/"
+    },
+    {
+      "name": "TANGA",
+      "link": "https://www.tanga.com/"
+    },
+    {
+      "name": "TARGET",
+      "link": "http://www.target.com/"
+    },
+    {
+      "name": "THREADLESS",
+      "link": "https://www.threadless.com/"
+    },
+    {
+      "name": "TMART",
+      "link": "https://www.tmart.com/"
+    },
+    {
+      "name": "UNTILGONE",
+      "link": "https://untilgone.com/"
+    },
+    {
+      "name": "VITACOST",
+      "link": "https://www.vitacost.com/"
+    },
+    {
+      "name": "WALGREENS",
+      "link": "https://www.walgreens.com/"
+    },
+    {
+      "name": "WALMART",
+      "link": "http://www.walmart.com/"
+    },
+    {
+      "name": "WOOT",
+      "link": "https://www.woot.com/"
+    },
+    {
+      "name": "ZAPPOS",
+      "link": "http://www.zappos.com/"
+    }
+  ],
+  "Kucni ljubimci": [
+    {
+      "name": "GUNDOGSONLINE",
+      "link": "http://www.gundogsonline.com/"
+    },
+    {
+      "name": "GWLITTLE",
+      "link": "http://www.gwlittle.com"
+    },
+    {
+      "name": "HORZE",
+      "link": "http://www.horze.com"
+    },
+    {
+      "name": "JBPET",
+      "link": "https://jbpet.com/"
+    },
+    {
+      "name": "MYTROYBIO",
+      "link": "http://www.mytroybio.com"
+    },
+    {
+      "name": "NATIONALPETPHARMACY",
+      "link": "http://www.nationalpetpharmacy.com"
+    },
+    {
+      "name": "OSCARNEWMAN",
+      "link": "https://oscarnewman.com/"
+    },
+    {
+      "name": "PETDEPOT.NET",
+      "link": "https://petdepot.net/"
+    },
+    {
+      "name": "PETEDGE",
+      "link": "http://www.petedge.com"
+    },
+    {
+      "name": "SWEETPICKLESDESIGNS",
+      "link": "http://www.sweetpicklesdesigns.com/"
+    },
+    {
+      "name": "THECATBALL",
+      "link": "http://www.thecatball.com/"
+    },
+    {
+      "name": "THEPAMPEREDPUP",
+      "link": "https://www.thepamperedpup.com/"
+    }
+  ],
+  "Sport": [
+    {
+      "name": "ACTIVEWAKE",
+      "link": "http://www.activewake.com/"
+    },
+    {
+      "name": "GLOBAL.ADIDAS",
+      "link": "http://www.global.adidas.com/"
+    },
+    {
+      "name": "AQUATRAININGBAG",
+      "link": "https://www.aquatrainingbag.com/"
+    },
+    {
+      "name": "ASICSUSEN-US",
+      "link": "https://www.asics.com/us/en-us/"
+    },
+    {
+      "name": "BETTERWAYHEALTH",
+      "link": "https://www.betterwayhealth.com"
+    },
+    {
+      "name": "BIGTTENNIS",
+      "link": "http://www.bigttennis.com/"
+    },
+    {
+      "name": "BIKEBANDIT",
+      "link": "http://www.bikebandit.com/"
+    },
+    {
+      "name": "BIKEISLAND",
+      "link": "http://www.bikeisland.com"
+    },
+    {
+      "name": "BLACKDIAMONDEQUIPMENT",
+      "link": "http://blackdiamondequipment.com/"
+    },
+    {
+      "name": "BODYBUILDING",
+      "link": "http://www.bodybuilding.com/"
+    },
+    {
+      "name": "CABELAS",
+      "link": "http://www.cabelas.com"
+    },
+    {
+      "name": "CAMPMOR",
+      "link": "http://www.campmor.com"
+    },
+    {
+      "name": "CAMPSAVER",
+      "link": "http://www.campsaver.com"
+    },
+    {
+      "name": "CANTERBURYUS",
+      "link": "http://www.canterburyus.com/"
+    },
+    {
+      "name": "CITYSPORTS",
+      "link": "http://www.citysports.com"
+    },
+    {
+      "name": "CLEVERTRAINING",
+      "link": "http://www.clevertraining.com/"
+    },
+    {
+      "name": "COWTOWNSKATEBOARDS",
+      "link": "http://www.cowtownskateboards.com/"
+    },
+    {
+      "name": "DANCEDIRECT",
+      "link": "http://www.dancedirect.com"
+    },
+    {
+      "name": "DICKSSPORTINGGOODS",
+      "link": "https://www.dickssportinggoods.com/"
+    },
+    {
+      "name": "DISCOUNTSKATEWEARX",
+      "link": "https://www.discountskatewear.com/default.aspx"
+    },
+    {
+      "name": "FIGHTERS-INC",
+      "link": "https://www.fighters-inc.com/"
+    },
+    {
+      "name": "FITBITHOME",
+      "link": "http://www.fitbit.com/home"
+    },
+    {
+      "name": "G6SPORTSNUTRITION",
+      "link": "http://g6sportsnutrition.com/"
+    },
+    {
+      "name": "GEARBEST",
+      "link": "https://www.gearbest.com/"
+    },
+    {
+      "name": "GEARX",
+      "link": "http://www.gearx.com"
+    },
+    {
+      "name": "GHOSTHOLSTERDIRECT",
+      "link": "http://ghostholsterdirect.com/"
+    },
+    {
+      "name": "GHOSTLIFESTYLE",
+      "link": "https://www.ghostlifestyle.com/"
+    },
+    {
+      "name": "GNC",
+      "link": "http://www.gnc.com/"
+    },
+    {
+      "name": "HAMMERNUTRITION",
+      "link": "https://www.hammernutrition.com/"
+    },
+    {
+      "name": "HATASHITASPORTS",
+      "link": "http://www.hatashitasports.com"
+    },
+    {
+      "name": "HOCKEYMONKEY",
+      "link": "http://www.Hockeymonkey.com"
+    },
+    {
+      "name": "HOCKSPORTS",
+      "link": "http://www.hocksports.com/"
+    },
+    {
+      "name": "HYPNOTIK",
+      "link": "https://www.hypnotik.com/"
+    },
+    {
+      "name": "ICEWAREHOUSE",
+      "link": "http://www.icewarehouse.com/"
+    },
+    {
+      "name": "INLINEWAREHOUSE",
+      "link": "http://www.inlinewarehouse.com/"
+    },
+    {
+      "name": "INSANELABZ",
+      "link": "http://insanelabz.com/"
+    },
+    {
+      "name": "JACOCLOTHING",
+      "link": "http://www.jacoclothing.com/"
+    },
+    {
+      "name": "KETTLERUSA",
+      "link": "http://www.kettlerusa.com/"
+    },
+    {
+      "name": "LEVELNINESPORTS",
+      "link": "http://www.levelninesports.com"
+    },
+    {
+      "name": "MANDUKAEU",
+      "link": "https://www.manduka.com/eu/"
+    },
+    {
+      "name": "MANSPORTS",
+      "link": "https://mansports.com/"
+    },
+    {
+      "name": "MCDAVIDUSA",
+      "link": "https://www.mcdavidusa.com/"
+    },
+    {
+      "name": "MIDWESTSPORTS",
+      "link": "http://www.midwestsports.com/"
+    },
+    {
+      "name": "MINDANDMUSCLE.NET",
+      "link": "http://mindandmuscle.net/"
+    },
+    {
+      "name": "MIOGLOBALDEFAULT.ASPX",
+      "link": "http://www.mioglobal.com/Default.aspx"
+    },
+    {
+      "name": "MOOSEJAW",
+      "link": "https://www.moosejaw.com/"
+    },
+    {
+      "name": "MUAYTHAIFACTORY",
+      "link": "https://www.muaythaifactory.com/"
+    },
+    {
+      "name": "OCEANEXTREMESPORTS",
+      "link": "http://www.oceanextremesports.com"
+    },
+    {
+      "name": "OMCGEAR",
+      "link": "http://www.omcgear.com/"
+    },
+    {
+      "name": "PETERGLENN",
+      "link": "http://www.peterglenn.com/"
+    },
+    {
+      "name": "PUMA",
+      "link": "http://www.Puma.com"
+    },
+    {
+      "name": "REEBOK",
+      "link": "http://www.Reebok.com"
+    },
+    {
+      "name": "REI",
+      "link": "http://www.rei.com/"
+    },
+    {
+      "name": "RINGSIDE",
+      "link": "http://www.ringside.com"
+    },
+    {
+      "name": "RIVALBOXING",
+      "link": "https://rivalboxing.us/"
+    },
+    {
+      "name": "RNJSPORTS",
+      "link": "http://www.rnjsports.com"
+    },
+    {
+      "name": "ROCKCREEK",
+      "link": "http://www.rockcreek.com/"
+    },
+    {
+      "name": "ROGUEFITNESS",
+      "link": "http://www.roguefitness.com/"
+    },
+    {
+      "name": "RUNNINGWAREHOUSE",
+      "link": "http://www.runningwarehouse.com/"
+    },
+    {
+      "name": "SALOMONEN-INT",
+      "link": "https://www.salomon.com/en-int"
+    },
+    {
+      "name": "CCS",
+      "link": "http://shop.ccs.com/"
+    },
+    {
+      "name": "SIERRA",
+      "link": "https://www.sierra.com/"
+    },
+    {
+      "name": "SKATEWAREHOUSE",
+      "link": "https://www.skatewarehouse.com/"
+    },
+    {
+      "name": "SKIS",
+      "link": "http://www.skis.com/"
+    },
+    {
+      "name": "STORE.TERNBICYCLES",
+      "link": "http://store.ternbicycles.com/"
+    },
+    {
+      "name": "TACTICS",
+      "link": "http://www.tactics.com"
+    },
+    {
+      "name": "TENNIS-WAREHOUSE",
+      "link": "http://www.tennis-warehouse.com/"
+    },
+    {
+      "name": "TFSUPPLEMENTS",
+      "link": "https://www.tfsupplements.com/"
+    },
+    {
+      "name": "TGMSKATEBOARDS",
+      "link": "https://tgmskateboards.com/"
+    },
+    {
+      "name": "THE-HOUSE",
+      "link": "http://www.the-house.com"
+    },
+    {
+      "name": "THECLYMB",
+      "link": "http://www.theclymb.com/"
+    },
+    {
+      "name": "THENORTHFACE",
+      "link": "http://www.thenorthface.com"
+    },
+    {
+      "name": "TITLEBOXING",
+      "link": "http://www.titleboxing.com/"
+    },
+    {
+      "name": "TOADMARINESUPPLY",
+      "link": "http://toadmarinesupply.com/"
+    },
+    {
+      "name": "TRIPLEAUGHTDESIGN",
+      "link": "https://tripleaughtdesign.com/"
+    },
+    {
+      "name": "USOUTDOOR",
+      "link": "https://www.usoutdoor.com/"
+    },
+    {
+      "name": "WAHOOFITNESS",
+      "link": "http://www.wahoofitness.com/"
+    },
+    {
+      "name": "WAREHOUSESKATEBOARDS",
+      "link": "https://www.warehouseskateboards.com/"
+    },
+    {
+      "name": "WIGGLE",
+      "link": "http://www.wiggle.com"
+    },
+    {
+      "name": "ZUMBAEN-US",
+      "link": "https://www.zumba.com/en-US"
+    }
+  ],
+  "Proizvodi za djecu": [
+    {
+      "name": "MAMASANDPAPAS",
+      "link": "http://www.mamasandpapas.com/"
+    },
+    {
+      "name": "ABERCROMBIEKIDS",
+      "link": "http://www.abercrombiekids.com"
+    },
+    {
+      "name": "ADIRI",
+      "link": "http://www.adiri.com/"
+    },
+    {
+      "name": "BABYMALLONLINEBROWSE",
+      "link": "https://www.babymallonline.com/browse"
+    },
+    {
+      "name": "CARTERS",
+      "link": "http://www.carters.com/"
+    },
+    {
+      "name": "CHICCOSHOPHOMEPAGE",
+      "link": "http://www.chiccoshop.com/homepage"
+    },
+    {
+      "name": "COOKIESKIDS",
+      "link": "http://www.cookieskids.com%20"
+    },
+    {
+      "name": "COSTUMEEXPRESS",
+      "link": "http://www.costumeexpress.com/"
+    },
+    {
+      "name": "ETOYS",
+      "link": "http://www.etoys.com"
+    },
+    {
+      "name": "FRENCHTOAST",
+      "link": "http://www.frenchtoast.com/"
+    },
+    {
+      "name": "GYMBOREE",
+      "link": "http://www.gymboree.com"
+    },
+    {
+      "name": "JANIEANDJACK",
+      "link": "http://www.janieandjack.com/"
+    },
+    {
+      "name": "JJSHOUSE",
+      "link": "https://www.jjshouse.com/"
+    },
+    {
+      "name": "KIDPIK",
+      "link": "https://www.kidpik.com/"
+    },
+    {
+      "name": "KIDSURPLUS",
+      "link": "http://www.kidsurplus.com"
+    },
+    {
+      "name": "LEAPFROG",
+      "link": "http://www.leapfrog.com"
+    },
+    {
+      "name": "MATTEL",
+      "link": "http://www.mattel.com/"
+    },
+    {
+      "name": "MELISSAANDDOUG",
+      "link": "https://www.melissaanddoug.com/"
+    },
+    {
+      "name": "MUNCHKIN",
+      "link": "http://www.munchkin.com/"
+    },
+    {
+      "name": "NICKISDIAPERS",
+      "link": "https://www.nickisdiapers.com/"
+    },
+    {
+      "name": "PARTIES4KIDS",
+      "link": "http://www.parties4kids.com"
+    },
+    {
+      "name": "PATPAT",
+      "link": "https://www.patpat.com/"
+    },
+    {
+      "name": "PEEKKIDS",
+      "link": "https://peekkids.com/"
+    },
+    {
+      "name": "PEGPEREGO",
+      "link": "https://us.pegperego.com/"
+    },
+    {
+      "name": "PLAE",
+      "link": "https://www.plae.co/"
+    },
+    {
+      "name": "POTTERYBARNKIDS",
+      "link": "https://www.potterybarnkids.com/"
+    },
+    {
+      "name": "SHOPDISNEY",
+      "link": "https://www.shopdisney.com/"
+    },
+    {
+      "name": "SHOPJUSTICE",
+      "link": "http://www.Shopjustice.com"
+    },
+    {
+      "name": "STELLAMATERNITY",
+      "link": "http://www.stellamaternity.com"
+    },
+    {
+      "name": "TOYSRUS",
+      "link": "https://www.toysrus.com/"
+    },
+    {
+      "name": "TOYTOKYO",
+      "link": "https://www.toytokyo.com/"
+    }
+  ],
+  "": [],
+  "Odjeca, obuca i dodaci": [
+    {
+      "name": "C21STORES",
+      "link": "https://www.c21stores.com/"
+    },
+    {
+      "name": "MLTD",
+      "link": "http://www.mltd.com/"
+    },
+    {
+      "name": "511TACTICAL",
+      "link": "http://www.511tactical.com/"
+    },
+    {
+      "name": "6PM",
+      "link": "https://www.6pm.com/"
+    },
+    {
+      "name": "ABERCROMBIE",
+      "link": "http://www.abercrombie.com"
+    },
+    {
+      "name": "ADENANDANAIS",
+      "link": "https://www.adenandanais.com"
+    },
+    {
+      "name": "ADOREME",
+      "link": "https://www.adoreme.com/"
+    },
+    {
+      "name": "AEUSEN",
+      "link": "https://www.ae.com/us/en"
+    },
+    {
+      "name": "AEROPOSTALE",
+      "link": "http://www.aeropostale.com"
+    },
+    {
+      "name": "AEROSOLES",
+      "link": "https://www.aerosoles.com/"
+    },
+    {
+      "name": "AEROTECHDESIGNS",
+      "link": "https://www.aerotechdesigns.com/"
+    },
+    {
+      "name": "AFFLICTIONCLOTHING",
+      "link": "https://www.afflictionclothing.com/"
+    },
+    {
+      "name": "ALDOSHOES",
+      "link": "http://www.aldoshoes.com"
+    },
+    {
+      "name": "ALLOYAPPAREL",
+      "link": "http://www.alloyapparel.com/"
+    },
+    {
+      "name": "ALPHAINDUSTRIES",
+      "link": "http://www.alphaindustries.com/"
+    },
+    {
+      "name": "AMERICANAPPARELEN",
+      "link": "https://www.americanapparel.com/en/"
+    },
+    {
+      "name": "AMICLUBWEAR",
+      "link": "http://www.amiclubwear.com"
+    },
+    {
+      "name": "APEAINTHEPOD",
+      "link": "https://www.apeainthepod.com/"
+    },
+    {
+      "name": "APERFECTDEALER",
+      "link": "https://www.aperfectdealer.com/"
+    },
+    {
+      "name": "ARMANIUS",
+      "link": "https://www.armani.com/us"
+    },
+    {
+      "name": "ARMANIEXCHANGE",
+      "link": "http://www.armaniexchange.com"
+    },
+    {
+      "name": "ARTISAIRE",
+      "link": "https://artisaire.com/"
+    },
+    {
+      "name": "ASOSUS",
+      "link": "http://www.asos.com/us/"
+    },
+    {
+      "name": "BABBITTSONLINE",
+      "link": "http://www.babbittsonline.com/"
+    },
+    {
+      "name": "BACKCOUNTRY",
+      "link": "https://www.backcountry.com/"
+    },
+    {
+      "name": "BAKERSSHOES",
+      "link": "http://www.bakersshoes.com"
+    },
+    {
+      "name": "BANANAREPUBLIC",
+      "link": "http://www.Bananarepublic.com"
+    },
+    {
+      "name": "BEACHBUNNYSWIMWEAR",
+      "link": "https://www.beachbunnyswimwear.com/"
+    },
+    {
+      "name": "BEBE",
+      "link": "http://www.bebe.com"
+    },
+    {
+      "name": "BENETTON",
+      "link": "https://us.benetton.com/"
+    },
+    {
+      "name": "BERGSSKISHOP",
+      "link": "https://www.bergsskishop.com/"
+    },
+    {
+      "name": "BIKINILUXE",
+      "link": "https://www.bikiniluxe.com/"
+    },
+    {
+      "name": "BILLABONG",
+      "link": "http://us.billabong.com/"
+    },
+    {
+      "name": "BLOOMINGDALES",
+      "link": "http://www.bloomingdales.com"
+    },
+    {
+      "name": "BLOWFISHSHOES",
+      "link": "https://www.blowfishshoes.com"
+    },
+    {
+      "name": "BLUEFLY",
+      "link": "http://www.bluefly.com/"
+    },
+    {
+      "name": "BOBWARDS",
+      "link": "https://www.bobwards.com/"
+    },
+    {
+      "name": "BODYC",
+      "link": "http://www.bodyc.com"
+    },
+    {
+      "name": "BOLDCACTUS",
+      "link": "https://boldcactus.com/"
+    },
+    {
+      "name": "BONTON",
+      "link": "http://www.bonton.com"
+    },
+    {
+      "name": "BOOHOO",
+      "link": "http://www.boohoo.com/"
+    },
+    {
+      "name": "BOSTONPROPER",
+      "link": "http://www.bostonproper.com"
+    },
+    {
+      "name": "BOUTIQUETOYOU",
+      "link": "https://www.boutiquetoyou.com/"
+    },
+    {
+      "name": "BROOKSBROTHERS",
+      "link": "https://www.brooksbrothers.com/"
+    },
+    {
+      "name": "BUNKERONLINE",
+      "link": "http://www.bunkeronline.com"
+    },
+    {
+      "name": "BURBERRY",
+      "link": "http://www.burberry.com"
+    },
+    {
+      "name": "BURLINGTON",
+      "link": "https://www.burlington.com/"
+    },
+    {
+      "name": "BUYANDWALK",
+      "link": "http://www.buyandwalk.com/"
+    },
+    {
+      "name": "BUYPEEL",
+      "link": "https://buypeel.com/"
+    },
+    {
+      "name": "C21STORES",
+      "link": "https://www.c21stores.com/"
+    },
+    {
+      "name": "CALVINKLEINEN",
+      "link": "https://www.calvinklein.us/en"
+    },
+    {
+      "name": "CANADA GOOSE",
+      "link": "https://www.canadagoose.com/ca/en/home-page"
+    },
+    {
+      "name": "CASUALMALE",
+      "link": "http://www.casualmale.com"
+    },
+    {
+      "name": "CHICNOVA",
+      "link": "http://www.chicnova.com/"
+    },
+    {
+      "name": "CHOIES",
+      "link": "http://www.choies.com/"
+    },
+    {
+      "name": "CIELEATHLETICS",
+      "link": "https://cieleathletics.com/?v=3943d8795e03"
+    },
+    {
+      "name": "CITYGEAR",
+      "link": "https://www.citygear.com/"
+    },
+    {
+      "name": "UKACH",
+      "link": "https://uk.coach.com/"
+    },
+    {
+      "name": "COACHOUTLET",
+      "link": "https://www.coachoutlet.com/"
+    },
+    {
+      "name": "COCOONINNOVATIONS",
+      "link": "http://www.cocooninnovations.com/"
+    },
+    {
+      "name": "COLDWATERCREEK",
+      "link": "http://www.Coldwatercreek.com"
+    },
+    {
+      "name": "COLEHAAN",
+      "link": "https://www.colehaan.com/"
+    },
+    {
+      "name": "COMFORTTSHIRT",
+      "link": "https://www.comforttshirt.com/"
+    },
+    {
+      "name": "CONVERSE",
+      "link": "http://www.converse.com/"
+    },
+    {
+      "name": "COSSTORESUS",
+      "link": "http://www.cosstores.com/us/"
+    },
+    {
+      "name": "COUTURECANDY",
+      "link": "http://www.couturecandy.com/"
+    },
+    {
+      "name": "CROCS",
+      "link": "http://www.crocs.com/"
+    },
+    {
+      "name": "DANNER",
+      "link": "http://www.danner.com/"
+    },
+    {
+      "name": "DARNTOUGH",
+      "link": "https://darntough.com/"
+    },
+    {
+      "name": "DCSHOES",
+      "link": "http://www.dcshoes.com/"
+    },
+    {
+      "name": "DEEPDIVETHREADS",
+      "link": "https://deepdivethreads.com/"
+    },
+    {
+      "name": "DEREON",
+      "link": "http://www.Dereon.com"
+    },
+    {
+      "name": "DESIGNBYHUMANS",
+      "link": "http://www.designbyhumans.com/"
+    },
+    {
+      "name": "DESIGNERSIMPORTS",
+      "link": "http://www.designersimports.com"
+    },
+    {
+      "name": "DICKPONDATHLETICS",
+      "link": "https://dickpondathletics.com/"
+    },
+    {
+      "name": "DISCOUNTDANCE",
+      "link": "https://www.discountdance.com/"
+    },
+    {
+      "name": "DISCOUNTEDRACK",
+      "link": "http://www.discountedrack.com/"
+    },
+    {
+      "name": "DOCKERSSHOES",
+      "link": "http://www.Dockersshoes.com"
+    },
+    {
+      "name": "DOLCEGABBANA",
+      "link": "http://www.dolcegabbana.com"
+    },
+    {
+      "name": "DONNAKARAN",
+      "link": "https://www.donnakaran.com/category/dkny.do"
+    },
+    {
+      "name": "DOONEY",
+      "link": "http://www.dooney.com"
+    },
+    {
+      "name": "DOYOUEVEN",
+      "link": "https://www.doyoueven.com/"
+    },
+    {
+      "name": "DRESS-FOR-LESS",
+      "link": "http://www.dress-for-less.com"
+    },
+    {
+      "name": "DRJAYS",
+      "link": "http://www.drjays.com"
+    },
+    {
+      "name": "DRMARTENSUK",
+      "link": "http://www.drmartens.com/uk/"
+    },
+    {
+      "name": "DSWENUS",
+      "link": "https://www.dsw.com/en/us/"
+    },
+    {
+      "name": "DTLR",
+      "link": "http://dtlr.com/"
+    },
+    {
+      "name": "EBAGS",
+      "link": "http://www.ebags.com/"
+    },
+    {
+      "name": "ECAPCITY",
+      "link": "http://www.ecapcity.com"
+    },
+    {
+      "name": "EDDIEBAUER",
+      "link": "http://www.Eddiebauer.com"
+    },
+    {
+      "name": "EDHARDYORIGINALS",
+      "link": "http://edhardyoriginals.com/"
+    },
+    {
+      "name": "EDITORSCLOSET",
+      "link": "http://www.editorscloset.com"
+    },
+    {
+      "name": "ELIZABETHARDEN",
+      "link": "http://www.elizabetharden.com/"
+    },
+    {
+      "name": "EMUAUSTRALIAUS",
+      "link": "http://www.emuaustralia.com/us"
+    },
+    {
+      "name": "EVERLANE",
+      "link": "https://www.everlane.com/"
+    },
+    {
+      "name": "EVO",
+      "link": "http://www.evo.com/"
+    },
+    {
+      "name": "EXPRESS",
+      "link": "http://www.Express.com"
+    },
+    {
+      "name": "FABULOUSFURS",
+      "link": "http://www.FabulousFurs.com"
+    },
+    {
+      "name": "FAMOUSFOOTWEAR",
+      "link": "http://www.famousfootwear.com"
+    },
+    {
+      "name": "FAMOUSSAS",
+      "link": "http://www.famoussas.com/"
+    },
+    {
+      "name": "FANATICS",
+      "link": "https://www.fanatics.com/"
+    },
+    {
+      "name": "FASHIONNOVA",
+      "link": "https://www.fashionnova.com/"
+    },
+    {
+      "name": "FILSON",
+      "link": "http://www.filson.com/"
+    },
+    {
+      "name": "FINISHLINE",
+      "link": "http://www.finishline.com/"
+    },
+    {
+      "name": "FOOTSMART",
+      "link": "http://www.footsmart.com"
+    },
+    {
+      "name": "FOREVER21USSHOP",
+      "link": "https://www.forever21.com/us/shop"
+    },
+    {
+      "name": "FORLOVEANDLEMONS",
+      "link": "http://www.forloveandlemons.com/"
+    },
+    {
+      "name": "FORPLAYCATALOG",
+      "link": "http://www.forplaycatalog.com"
+    },
+    {
+      "name": "FOSSIL",
+      "link": "http://www.fossil.com"
+    },
+    {
+      "name": "FREDERICKS",
+      "link": "http://www.fredericks.com"
+    },
+    {
+      "name": "G-STAREN_US",
+      "link": "https://www.g-star.com/en_us"
+    },
+    {
+      "name": "GAP",
+      "link": "http://www.Gap.com"
+    },
+    {
+      "name": "GILT",
+      "link": "https://www.gilt.com"
+    },
+    {
+      "name": "GOAT",
+      "link": "https://www.goat.com/"
+    },
+    {
+      "name": "GUESS",
+      "link": "http://www.Guess.com"
+    },
+    {
+      "name": "GYMSHARK",
+      "link": "https://www.gymshark.com/"
+    },
+    {
+      "name": "HAIXUSA",
+      "link": "http://www.haixusa.com/"
+    },
+    {
+      "name": "HANES",
+      "link": "https://www.hanes.com/"
+    },
+    {
+      "name": "HAUTELOOK",
+      "link": "http://www.hautelook.com"
+    },
+    {
+      "name": "HICKIES",
+      "link": "https://www.hickies.com/"
+    },
+    {
+      "name": "HMUS",
+      "link": "http://www.hm.com/us/"
+    },
+    {
+      "name": "HOLLISTERCOSHOPWD",
+      "link": "http://www.hollisterco.com/shop/wd?DM_PersistentCookieCreated=true"
+    },
+    {
+      "name": "HOONIGAN",
+      "link": "https://www.hoonigan.com/"
+    },
+    {
+      "name": "HOUSEOFBRIDES",
+      "link": "http://www.houseofbrides.com"
+    },
+    {
+      "name": "HUNTERBOOTSUSEN",
+      "link": "https://www.hunterboots.com/us/en_us/"
+    },
+    {
+      "name": "ICEBREAKEREN-USHOME",
+      "link": "https://www.icebreaker.com/en-us/home"
+    },
+    {
+      "name": "IDEEL",
+      "link": "http://www.ideel.com/"
+    },
+    {
+      "name": "IKEACASA",
+      "link": "https://ikeacasa.com/"
+    },
+    {
+      "name": "ILOVEDOONEY",
+      "link": "http://www.ilovedooney.com/"
+    },
+    {
+      "name": "ILOVESCIENCESTORE",
+      "link": "http://www.ilovesciencestore.com/"
+    },
+    {
+      "name": "INTIMISSIMIUS",
+      "link": "https://www.intimissimi.com/us/"
+    },
+    {
+      "name": "INTOTHEAM",
+      "link": "https://www.intotheam.com/"
+    },
+    {
+      "name": "ISABELLAOLIVER",
+      "link": "http://www.isabellaoliver.com"
+    },
+    {
+      "name": "ISHINE365",
+      "link": "http://www.ishine365.com"
+    },
+    {
+      "name": "JCPENNEY",
+      "link": "http://www.jcpenney.com"
+    },
+    {
+      "name": "JCREWINDEX.JSP",
+      "link": "https://www.jcrew.com/index.jsp"
+    },
+    {
+      "name": "JENJENHOUSE",
+      "link": "http://www.jenjenhouse.com/"
+    },
+    {
+      "name": "JESSICASIMPSON",
+      "link": "http://www.Jessicasimpson.com"
+    },
+    {
+      "name": "JEWELRYBYJOHAN",
+      "link": "https://jewelrybyjohan.com/"
+    },
+    {
+      "name": "JIMMYJAZZ",
+      "link": "http://www.jimmyjazz.com/"
+    },
+    {
+      "name": "JJILL",
+      "link": "http://www.Jjill.com"
+    },
+    {
+      "name": "JLMCOUTURE",
+      "link": "http://www.jlmcouture.com"
+    },
+    {
+      "name": "JOCKEYINTERNATIONAL",
+      "link": "http://www.jockeyinternational.com"
+    },
+    {
+      "name": "JOESNEWBALANCEOUTLET",
+      "link": "http://www.joesnewbalanceoutlet.com/"
+    },
+    {
+      "name": "JOMASHOP",
+      "link": "http://www.jomashop.com/"
+    },
+    {
+      "name": "JOSBANK",
+      "link": "https://www.josbank.com/"
+    },
+    {
+      "name": "K1X.SPORTSTODAY",
+      "link": "http://www.k1x.shop.sportstoday.com"
+    },
+    {
+      "name": "KANGOL",
+      "link": "https://www.kangol.com/"
+    },
+    {
+      "name": "KARMALOOP",
+      "link": "https://www.karmaloop.com/"
+    },
+    {
+      "name": "KATESPADE",
+      "link": "https://www.katespade.com/"
+    },
+    {
+      "name": "KEENFOOTWEAR",
+      "link": "http://www.keenfootwear.com/"
+    },
+    {
+      "name": "KENTWANG",
+      "link": "http://www.kentwang.com/"
+    },
+    {
+      "name": "KICKZ",
+      "link": "http://www.kickz.com"
+    },
+    {
+      "name": "KIDBOX",
+      "link": "https://www.kidbox.com/"
+    },
+    {
+      "name": "KIELJAMESPATRICK",
+      "link": "https://kieljamespatrick.com/"
+    },
+    {
+      "name": "KINGSIZE",
+      "link": "https://www.kingsize.com/"
+    },
+    {
+      "name": "KLMOUNTAINSHOP",
+      "link": "http://www.klmountainshop.com/"
+    },
+    {
+      "name": "LACOSTEUS",
+      "link": "https://www.lacoste.com/us/"
+    },
+    {
+      "name": "LAPERLA",
+      "link": "http://www.laperla.com"
+    },
+    {
+      "name": "LAPOLICEGEAR",
+      "link": "http://www.lapolicegear.com/"
+    },
+    {
+      "name": "LASTCALL",
+      "link": "http://www.lastcall.com/"
+    },
+    {
+      "name": "LEFTLANESPORTS",
+      "link": "https://www.leftlanesports.com/"
+    },
+    {
+      "name": "LEGENDARYWHITETAILS",
+      "link": "https://www.legendarywhitetails.com/"
+    },
+    {
+      "name": "LEVIS",
+      "link": "https://www.levi.com/US/en_US/"
+    },
+    {
+      "name": "LIDS",
+      "link": "https://www.lids.com/"
+    },
+    {
+      "name": "LITTLEBOYCHIC",
+      "link": "http://www.littleboychic.com"
+    },
+    {
+      "name": "LIZCLAIBORNE",
+      "link": "https://www.lizclaiborne.com/"
+    },
+    {
+      "name": "LLBEAN",
+      "link": "http://www.llbean.com"
+    },
+    {
+      "name": "LOEFFLERRANDALL",
+      "link": "http://www.loefflerrandall.com"
+    },
+    {
+      "name": "LORDANDTAYLOR",
+      "link": "https://www.lordandtaylor.com/"
+    },
+    {
+      "name": "LUGGAGEONLINE",
+      "link": "http://www.Luggageonline.com"
+    },
+    {
+      "name": "LUNASANDALS",
+      "link": "http://lunasandals.com/"
+    },
+    {
+      "name": "MAGNUMBOOTS",
+      "link": "http://www.magnumboots.com/"
+    },
+    {
+      "name": "MAJE",
+      "link": "https://www.maje.com/"
+    },
+    {
+      "name": "MARCJACOBS",
+      "link": "https://www.marcjacobs.com/"
+    },
+    {
+      "name": "MASSEYS",
+      "link": "http://www.Masseys.com"
+    },
+    {
+      "name": "MASSIMO DUTTI",
+      "link": "https://www.massimodutti.com/"
+    },
+    {
+      "name": "MEUNDIES",
+      "link": "https://www.meundies.com/"
+    },
+    {
+      "name": "MICHAELKORS",
+      "link": "http://www.Michaelkors.com"
+    },
+    {
+      "name": "MILANOO",
+      "link": "http://www.milanoo.com"
+    },
+    {
+      "name": "MILSPECMONKEY",
+      "link": "http://milspecmonkey.com/"
+    },
+    {
+      "name": "MINNETONKAMOCCASIN",
+      "link": "https://www.minnetonkamoccasin.com/"
+    },
+    {
+      "name": "MISHKANYC",
+      "link": "https://mishkanyc.com/"
+    },
+    {
+      "name": "MISSSELFRIDGE",
+      "link": "http://www.missselfridge.com"
+    },
+    {
+      "name": "MODCLOTH",
+      "link": "http://www.modcloth.com/"
+    },
+    {
+      "name": "NANCYMEYER",
+      "link": "http://www.nancymeyer.com"
+    },
+    {
+      "name": "NARESCUE",
+      "link": "https://www.narescue.com/"
+    },
+    {
+      "name": "NATIVESHOES",
+      "link": "http://nativeshoes.com/"
+    },
+    {
+      "name": "NATURESJEWELRY",
+      "link": "http://www.Naturesjewelry.com"
+    },
+    {
+      "name": "NEIMANMARCUS",
+      "link": "http://www.neimanmarcus.com"
+    },
+    {
+      "name": "NET-A-PORTER",
+      "link": "http://www.net-a-porter.com"
+    },
+    {
+      "name": "NEW BALANCE",
+      "link": "http://www.newbalance.com/"
+    },
+    {
+      "name": "NEW LOOK UK",
+      "link": "http://www.newlook.com/uk?selectCountry=true"
+    },
+    {
+      "name": "NEXTEN",
+      "link": "https://www.next.us/en"
+    },
+    {
+      "name": "NIKE",
+      "link": "http://www.nike.com"
+    },
+    {
+      "name": "NINEWEST",
+      "link": "http://www.ninewest.com"
+    },
+    {
+      "name": "NYANDCOMPANY",
+      "link": "http://www.nyandcompany.com/"
+    },
+    {
+      "name": "OLDNAVY.GAP",
+      "link": "https://oldnavy.gap.com/"
+    },
+    {
+      "name": "OLIBERTE",
+      "link": "https://www.oliberte.com/"
+    },
+    {
+      "name": "ONEHANESPLACE",
+      "link": "http://www.Onehanesplace.com"
+    },
+    {
+      "name": "ONLINESHOES",
+      "link": "http://www.onlineshoes.com"
+    },
+    {
+      "name": "OPENINGCEREMONY",
+      "link": "https://www.openingceremony.com/"
+    },
+    {
+      "name": "OPTICONTACTS",
+      "link": "http://www.opticontacts.com/"
+    },
+    {
+      "name": "ORBITKEY",
+      "link": "https://www.orbitkey.com/"
+    },
+    {
+      "name": "OSHKOSH",
+      "link": "https://www.oshkosh.com/"
+    },
+    {
+      "name": "PACOCHICANO",
+      "link": "http://www.pacochicano.com"
+    },
+    {
+      "name": "PADANDQUILL",
+      "link": "http://www.padandquill.com"
+    },
+    {
+      "name": "PALLADIUMBOOTS",
+      "link": "https://palladiumboots.com/"
+    },
+    {
+      "name": "PELTZSHOES",
+      "link": "http://www.peltzshoes.com/"
+    },
+    {
+      "name": "PERRYELLIS",
+      "link": "https://www.perryellis.com/"
+    },
+    {
+      "name": "PICCHUMATERNITY",
+      "link": "http://www.picchumaternity.com"
+    },
+    {
+      "name": "PLANTRONICSUS",
+      "link": "http://www.plantronics.com/us/"
+    },
+    {
+      "name": "POSHMARK",
+      "link": "https://poshmark.com/"
+    },
+    {
+      "name": "PROMGIRL",
+      "link": "https://www.promgirl.com/"
+    },
+    {
+      "name": "PYS",
+      "link": "http://www.pys.com/"
+    },
+    {
+      "name": "RALPHLAUREN",
+      "link": "https://www.ralphlauren.com/"
+    },
+    {
+      "name": "RAMPAGE",
+      "link": "http://www.Rampage.com"
+    },
+    {
+      "name": "REBEL8",
+      "link": "http://rebel8.com/"
+    },
+    {
+      "name": "REVOLVE",
+      "link": "https://www.revolve.com/"
+    },
+    {
+      "name": "ROAMANS",
+      "link": "https://www.roamans.com/"
+    },
+    {
+      "name": "ROCKPORT",
+      "link": "http://www.Rockport.com"
+    },
+    {
+      "name": "ROMWE",
+      "link": "https://www.romwe.com/"
+    },
+    {
+      "name": "ROPELACESUPPLY",
+      "link": "https://www.ropelacesupply.com/"
+    },
+    {
+      "name": "ROSEWE",
+      "link": "https://www.rosewe.com/"
+    },
+    {
+      "name": "ROSEWHOLESALE",
+      "link": "https://www.rosewholesale.com/"
+    },
+    {
+      "name": "RUELALA",
+      "link": "https://www.ruelala.com"
+    },
+    {
+      "name": "SAKSFIFTHAVENUEENTRY",
+      "link": "http://www.saksfifthavenue.com/Entry.jsp"
+    },
+    {
+      "name": "SAKSOFF5TH",
+      "link": "http://www.saksoff5th.com/"
+    },
+    {
+      "name": "SHEIN",
+      "link": "http://www.shein.com"
+    },
+    {
+      "name": "SHEPLERS",
+      "link": "https://www.sheplers.com/"
+    },
+    {
+      "name": "SHOEBACCA",
+      "link": "https://www.shoebacca.com/"
+    },
+    {
+      "name": "SHOECARNIVAL",
+      "link": "http://www.shoecarnival.com/"
+    },
+    {
+      "name": "SHOES",
+      "link": "http://www.Shoes.com"
+    },
+    {
+      "name": "MANGOUS",
+      "link": "https://shop.mango.com/us"
+    },
+    {
+      "name": "SHOPBOP",
+      "link": "https://www.shopbop.com/"
+    },
+    {
+      "name": "SHOPPLANETBLUE",
+      "link": "http://shopplanetblue.com/"
+    },
+    {
+      "name": "SHOPSPRING",
+      "link": "https://www.shopspring.com/"
+    },
+    {
+      "name": "SKECHERS",
+      "link": "http://www.Skechers.com"
+    },
+    {
+      "name": "SNEAKERHEAD",
+      "link": "https://www.sneakerhead.com/"
+    },
+    {
+      "name": "SOLEILBLUE",
+      "link": "http://soleilblue.com/"
+    },
+    {
+      "name": "SOREL",
+      "link": "https://www.sorel.com/"
+    },
+    {
+      "name": "SPORTSDIRECT",
+      "link": "https://us.sportsdirect.com/"
+    },
+    {
+      "name": "STEVEMADDEN",
+      "link": "https://www.stevemadden.com"
+    },
+    {
+      "name": "STONEISLANDUS",
+      "link": "https://www.stoneisland.com/us"
+    },
+    {
+      "name": "STORMKIMONOS",
+      "link": "https://stormkimonos.com/"
+    },
+    {
+      "name": "EN.STSCOTTSHOP",
+      "link": "http://en.stscottshop.com/"
+    },
+    {
+      "name": "STYLEWE",
+      "link": "https://www.stylewe.com/"
+    },
+    {
+      "name": "SUPRAFOOTWEAR",
+      "link": "http://suprafootwear.com/"
+    },
+    {
+      "name": "TALBOTS",
+      "link": "http://www.Talbots.com"
+    },
+    {
+      "name": "TALLMENSHOES",
+      "link": "http://www.tallmenshoes.com/"
+    },
+    {
+      "name": "TEEPUBLIC",
+      "link": "https://www.teepublic.com/"
+    },
+    {
+      "name": "TEESPRING",
+      "link": "https://teespring.com/"
+    },
+    {
+      "name": "THEGIANTPEACH",
+      "link": "http://www.thegiantpeach.com"
+    },
+    {
+      "name": "THEMOUNTAIN",
+      "link": "http://www.themountain.com/"
+    },
+    {
+      "name": "THEORCHIDBOUTIQUE",
+      "link": "https://www.theorchidboutique.com/"
+    },
+    {
+      "name": "THEOUTNETEN-US",
+      "link": "https://www.theoutnet.com/en-us/"
+    },
+    {
+      "name": "THREDUPMYTHREDUP",
+      "link": "http://www.thredup.com/mythredup"
+    },
+    {
+      "name": "TIMBERLAND",
+      "link": "http://www.timberland.com"
+    },
+    {
+      "name": "TIMBUK2",
+      "link": "http://www.timbuk2.com/"
+    },
+    {
+      "name": "TODS",
+      "link": "https://www.tods.com/"
+    },
+    {
+      "name": "TOMMY HILFIGER",
+      "link": "https://usa.tommy.com/"
+    },
+    {
+      "name": "TABLOTS",
+      "link": "https://www.talbots.com/"
+    },
+    {
+      "name": "TOPSHOP",
+      "link": "http://us.topshop.com/"
+    },
+    {
+      "name": "TOTALL EECASE",
+      "link": "https://www.totalleecase.com/"
+    },
+    {
+      "name": "TRUE RELIGION",
+      "link": "https://www.truereligion.com/"
+    },
+    {
+      "name": "TWINKLEDEALS",
+      "link": "https://www.twinkledeals.com/"
+    },
+    {
+      "name": "TYR",
+      "link": "https://www.tyr.com"
+    },
+    {
+      "name": "UGG",
+      "link": "https://www.ugg.com/"
+    },
+    {
+      "name": "UNDER ARMOUR",
+      "link": "https://www.underarmour.com/en-us"
+    },
+    {
+      "name": "UNIFORMADVANTAGE",
+      "link": "http://www.uniformadvantage.com/"
+    },
+    {
+      "name": "UNIQLO",
+      "link": "http://www.uniqlo.com/us/"
+    },
+    {
+      "name": "URBAN OUTFITTERS",
+      "link": "http://www.urbanoutfitters.com"
+    },
+    {
+      "name": "VIBRAM",
+      "link": "http://us.vibram.com/"
+    },
+    {
+      "name": "VAJACASES",
+      "link": "https://www.vajacases.com"
+    },
+    {
+      "name": "VENUS",
+      "link": "http://www.Venus.com"
+    },
+    {
+      "name": "VERA WANG",
+      "link": "https://www.verawang.com/"
+    },
+    {
+      "name": "VICTORIAS SECRET",
+      "link": "https://www.victoriassecret.com/"
+    },
+    {
+      "name": "VIKINGBAGS",
+      "link": "http://www.vikingbags.com"
+    },
+    {
+      "name": "VINCE CAMUTO",
+      "link": "http://www.vincecamuto.com"
+    },
+    {
+      "name": "WETSEAL",
+      "link": "http://www.wetseal.com"
+    },
+    {
+      "name": "WILLIAM RAST",
+      "link": "http://www.williamrast.com"
+    },
+    {
+      "name": "WILSONSLEATHER",
+      "link": "https://www.wilsonsleather.com/"
+    },
+    {
+      "name": "WOOLOVERS",
+      "link": "http://www.woolovers.com/"
+    },
+    {
+      "name": "WOOLRICHWOOLRICH",
+      "link": "http://www.woolrich.com/woolrich/"
+    },
+    {
+      "name": "WRANGLER",
+      "link": "http://www.wrangler.com"
+    },
+    {
+      "name": "XEROSHOES",
+      "link": "http://xeroshoes.com/"
+    },
+    {
+      "name": "YOOX",
+      "link": "http://www.yoox.com"
+    },
+    {
+      "name": "ZARAUSEN",
+      "link": "http://www.zara.com/us/en"
+    },
+    {
+      "name": "ZUBITS",
+      "link": "http://zubits.com/"
+    }
+  ]
+}
