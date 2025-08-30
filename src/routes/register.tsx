@@ -1,13 +1,89 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, redirect, useNavigate } from "@tanstack/react-router";
 
-import { Card } from "../components/ui/card";
-import { Input } from "../components/ui/input";
-import { Label } from "../components/ui/label";
-import { Button } from "../components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
 
 import { UserPlus } from "lucide-react";
+import { useState } from "react";
+import { z, ZodError } from "zod";
+import { useMutation } from "@tanstack/react-query";
+
+const schema = z
+  .object({
+    username: z.string().min(6, "Username must contain at least 6 characters"),
+    email: z.string().email("Invalid email address"),
+    password: z.string().min(8, "Password must contain at least 8 characters"),
+    confirmPassword: z
+      .string()
+      .min(8, "Confirm Password must contain at least 8 characters"),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords do not match",
+    path: ["confirmPassword"],
+  });
+
+async function registerUser(data: any) {
+  const res = await fetch("http://localhost:8000/auth/register", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (!res.ok) {
+    const error = await res.json();
+    throw new Error(error.message || "Registration failed");
+  }
+
+  return res.json();
+}
+
+type Errors = {
+  email?: string;
+  username?: string;
+  password?: string;
+  confirmPassword?: string;
+};
 
 const Register = () => {
+  const [errors, setErrors] = useState<Errors>({});
+  const navigate = useNavigate();
+  const {
+    mutate,
+    error,
+    isPending: loading,
+  } = useMutation({
+    mutationFn: registerUser,
+    onSuccess: () => navigate({ to: "/login" }),
+  });
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      username: formData.get("username")?.toString() || "",
+      email: formData.get("email")?.toString() || "",
+      password: formData.get("password")?.toString() || "",
+      confirmPassword: formData.get("confirmPassword")?.toString() || "",
+      is_coach: false,
+    };
+    const result = schema.safeParse(data);
+    if (!result.success) {
+      const fieldErrors: any = {};
+      for (const err of result.error.issues) {
+        fieldErrors[err.path[0]] = err.message;
+      }
+      setErrors(fieldErrors);
+      return;
+    }
+
+    return mutate(data);
+  }
+
   return (
     <main className="min-h-screen flex items-center justify-center bg-background">
       <Card className="w-full max-w-4xl flex flex-col md:flex-row overflow-hidden shadow-lg border border-border">
@@ -39,7 +115,7 @@ const Register = () => {
           <h1 className="text-2xl font-bold text-primary mb-6 text-center md:text-left">
             Create your account
           </h1>
-          <form method="post" className="space-y-5">
+          <form onSubmit={handleSubmit} className="space-y-5">
             <div>
               <Label
                 htmlFor="username"
@@ -53,6 +129,11 @@ const Register = () => {
                 className="w-full"
                 autoComplete="username"
               />
+              {errors.username && (
+                <p className="text-destructive text-sm mt-1">
+                  {errors.username}
+                </p>
+              )}
             </div>
             <div>
               <Label
@@ -68,6 +149,9 @@ const Register = () => {
                 className="w-full"
                 autoComplete="email"
               />
+              {errors.email && (
+                <p className="text-destructive text-sm mt-1">{errors.email}</p>
+              )}
             </div>
             <div>
               <Label
@@ -83,13 +167,44 @@ const Register = () => {
                 className="w-full"
                 autoComplete="new-password"
               />
+              {errors.password && (
+                <p className="text-destructive text-sm mt-1">
+                  {errors.password}
+                </p>
+              )}
             </div>
+            <div>
+              <Label
+                htmlFor="confirmPassword"
+                className="mb-1 block text-sm font-medium text-muted-foreground"
+              >
+                Confirm Password
+              </Label>
+              <Input
+                name="confirmPassword"
+                id="confirmPassword"
+                type="password"
+                className="w-full"
+                autoComplete="new-password"
+              />
+              {errors.confirmPassword && (
+                <p className="text-destructive text-sm mt-1">
+                  {errors.confirmPassword}
+                </p>
+              )}
+            </div>
+            {error && (
+              <p className="text-destructive text-sm mt-2 text-center">
+                {error.message}
+              </p>
+            )}
             <Button
               type="submit"
               size="lg"
               className="w-full mt-2 bg-primary text-primary-foreground hover:bg-secondary hover:text-secondary-foreground"
+              disabled={loading}
             >
-              Sign up
+              {loading ? "Signing up..." : "Sign up"}
             </Button>
           </form>
           <p className="mt-6 text-center text-sm text-muted-foreground">
