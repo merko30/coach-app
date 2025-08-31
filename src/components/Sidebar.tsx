@@ -30,7 +30,9 @@ export default function AppSidebar() {
     <Sidebar>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>CoachingApp</SidebarGroupLabel>
+          <SidebarGroupLabel className="text-2xl font-bold text-primary mb-4">
+            ST<span className="text-foreground">RUN</span>
+          </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (

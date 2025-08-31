@@ -90,7 +90,7 @@ const Register = () => {
         {/* Left panel: Branding/Features */}
         <div className="hidden md:flex flex-col justify-center items-center bg-primary text-primary-foreground px-10 py-12 w-1/2">
           <UserPlus className="w-16 h-16 mb-6" />
-          <h2 className="text-3xl font-bold mb-4">Join CoachingApp</h2>
+          <h2 className="text-3xl font-bold mb-4">Join StRUN</h2>
           <p className="text-lg mb-8 text-primary-foreground/80 text-center">
             Unlock your potential with personalized coaching, progress tracking,
             and a supportive community.

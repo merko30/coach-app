@@ -6,8 +6,8 @@ const Navbar = () => {
 
   return (
     <nav className="w-full bg-card shadow-sm py-4 px-6 flex items-center justify-between sticky top-0 z-30 border-b border-border">
-      <a href="/" className="text-2xl font-bold text-primary tracking-tight">
-        CoachingApp
+      <a href="/" className="text-3xl font-bold text-primary tracking-tight">
+        ST<span className="text-foreground">RUN</span>
       </a>
       <div className="flex gap-4 items-center">
         <a

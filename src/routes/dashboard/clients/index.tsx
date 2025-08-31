@@ -1,14 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { columns, data } from "./columns";
+import { DataTable } from "@/components/DataTable";
+import { clientColumns } from "./constants";
 
 const ClientsPage = () => {
   return (
@@ -21,29 +14,10 @@ const ClientsPage = () => {
           marginBottom: 16,
         }}
       >
-        <h2>Clients</h2>
+        <h2 className="text-2xl font-semibold">Clients</h2>
         <Button onClick={() => alert("Create client")}>Create Client</Button>
       </div>
-      <Table>
-        <TableHeader>
-          <TableRow>
-            {columns.map((column) => (
-              <TableHead key={column.header}>{column.header}</TableHead>
-            ))}
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {data.map((row) => (
-            <TableRow key={row.id}>
-              {columns.map((column) => (
-                <TableCell key={column.accessorKey}>
-                  {row[column.accessorKey]}
-                </TableCell>
-              ))}
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+      <DataTable columns={clientColumns} data={[]} />
     </div>
   );
 };
