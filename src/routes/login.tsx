@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, redirect, useNavigate } from "@tanstack/react-router";
 
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -49,7 +49,7 @@ const Login = () => {
     onSuccess: (data) => {
       localStorage.setItem("token", data.token);
       localStorage.setItem("refresh_token", data.refresh_token);
-      navigate({ to: "/" });
+      navigate({ to: "/dashboard" });
     },
   });
 
@@ -175,4 +175,10 @@ const Login = () => {
 
 export const Route = createFileRoute("/login")({
   component: Login,
+  beforeLoad: ({ context }) => {
+    // Redirect if already authenticated
+    if (context.auth?.loggedIn) {
+      throw redirect({ to: "/dashboard" });
+    }
+  },
 });

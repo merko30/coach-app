@@ -8,7 +8,7 @@ interface User {
   // Add more fields as needed
 }
 
-interface AuthContextType {
+export interface AuthContextType {
   loggedIn: boolean;
   loading: boolean;
 }

@@ -22,7 +22,7 @@ const PlansPage = () => {
   );
 };
 
-export const Route = createFileRoute("/dashboard/plans/")({
+export const Route = createFileRoute("/_authenticated/dashboard/plans/")({
   component: PlansPage,
 });
 

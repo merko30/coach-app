@@ -21,7 +21,7 @@ const ClientsPage = () => {
     </div>
   );
 };
-export const Route = createFileRoute("/dashboard/clients/")({
+export const Route = createFileRoute("/_authenticated/dashboard/clients/")({
   component: ClientsPage,
 });
 
