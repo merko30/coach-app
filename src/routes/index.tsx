@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 
 import { Button } from "../components/ui/button";
 import { LogIn, Users, BarChart3 } from "lucide-react";
+import Navbar from "@/components/Navbar";
 
 const features = [
   {
@@ -21,31 +22,6 @@ const features = [
     icon: <Users className="w-12 h-12 text-primary" />,
   },
 ];
-
-const Navbar = () => (
-  <nav className="w-full bg-card shadow-sm py-4 px-6 flex items-center justify-between sticky top-0 z-30 border-b border-border">
-    <a href="/" className="text-2xl font-bold text-primary tracking-tight">
-      CoachingApp
-    </a>
-    <div className="flex gap-4 items-center">
-      <a
-        href="#features"
-        className="text-primary hover:text-secondary font-medium transition"
-      >
-        Features
-      </a>
-      <a
-        href="#community"
-        className="text-primary hover:text-secondary font-medium transition"
-      >
-        Community
-      </a>
-      <Button asChild>
-        <a href="/register">Sign Up</a>
-      </Button>
-    </div>
-  </nav>
-);
 
 const Index = () => {
   return (
