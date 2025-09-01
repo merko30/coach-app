@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { DataTable } from "@/components/DataTable";
 import { planColumns } from "@/lib/plans";
@@ -15,14 +15,16 @@ const PlansPage = () => {
         }}
       >
         <h2 className="text-2xl font-semibold">Plans</h2>
-        <Button onClick={() => alert("Create plan")}>Create Plan</Button>
+        <Button asChild>
+          <Link to="/dashboard/plans/create">Create Plan</Link>
+        </Button>
       </div>
       <DataTable columns={planColumns} data={[]} />
     </div>
   );
 };
 
-export const Route = createFileRoute("/_authenticated/dashboard/plans")({
+export const Route = createFileRoute("/_authenticated/dashboard/plans/")({
   component: PlansPage,
 });
 
