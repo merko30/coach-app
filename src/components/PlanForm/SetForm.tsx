@@ -4,6 +4,9 @@ import { Card, CardContent, CardHeader } from "../ui/card";
 import type { PlanFormValues } from "./constants";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
+import { Trash } from "lucide-react";
+import { Select } from "../ui/select";
+import { FormikSelect } from "../FormikSelect";
 
 const SetForm = ({
   weekIdx,
@@ -33,7 +36,7 @@ const SetForm = ({
           variant="destructive"
           onClick={() => remove(setIdx)}
         >
-          Remove
+          <Trash />
         </Button>
       </CardHeader>
       <CardContent size="compact">
@@ -48,15 +51,15 @@ const SetForm = ({
           </div>
           <div>
             <Label>Active Measure</Label>
-            <Field
-              as="select"
+            <FormikSelect
               name={`weeks.${weekIdx}.days.${dayIdx}.workouts.${workoutIdx}.sets.${setIdx}.active_measure_type`}
               className="input"
-            >
-              <option value="DISTANCE">Distance</option>
-              <option value="TIME">Time</option>
-              <option value="REPS">Reps</option>
-            </Field>
+              options={[
+                { value: "DISTANCE", label: "Distance" },
+                { value: "TIME", label: "Time" },
+                { value: "REPS", label: "Reps" },
+              ]}
+            ></FormikSelect>
           </div>
           <div>
             <Label>Recovery Value</Label>
@@ -68,16 +71,14 @@ const SetForm = ({
           </div>
           <div>
             <Label>Recovery Measure</Label>
-            <Field
-              as="select"
+            <FormikSelect
               name={`weeks.${weekIdx}.days.${dayIdx}.workouts.${workoutIdx}.sets.${setIdx}.recovery_measure_type`}
-              className="input"
-            >
-              <option value="">None</option>
-              <option value="DISTANCE">Distance</option>
-              <option value="TIME">Time</option>
-              <option value="REPS">Reps</option>
-            </Field>
+              options={[
+                { value: "DISTANCE", label: "Distance" },
+                { value: "TIME", label: "Time" },
+                { value: "REPS", label: "Reps" },
+              ]}
+            ></FormikSelect>
           </div>
         </div>
       </CardContent>
