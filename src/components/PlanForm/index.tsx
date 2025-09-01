@@ -106,19 +106,7 @@ export function PlanForm({
                 <div className="space-y-4">
                   {values.weeks.map((week, weekIdx) => (
                     <SortableItem key={week.order} id={week.id!}>
-                      <Card>
-                        <CardHeader className="flex flex-row justify-between items-center">
-                          <span>Week {week.id}</span>
-                          <Button
-                            type="button"
-                            variant="destructive"
-                            onClick={() => remove(weekIdx)}
-                          >
-                            <Trash />
-                          </Button>
-                        </CardHeader>
-                        <DayFieldsForm weekIdx={weekIdx} />
-                      </Card>
+                      <DayFieldsForm weekIdx={weekIdx} remove={remove} />
                     </SortableItem>
                   ))}
                   <Button
