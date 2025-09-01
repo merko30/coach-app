@@ -17,6 +17,9 @@ import {
 import { Label } from "@radix-ui/react-label";
 import { Textarea } from "../ui/textarea";
 import { Input } from "../ui/input";
+import { SortableItem } from "./SortableItem";
+import WorkoutForm from "./WorkoutForm";
+import { uuidv7 } from "uuidv7";
 
 const DayForm = ({
   weekIdx,
@@ -55,10 +58,10 @@ const DayForm = ({
                 const { active, over } = event;
                 if (active.id !== over?.id) {
                   const oldIndex = day.workouts.findIndex(
-                    (w) => w.order === active.id
+                    (w) => w.id === active.id
                   );
                   const newIndex = day.workouts.findIndex(
-                    (w) => w.order === over?.id
+                    (w) => w.id === over?.id
                   );
                   moveWorkout(oldIndex, newIndex);
                   setFieldValue(
@@ -72,174 +75,25 @@ const DayForm = ({
               }}
             >
               <SortableContext
-                items={day.workouts.map((w) => w.order)}
+                items={day.workouts.map((w) => w.id!)}
                 strategy={verticalListSortingStrategy}
               >
                 <div className="space-y-2">
                   {day.workouts.map((workout, workoutIdx) => (
-                    <Card key={workout.order}>
-                      <CardHeader className="flex flex-row justify-between items-center">
-                        <span>
-                          Workout: {workout.title || `#${workoutIdx + 1}`}
-                        </span>
-                        <Button
-                          type="button"
-                          variant="destructive"
-                          onClick={() => removeWorkout(workoutIdx)}
-                        >
-                          <Trash />
-                        </Button>
-                      </CardHeader>
-                      <CardContent>
-                        <div className="space-y-2">
-                          <Label>Title</Label>
-                          <Field
-                            name={`weeks.${weekIdx}.days.${dayIdx}.workouts.${workoutIdx}.title`}
-                            as={Input}
-                          />
-                          <Label>Description</Label>
-                          <Field
-                            name={`weeks.${weekIdx}.days.${dayIdx}.workouts.${workoutIdx}.description`}
-                            as={Textarea}
-                          />
-                          <Label>Type</Label>
-                          <Field
-                            as="select"
-                            name={`weeks.${weekIdx}.days.${dayIdx}.workouts.${workoutIdx}.type`}
-                            className="input"
-                          >
-                            <option value="REST">Rest</option>
-                            <option value="STRENGTH">Strength</option>
-                            <option value="RUN">Run</option>
-                          </Field>
-                        </div>
-                        {/* Sets DnD */}
-                        <FieldArray
-                          name={`weeks.${weekIdx}.days.${dayIdx}.workouts.${workoutIdx}.sets`}
-                        >
-                          {({
-                            push: pushSet,
-                            remove: removeSet,
-                            move: moveSet,
-                          }) => (
-                            <DndContext
-                              collisionDetection={closestCenter}
-                              onDragEnd={(event) => {
-                                const { active, over } = event;
-                                if (active.id !== over?.id) {
-                                  const oldIndex = workout.sets.findIndex(
-                                    (s) => s.order === active.id
-                                  );
-                                  const newIndex = workout.sets.findIndex(
-                                    (s) => s.order === over?.id
-                                  );
-                                  moveSet(oldIndex, newIndex);
-                                  setFieldValue(
-                                    `weeks.${weekIdx}.days.${dayIdx}.workouts.${workoutIdx}.sets`,
-                                    arrayMove(
-                                      workout.sets,
-                                      oldIndex,
-                                      newIndex
-                                    ).map((s, i) => ({
-                                      ...s,
-                                      order: i,
-                                    }))
-                                  );
-                                }
-                              }}
-                            >
-                              <SortableContext
-                                items={workout.sets.map((s) => s.order)}
-                                strategy={verticalListSortingStrategy}
-                              >
-                                <div className="space-y-2">
-                                  {workout.sets.map((set, setIdx) => (
-                                    <Card key={set.order}>
-                                      <CardHeader className="flex flex-row justify-between items-center">
-                                        <span>Set #{setIdx + 1}</span>
-                                        <Button
-                                          type="button"
-                                          variant="destructive"
-                                          onClick={() => removeSet(setIdx)}
-                                        >
-                                          Remove
-                                        </Button>
-                                      </CardHeader>
-                                      <CardContent>
-                                        <div className="grid grid-cols-2 gap-2">
-                                          <div>
-                                            <Label>Active Value</Label>
-                                            <Field
-                                              name={`weeks.${weekIdx}.days.${dayIdx}.workouts.${workoutIdx}.sets.${setIdx}.active_value`}
-                                              as={Input}
-                                              type="number"
-                                            />
-                                          </div>
-                                          <div>
-                                            <Label>Active Measure</Label>
-                                            <Field
-                                              as="select"
-                                              name={`weeks.${weekIdx}.days.${dayIdx}.workouts.${workoutIdx}.sets.${setIdx}.active_measure_type`}
-                                              className="input"
-                                            >
-                                              <option value="DISTANCE">
-                                                Distance
-                                              </option>
-                                              <option value="TIME">Time</option>
-                                              <option value="REPS">Reps</option>
-                                            </Field>
-                                          </div>
-                                          <div>
-                                            <Label>Recovery Value</Label>
-                                            <Field
-                                              name={`weeks.${weekIdx}.days.${dayIdx}.workouts.${workoutIdx}.sets.${setIdx}.recovery_value`}
-                                              as={Input}
-                                              type="number"
-                                            />
-                                          </div>
-                                          <div>
-                                            <Label>Recovery Measure</Label>
-                                            <Field
-                                              as="select"
-                                              name={`weeks.${weekIdx}.days.${dayIdx}.workouts.${workoutIdx}.sets.${setIdx}.recovery_measure_type`}
-                                              className="input"
-                                            >
-                                              <option value="">None</option>
-                                              <option value="DISTANCE">
-                                                Distance
-                                              </option>
-                                              <option value="TIME">Time</option>
-                                              <option value="REPS">Reps</option>
-                                            </Field>
-                                          </div>
-                                        </div>
-                                      </CardContent>
-                                    </Card>
-                                  ))}
-                                  <Button
-                                    type="button"
-                                    onClick={() =>
-                                      pushSet({
-                                        order: workout.sets.length,
-                                        active_value: 0,
-                                        active_measure_type: "REPS",
-                                      })
-                                    }
-                                  >
-                                    Add Set
-                                  </Button>
-                                </div>
-                              </SortableContext>
-                            </DndContext>
-                          )}
-                        </FieldArray>
-                      </CardContent>
-                    </Card>
+                    <SortableItem key={workout.id} id={workout.id!}>
+                      <WorkoutForm
+                        weekIdx={weekIdx}
+                        dayIdx={dayIdx}
+                        workoutIdx={workoutIdx}
+                        remove={removeWorkout}
+                      />
+                    </SortableItem>
                   ))}
                   <Button
                     type="button"
                     onClick={() =>
                       pushWorkout({
+                        id: uuidv7(),
                         order: day.workouts.length,
                         title: "",
                         description: "",
