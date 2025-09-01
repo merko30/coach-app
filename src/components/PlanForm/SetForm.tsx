@@ -22,8 +22,11 @@ const SetForm = ({
     values.weeks[weekIdx].days[dayIdx].workouts[workoutIdx].sets[setIdx];
 
   return (
-    <Card key={set.order}>
-      <CardHeader className="flex flex-row justify-between items-center">
+    <Card key={set.order} size="compact">
+      <CardHeader
+        className="flex flex-row justify-between items-center"
+        size="compact"
+      >
         <span>Set #{setIdx + 1}</span>
         <Button
           type="button"
@@ -33,7 +36,7 @@ const SetForm = ({
           Remove
         </Button>
       </CardHeader>
-      <CardContent>
+      <CardContent size="compact">
         <div className="grid grid-cols-2 gap-2">
           <div>
             <Label>Active Value</Label>

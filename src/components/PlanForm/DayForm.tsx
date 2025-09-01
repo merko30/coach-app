@@ -33,8 +33,11 @@ const DayForm = ({
   const day = values.weeks[weekIdx].days[dayIdx];
 
   return (
-    <Card key={day.order}>
-      <CardHeader className="flex flex-row justify-between items-center">
+    <Card key={day.order} size="compact">
+      <CardHeader
+        className="flex flex-row justify-between items-center"
+        size="compact"
+      >
         <span>Day {day.id}</span>
         <Button
           type="button"
@@ -44,7 +47,7 @@ const DayForm = ({
           <Trash />
         </Button>
       </CardHeader>
-      <CardContent>
+      <CardContent size="compact">
         {/* Workouts DnD */}
         <FieldArray name={`weeks.${weekIdx}.days.${dayIdx}.workouts`}>
           {({

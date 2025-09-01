@@ -35,8 +35,11 @@ const WorkoutForm = ({
   const workout = values.weeks[weekIdx].days[dayIdx].workouts[workoutIdx];
 
   return (
-    <Card key={workout.order}>
-      <CardHeader className="flex flex-row justify-between items-center">
+    <Card key={workout.order} size="compact">
+      <CardHeader
+        className="flex flex-row justify-between items-center"
+        size="compact"
+      >
         <span>Workout: {workout.title || `#${workoutIdx + 1}`}</span>
         <Button
           type="button"
@@ -46,7 +49,7 @@ const WorkoutForm = ({
           <Trash />
         </Button>
       </CardHeader>
-      <CardContent>
+      <CardContent size="compact">
         <div className="space-y-2">
           <Label>Title</Label>
           <Field
