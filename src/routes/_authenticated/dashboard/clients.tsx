@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { DataTable } from "@/components/DataTable";
-import { clientColumns } from "./constants";
+import { clientColumns } from "@/lib/clients";
 
 const ClientsPage = () => {
   return (
@@ -21,7 +21,7 @@ const ClientsPage = () => {
     </div>
   );
 };
-export const Route = createFileRoute("/_authenticated/dashboard/clients/")({
+export const Route = createFileRoute()({
   component: ClientsPage,
 });
 

@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { DataTable } from "@/components/DataTable";
-import { planColumns } from "./constants";
+import { planColumns } from "@/lib/plans";
 
 const PlansPage = () => {
   return (
@@ -22,7 +22,7 @@ const PlansPage = () => {
   );
 };
 
-export const Route = createFileRoute("/_authenticated/dashboard/plans/")({
+export const Route = createFileRoute("/_authenticated/dashboard/plans")({
   component: PlansPage,
 });
 
