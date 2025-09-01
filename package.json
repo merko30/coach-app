@@ -43,6 +43,7 @@
     "react-i18next": "^15.7.2",
     "tailwind-merge": "^3.3.1",
     "tailwindcss": "^4.1.12",
+    "uuidv7": "^1.0.2",
     "zod": "^4.1.5"
   },
   "devDependencies": {

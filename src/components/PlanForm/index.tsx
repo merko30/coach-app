@@ -22,6 +22,8 @@ import { Label } from "@/components/ui/label";
 import { Trash } from "lucide-react";
 import DayFieldsForm from "./DayFieldsForm";
 import { initialValues, type PlanFormValues } from "./constants";
+import { SortableItem } from "./SortableItem";
+import { uuidv7 } from "uuidv7";
 
 export function PlanForm({
   onSubmit,
@@ -34,6 +36,8 @@ export function PlanForm({
   });
 
   const { touched, errors, setFieldValue, values } = formik;
+
+  console.log(values);
 
   return (
     <FormikProvider value={formik}>
@@ -69,15 +73,22 @@ export function PlanForm({
               collisionDetection={closestCenter}
               onDragEnd={(event) => {
                 const { active, over } = event;
+
                 if (active.id !== over?.id) {
                   const oldIndex = values.weeks.findIndex(
-                    (w) => w.order === active.id
+                    (w) => w.id === active.id
                   );
                   const newIndex = values.weeks.findIndex(
-                    (w) => w.order === over?.id
+                    (w) => w.id === over?.id
                   );
                   move(oldIndex, newIndex);
                   // update order
+                  console.log(
+                    arrayMove(values.weeks, oldIndex, newIndex).map((w, i) => ({
+                      ...w,
+                      order: i,
+                    }))
+                  );
                   setFieldValue(
                     "weeks",
                     arrayMove(values.weeks, oldIndex, newIndex).map((w, i) => ({
@@ -89,29 +100,35 @@ export function PlanForm({
               }}
             >
               <SortableContext
-                items={values.weeks.map((w) => w.order)}
+                items={values.weeks.map((w) => w.id!)}
                 strategy={verticalListSortingStrategy}
               >
                 <div className="space-y-4">
                   {values.weeks.map((week, weekIdx) => (
-                    <Card key={week.order}>
-                      <CardHeader className="flex flex-row justify-between items-center">
-                        <span>Week {weekIdx + 1}</span>
-                        <Button
-                          type="button"
-                          variant="destructive"
-                          onClick={() => remove(weekIdx)}
-                        >
-                          <Trash />
-                        </Button>
-                      </CardHeader>
-                      <DayFieldsForm weekIdx={weekIdx} />
-                    </Card>
+                    <SortableItem key={week.order} id={week.id!}>
+                      <Card>
+                        <CardHeader className="flex flex-row justify-between items-center">
+                          <span>Week {week.id}</span>
+                          <Button
+                            type="button"
+                            variant="destructive"
+                            onClick={() => remove(weekIdx)}
+                          >
+                            <Trash />
+                          </Button>
+                        </CardHeader>
+                        <DayFieldsForm weekIdx={weekIdx} />
+                      </Card>
+                    </SortableItem>
                   ))}
                   <Button
                     type="button"
                     onClick={() =>
-                      push({ order: values.weeks.length, days: [] })
+                      push({
+                        order: values.weeks.length,
+                        days: [],
+                        id: uuidv7(),
+                      })
                     }
                   >
                     Add Week
