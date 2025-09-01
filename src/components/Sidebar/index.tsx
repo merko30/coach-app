@@ -12,6 +12,8 @@ import {
 } from "@/components/ui/sidebar";
 import { Link } from "@tanstack/react-router";
 
+import LogoutButton from "./LogoutButton";
+
 // Menu items.
 const items = [
   {
@@ -34,15 +36,15 @@ const items = [
 export default function AppSidebar() {
   return (
     <Sidebar>
-      <SidebarContent>
-        <SidebarGroup>
+      <SidebarContent className="h-full">
+        <SidebarGroup className="h-full">
           <SidebarGroupLabel className="text-2xl font-bold text-primary mb-4">
             ST<span className="text-foreground">RUN</span>
           </SidebarGroupLabel>
-          <SidebarGroupContent>
+          <SidebarGroupContent className="h-full">
             <SidebarMenu>
               {items.map((item) => (
-                <SidebarMenuItem key={item.title}>
+                <SidebarMenuItem key={item.title} className="cursor-pointer">
                   <SidebarMenuButton asChild>
                     <Link to={item.url}>
                       <item.icon />
@@ -52,6 +54,11 @@ export default function AppSidebar() {
                 </SidebarMenuItem>
               ))}
             </SidebarMenu>
+          </SidebarGroupContent>
+          <SidebarGroupContent>
+            <SidebarContent>
+              <LogoutButton />
+            </SidebarContent>
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>

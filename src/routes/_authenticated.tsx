@@ -1,5 +1,5 @@
 import { createFileRoute, redirect, Outlet } from "@tanstack/react-router";
-import Sidebar from "@/components/Sidebar";
+import Sidebar from "@/components/Sidebar/index";
 import { SidebarProvider } from "@/components/ui/sidebar";
 
 export const Route = createFileRoute("/_authenticated")({

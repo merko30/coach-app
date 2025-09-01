@@ -9,28 +9,12 @@ import { UserPlus } from "lucide-react";
 import { useState } from "react";
 import { z } from "zod";
 import { useMutation } from "@tanstack/react-query";
+import { useAuth } from "@/context/AuthProvider";
 
 const schema = z.object({
   email: z.email("Invalid email address"),
   password: z.string().min(8, "Password must contain at least 8 characters"),
 });
-
-async function loginUser(data: any) {
-  const res = await fetch("http://localhost:8000/auth/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
-
-  if (!res.ok) {
-    const error = await res.json();
-    throw new Error(error.message || "Registration failed");
-  }
-
-  return res.json();
-}
 
 type Errors = {
   email?: string;
@@ -40,17 +24,14 @@ type Errors = {
 const Login = () => {
   const [errors, setErrors] = useState<Errors>({});
   const navigate = useNavigate();
+  const { login } = useAuth();
   const {
     mutate,
     error,
     isPending: loading,
   } = useMutation({
-    mutationFn: loginUser,
-    onSuccess: (data) => {
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("refresh_token", data.refresh_token);
-      navigate({ to: "/dashboard" });
-    },
+    mutationFn: login,
+    onSuccess: () => navigate({ to: "/dashboard" }),
   });
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -70,7 +51,6 @@ const Login = () => {
       setErrors(fieldErrors);
       return;
     }
-
     return mutate(data);
   }
 

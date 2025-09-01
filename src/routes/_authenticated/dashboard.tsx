@@ -1,5 +1,3 @@
-import Sidebar from "@/components/Sidebar";
-import { SidebarProvider } from "@/components/ui/sidebar";
 import { createFileRoute, Outlet } from "@tanstack/react-router";
 
 // Layout route (has children but no index page)
