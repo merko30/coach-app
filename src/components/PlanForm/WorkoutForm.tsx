@@ -20,6 +20,7 @@ import {
 import { SortableItem } from "./SortableItem";
 import SetForm from "./SetForm";
 import { uuidv7 } from "uuidv7";
+import { FormikSelect } from "../FormikSelect";
 
 const WorkoutForm = ({
   weekIdx,
@@ -37,7 +38,9 @@ const WorkoutForm = ({
   return (
     <div className="my-4">
       <div className="flex flex-row justify-between items-center">
-        <span>Workout: {workout.title || `#${workoutIdx + 1}`}</span>
+        <h4 className="text-xl font-semibold mb-4">
+          Workout: {workout.title || `#${workoutIdx + 1}`}
+        </h4>
         <Button
           type="button"
           variant="destructive"
@@ -57,18 +60,19 @@ const WorkoutForm = ({
           name={`weeks.${weekIdx}.days.${dayIdx}.workouts.${workoutIdx}.description`}
           as={Textarea}
         />
-        <Label>Type</Label>
-        <Field
-          as="select"
+        <FormikSelect
+          label="Type"
           name={`weeks.${weekIdx}.days.${dayIdx}.workouts.${workoutIdx}.type`}
-          className="input"
-        >
-          <option value="REST">Rest</option>
-          <option value="STRENGTH">Strength</option>
-          <option value="RUN">Run</option>
-        </Field>
+          options={[
+            { value: "REST", label: "Rest" },
+            { value: "STRENGTH", label: "Strength" },
+            { value: "RUN", label: "Run" },
+          ]}
+          className="mb-4"
+        />
       </div>
       {/* Sets DnD */}
+      <h5 className="text-lg font-semibold">Sets</h5>
       <FieldArray
         name={`weeks.${weekIdx}.days.${dayIdx}.workouts.${workoutIdx}.sets`}
       >
@@ -99,9 +103,13 @@ const WorkoutForm = ({
               items={workout.sets.map((s) => s.id!)}
               strategy={verticalListSortingStrategy}
             >
-              <div className="space-y-2">
+              <div>
                 {workout.sets.map((set, setIdx) => (
-                  <SortableItem key={set.id} id={set.id!}>
+                  <SortableItem
+                    key={set.id}
+                    id={set.id!}
+                    className="border-b border-gray-200 odd:bg-gray-50 pr-4 py-3 last-of-type:border-b-transparent"
+                  >
                     <SetForm
                       weekIdx={weekIdx}
                       dayIdx={dayIdx}

@@ -23,7 +23,12 @@ export function WeekAccordion({
     <Accordion type="multiple" className="w-full pr-2">
       {days.map((day, dayIdx) => (
         <AccordionItem key={day.id} value={String(day.id)}>
-          <AccordionTrigger>Day {day.day_of_week + 1}</AccordionTrigger>
+          <AccordionTrigger>
+            Day {day.day_of_week + 1}
+            {day.workouts.length
+              ? " - " + day.workouts.map((workout) => workout.title).join("-")
+              : null}
+          </AccordionTrigger>
           <AccordionContent>
             <DayForm weekIdx={weekIdx} dayIdx={dayIdx} remove={remove} />
           </AccordionContent>

@@ -31,7 +31,7 @@ const DayForm = ({
   return (
     <div key={day.order}>
       <div className="flex flex-row justify-between items-center">
-        <span>Day {day.id}</span>
+        {/* <span>Day {day.id}</span> */}
         <Button
           type="button"
           variant="destructive"
