@@ -1,11 +1,4 @@
-import {
-  Form,
-  FieldArray,
-  Field,
-  getIn,
-  FormikProvider,
-  useFormik,
-} from "formik";
+import { Form, FieldArray, getIn, FormikProvider, useFormik } from "formik";
 // import { toFormikValidationSchema } from "zod-formik-adapter";
 import { DndContext, closestCenter } from "@dnd-kit/core";
 import {
@@ -23,6 +16,7 @@ import { initialValues, type PlanFormValues } from "./constants";
 import { SortableItem } from "./SortableItem";
 import { uuidv7 } from "uuidv7";
 import { FormikSelect } from "../FormikSelect";
+import { WeekAccordion } from "./WeekAccordion";
 
 export function PlanForm({
   onSubmit,
@@ -123,7 +117,7 @@ export function PlanForm({
                           id={week.id!}
                           className="border border-gray-200 rounded-md px-2 py-4"
                         >
-                          <DayFieldsForm weekIdx={weekIdx} remove={remove} />
+                          <WeekAccordion weekIdx={weekIdx} remove={remove} />
                         </SortableItem>
                       ))}
                       <Button
@@ -131,8 +125,15 @@ export function PlanForm({
                         onClick={() =>
                           push({
                             order: values.weeks.length,
-                            days: [],
                             id: uuidv7(),
+                            days: Array(7)
+                              .fill(0)
+                              .map((_, i) => ({
+                                id: uuidv7(),
+                                order: i,
+                                day_of_week: i,
+                                workouts: [],
+                              })),
                           })
                         }
                         className="block ml-auto"
