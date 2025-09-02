@@ -79,7 +79,7 @@ const DayForm = ({
                   <SortableItem
                     key={workout.id}
                     id={workout.id!}
-                    className="space-y-2"
+                    className="space-y-2 border border-gray-200 pr-2 my-2 rounded-md"
                   >
                     <WorkoutForm
                       weekIdx={weekIdx}

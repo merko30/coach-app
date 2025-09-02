@@ -15,6 +15,12 @@ import { initialValues, type PlanFormValues } from "./constants";
 import { SortableItem } from "./SortableItem";
 import { uuidv7 } from "uuidv7";
 import { FormikSelect } from "../FormikSelect";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "@/components/ui/accordion";
 import { WeekAccordion } from "./WeekAccordion";
 
 export function PlanForm({
@@ -109,15 +115,24 @@ export function PlanForm({
                     items={values.weeks.map((w) => w.id!)}
                     strategy={verticalListSortingStrategy}
                   >
-                    <div className="space-y-4">
+                    <Accordion type="multiple" className="space-y-4">
                       {values.weeks.map((week, weekIdx) => (
-                        <SortableItem
-                          key={week.order}
-                          id={week.id!}
-                          className="border border-gray-200 rounded-md px-2 py-4"
-                        >
-                          <WeekAccordion weekIdx={weekIdx} remove={remove} />
-                        </SortableItem>
+                        <AccordionItem key={week.id} value={String(week.id)}>
+                          <AccordionTrigger>
+                            Week {weekIdx + 1}
+                          </AccordionTrigger>
+                          <AccordionContent>
+                            <SortableItem
+                              id={week.id!}
+                              className="border border-gray-200 rounded-md px-2 py-4"
+                            >
+                              <WeekAccordion
+                                weekIdx={weekIdx}
+                                remove={remove}
+                              />
+                            </SortableItem>
+                          </AccordionContent>
+                        </AccordionItem>
                       ))}
                       <Button
                         type="button"
@@ -139,7 +154,7 @@ export function PlanForm({
                       >
                         Add Week
                       </Button>
-                    </div>
+                    </Accordion>
                   </SortableContext>
                 </DndContext>
               )}
