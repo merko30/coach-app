@@ -11,7 +11,6 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
-import DayFieldsForm from "./WeekForm";
 import { initialValues, type PlanFormValues } from "./constants";
 import { SortableItem } from "./SortableItem";
 import { uuidv7 } from "uuidv7";

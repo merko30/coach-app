@@ -5,7 +5,6 @@ import type { PlanFormValues } from "./constants";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { Trash } from "lucide-react";
-import { Select } from "../ui/select";
 import { FormikSelect } from "../FormikSelect";
 
 const SetForm = ({
