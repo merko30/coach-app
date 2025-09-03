@@ -1,5 +1,3 @@
-import { Trash } from "lucide-react";
-import { Card, CardContent, CardHeader } from "../ui/card";
 import { Button } from "../ui/button";
 import {
   FieldArray,
@@ -20,7 +18,6 @@ import { uuidv7 } from "uuidv7";
 const DayForm = ({
   weekIdx,
   dayIdx,
-  remove,
 }: {
   weekIdx: number;
   dayIdx: number;
@@ -29,17 +26,7 @@ const DayForm = ({
   const day = values.weeks[weekIdx].days[dayIdx];
 
   return (
-    <div key={day.order}>
-      <div className="flex flex-row justify-between items-center">
-        {/* <span>Day {day.id}</span> */}
-        <Button
-          type="button"
-          variant="destructive"
-          onClick={() => remove(dayIdx)}
-        >
-          <Trash />
-        </Button>
-      </div>
+    <>
       {/* Workouts DnD */}
       <FieldArray name={`weeks.${weekIdx}.days.${dayIdx}.workouts`}>
         {({ push: pushWorkout, remove: removeWorkout, move: moveWorkout }) => (
@@ -109,7 +96,7 @@ const DayForm = ({
           </DndContext>
         )}
       </FieldArray>
-    </div>
+    </>
   );
 };
 

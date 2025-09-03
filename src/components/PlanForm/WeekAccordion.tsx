@@ -20,7 +20,7 @@ export function WeekAccordion({
   const { values } = useFormikContext<PlanFormValues>();
   const days = values.weeks[weekIdx].days;
   return (
-    <Accordion type="multiple" className="w-full pr-2">
+    <Accordion type="single" className="w-full pr-2">
       {days.map((day, dayIdx) => (
         <AccordionItem key={day.id} value={String(day.id)}>
           <AccordionTrigger>

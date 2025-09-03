@@ -1,4 +1,11 @@
-import { Form, FieldArray, getIn, FormikProvider, useFormik } from "formik";
+import {
+  Form,
+  FieldArray,
+  getIn,
+  FormikProvider,
+  useFormik,
+  Field,
+} from "formik";
 // import { toFormikValidationSchema } from "zod-formik-adapter";
 import { DndContext, closestCenter } from "@dnd-kit/core";
 import {
@@ -29,7 +36,9 @@ export function PlanForm({
   onSubmit: (values: PlanFormValues) => void;
 }) {
   const formik = useFormik({
-    initialValues,
+    initialValues: localStorage.getItem("values")
+      ? JSON.parse(localStorage.getItem("values")!)
+      : initialValues,
     onSubmit,
   });
 
@@ -47,7 +56,7 @@ export function PlanForm({
           <Form className="space-y-6">
             <div className="space-y-2">
               <Label htmlFor="title">Title</Label>
-              <Input name="title" />
+              <Field as={Input} name="title" />
               {getIn(touched, "title") && getIn(errors, "title") && (
                 <div className="text-red-500 text-xs">
                   {getIn(errors, "title")}
@@ -56,7 +65,7 @@ export function PlanForm({
             </div>
             <div className="space-y-2">
               <Label htmlFor="description">Description</Label>
-              <Textarea name="description" />
+              <Field as={Textarea} name="description" />
               {getIn(touched, "description") &&
                 getIn(errors, "description") && (
                   <div className="text-red-500 text-xs">
@@ -142,7 +151,7 @@ export function PlanForm({
                           id={week.id!}
                           className="border-b border-gray-200 last:border-b-transparent px-2 py-4"
                         >
-                          <Accordion type="multiple" className="space-y-4">
+                          <Accordion type="single" className="space-y-4">
                             <AccordionItem
                               key={week.id}
                               value={String(week.id)}
