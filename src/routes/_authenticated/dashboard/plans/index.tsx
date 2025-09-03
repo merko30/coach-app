@@ -2,8 +2,23 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { DataTable } from "@/components/DataTable";
 import { planColumns } from "@/lib/plans";
+import { useQuery } from "@tanstack/react-query";
 
 const PlansPage = () => {
+  const { data, error } = useQuery({
+    queryFn: async () => {
+      const res = await fetch("http://localhost:8000/plans", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+
+      return await res.json();
+    },
+    queryKey: ["plans"],
+  });
+
   return (
     <div className="w-full">
       <div
@@ -19,7 +34,7 @@ const PlansPage = () => {
           <Link to="/dashboard/plans/create">Create Plan</Link>
         </Button>
       </div>
-      <DataTable columns={planColumns} data={[]} />
+      <DataTable columns={planColumns} data={data || []} />
     </div>
   );
 };

@@ -36,15 +36,11 @@ export function PlanForm({
   onSubmit: (values: PlanFormValues) => void;
 }) {
   const formik = useFormik({
-    initialValues: localStorage.getItem("values")
-      ? JSON.parse(localStorage.getItem("values")!)
-      : initialValues,
+    initialValues,
     onSubmit,
   });
 
   const { touched, errors, setFieldValue, values } = formik;
-
-  console.log(values);
 
   return (
     <FormikProvider value={formik}>

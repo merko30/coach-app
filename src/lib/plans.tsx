@@ -8,7 +8,7 @@ export type PlanListItem = {
   description: string;
   level: "BEGINNER" | "INTERMEDIATE" | "ADVANCED";
   coachDescription?: string;
-  weeksCount: number;
+  weeks: { days: [] }[];
 };
 
 export const planColumns: ColumnDef<PlanListItem>[] = [
@@ -40,11 +40,10 @@ export const planColumns: ColumnDef<PlanListItem>[] = [
     },
   },
   {
-    accessorKey: "coachDescription",
-    header: "Coach",
-  },
-  {
-    accessorKey: "weeksCount",
+    accessorKey: "weeks",
     header: "Weeks",
+    cell: ({ row }) => {
+      return (row.getValue("weeks") as []).length;
+    },
   },
 ];

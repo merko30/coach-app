@@ -1,6 +1,6 @@
 import { PlanForm } from "@/components/PlanForm";
 import { useMutation } from "@tanstack/react-query";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/_authenticated/dashboard/plans/create")({
   component: RouteComponent,
@@ -18,10 +18,11 @@ const createPlanFn = async (values: any) => {
 };
 
 function RouteComponent() {
+  const navigate = useNavigate();
   const { mutate } = useMutation({
     mutationFn: createPlanFn,
     onError: console.log,
-    onSuccess: console.log,
+    onSuccess: () => navigate({ to: "/dashboard/plans" }),
   });
 
   return <PlanForm onSubmit={mutate} />;
