@@ -1,3 +1,4 @@
+import { AuthProviderSkeleton } from "@/components/AuthProviderSkeleton";
 import { createContext, useContext, useState, useEffect } from "react";
 import type { ReactNode } from "react";
 
@@ -85,7 +86,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <AuthProviderSkeleton />;
   }
 
   return (
