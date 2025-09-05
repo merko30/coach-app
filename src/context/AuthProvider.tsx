@@ -6,7 +6,7 @@ interface User {
   id: string;
   username: string;
   email: string;
-  // Add more fields as needed
+  roles: string[];
 }
 
 interface Login {
@@ -15,6 +15,7 @@ interface Login {
 }
 
 export interface AuthContextType {
+  user: User;
   loggedIn: boolean;
   loading: boolean;
   logout: () => void;
@@ -90,7 +91,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   return (
-    <AuthContext.Provider value={{ loggedIn, loading, logout, login }}>
+    <AuthContext.Provider value={{ user, loggedIn, loading, logout, login }}>
       {children}
     </AuthContext.Provider>
   );
