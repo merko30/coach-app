@@ -1,4 +1,4 @@
-import { createFileRoute, redirect, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 
 import { UserPlus } from "lucide-react";
 import { useState } from "react";
-import { z, ZodError } from "zod";
+import { z } from "zod";
 import { useMutation } from "@tanstack/react-query";
 
 const schema = z
@@ -69,7 +69,7 @@ const Register = () => {
       email: formData.get("email")?.toString() || "",
       password: formData.get("password")?.toString() || "",
       confirmPassword: formData.get("confirmPassword")?.toString() || "",
-      is_coach: false,
+      is_coach: true,
     };
     const result = schema.safeParse(data);
     if (!result.success) {
