@@ -1,7 +1,7 @@
 import { lazy } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 
-import { useAuth } from "@/context/AuthProvider";
+import useIsCoach from "@/hooks/useIsCoach";
 
 const AthleteDashboard = lazy(() => import("@/components/Dashboard/Athlete"));
 const CoachDashboard = lazy(() => import("@/components/Dashboard/Coach"));
@@ -11,10 +11,10 @@ export const Route = createFileRoute("/_authenticated/dashboard/")({
 });
 
 function RouteComponent() {
-  const { user } = useAuth();
+  const isCoach = useIsCoach();
 
   // make a provider with a toggle if the user is both athlete and coach
-  if (user.roles?.includes("coach")) {
+  if (isCoach) {
     return <CoachDashboard />;
   }
 

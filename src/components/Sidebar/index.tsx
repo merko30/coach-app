@@ -1,4 +1,4 @@
-import { Home, Sheet, Users } from "lucide-react";
+import { ChartBarIncreasing, Home, Sheet, Users } from "lucide-react";
 
 import {
   Sidebar,
@@ -13,6 +13,7 @@ import {
 import { Link } from "@tanstack/react-router";
 
 import LogoutButton from "./LogoutButton";
+import useIsCoach from "@/hooks/useIsCoach";
 
 // Menu items.
 const items = [
@@ -25,15 +26,24 @@ const items = [
     title: "Clients",
     url: "/dashboard/clients",
     icon: Users,
+    coach: true,
   },
   {
     title: "Plans",
     url: "/dashboard/plans",
     icon: Sheet,
+    coach: true,
+  },
+  {
+    title: "Your progress",
+    url: "/dashboard/progress",
+    icon: ChartBarIncreasing,
+    coach: false,
   },
 ];
 
 export default function AppSidebar() {
+  const isCoach = useIsCoach();
   return (
     <Sidebar>
       <SidebarContent className="h-full">
@@ -43,16 +53,21 @@ export default function AppSidebar() {
           </SidebarGroupLabel>
           <SidebarGroupContent className="h-full">
             <SidebarMenu>
-              {items.map((item) => (
-                <SidebarMenuItem key={item.title} className="cursor-pointer">
-                  <SidebarMenuButton asChild>
-                    <Link to={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
+              {items
+                .filter(
+                  (item) =>
+                    (isCoach ? item.coach : !item.coach) || !("coach" in item)
+                )
+                .map((item) => (
+                  <SidebarMenuItem key={item.title} className="cursor-pointer">
+                    <SidebarMenuButton asChild>
+                      <Link to={item.url}>
+                        <item.icon />
+                        <span>{item.title}</span>
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
             </SidebarMenu>
           </SidebarGroupContent>
           <SidebarGroupContent>
