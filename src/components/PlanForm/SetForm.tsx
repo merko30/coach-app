@@ -4,6 +4,8 @@ import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { Trash } from "lucide-react";
 import { FormikSelect } from "../FormikSelect";
+import { getFormattedOptions } from "@/lib/camelCase";
+import { MEASURE_TYPE } from "./constants";
 
 const SetForm = ({
   weekIdx,
@@ -29,9 +31,23 @@ const SetForm = ({
           <Trash />
         </Button>
       </div>
+      <div>
+        <Label>Name</Label>
+        <Field
+          name={`weeks.${weekIdx}.days.${dayIdx}.workouts.${workoutIdx}.sets.${setIdx}.name`}
+          as={Input}
+        />
+      </div>
+      <div>
+        <Label>Description</Label>
+        <Field
+          name={`weeks.${weekIdx}.days.${dayIdx}.workouts.${workoutIdx}.sets.${setIdx}.description`}
+          as={Input}
+        />
+      </div>
       <div className="grid grid-cols-2 gap-2">
         <div>
-          <Label>Active Value</Label>
+          <Label>Active (reps, time, distance (m))</Label>
           <Field
             name={`weeks.${weekIdx}.days.${dayIdx}.workouts.${workoutIdx}.sets.${setIdx}.active_value`}
             as={Input}
@@ -43,11 +59,7 @@ const SetForm = ({
           <FormikSelect
             name={`weeks.${weekIdx}.days.${dayIdx}.workouts.${workoutIdx}.sets.${setIdx}.active_measure_type`}
             className="input"
-            options={[
-              { value: "DISTANCE", label: "Distance" },
-              { value: "TIME", label: "Time" },
-              { value: "REPS", label: "Reps" },
-            ]}
+            options={getFormattedOptions(MEASURE_TYPE)}
           ></FormikSelect>
         </div>
         <div>
@@ -62,11 +74,7 @@ const SetForm = ({
           <Label>Recovery Measure</Label>
           <FormikSelect
             name={`weeks.${weekIdx}.days.${dayIdx}.workouts.${workoutIdx}.sets.${setIdx}.recovery_measure_type`}
-            options={[
-              { value: "DISTANCE", label: "Distance" },
-              { value: "TIME", label: "Time" },
-              { value: "REPS", label: "Reps" },
-            ]}
+            options={getFormattedOptions(MEASURE_TYPE)}
           ></FormikSelect>
         </div>
       </div>

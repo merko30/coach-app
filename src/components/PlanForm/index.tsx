@@ -18,7 +18,12 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
-import { initialValues, type PlanFormValues } from "./constants";
+import {
+  initialValues,
+  LEVEL,
+  WORKOUT_TYPE,
+  type PlanFormValues,
+} from "./constants";
 import { SortableItem } from "./SortableItem";
 import { uuidv7 } from "uuidv7";
 import { FormikSelect } from "../FormikSelect";
@@ -29,6 +34,7 @@ import {
   AccordionContent,
 } from "@/components/ui/accordion";
 import { WeekAccordion } from "./WeekAccordion";
+import { getFormattedOptions } from "@/lib/camelCase";
 
 export function PlanForm({
   onSubmit,
@@ -69,15 +75,19 @@ export function PlanForm({
                   </div>
                 )}
             </div>
-            <FormikSelect
-              label="Level"
-              name="level"
-              options={[
-                { value: "BEGINNER", label: "Beginner" },
-                { value: "INTERMEDIATE", label: "Intermediate" },
-                { value: "ADVANCED", label: "Advanced" },
-              ]}
-            />
+            <div className="flex flex-col md:flex-row gap-4">
+              <FormikSelect
+                label="Level"
+                name="level"
+                options={getFormattedOptions(LEVEL)}
+              />
+              <FormikSelect
+                label="Type"
+                name="type"
+                options={getFormattedOptions(WORKOUT_TYPE)}
+              />
+            </div>
+
             {/* Weeks DnD */}
             <FieldArray name="weeks">
               {({ push, remove, move }) => (

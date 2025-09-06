@@ -1,12 +1,17 @@
 import { z } from "zod";
+
+export const MEASURE_TYPE = ["DISTANCE", "TIME", "REPS"];
+export const WORKOUT_TYPE = ["STRENGTH", "RUN", "HYBRID"];
+export const LEVEL = ["BEGINNER", "INTERMEDIATE", "ADVANCED"];
+
 // --- Zod Schema ---
 const WorkoutSetSchema = z.object({
   id: z.number().optional(),
   order: z.number(),
   active_value: z.number().min(1),
-  active_measure_type: z.enum(["DISTANCE", "TIME", "REPS"]),
+  active_measure_type: z.enum(MEASURE_TYPE),
   recovery_value: z.number().optional(),
-  recovery_measure_type: z.enum(["DISTANCE", "TIME", "REPS"]).optional(),
+  recovery_measure_type: z.enum(MEASURE_TYPE).optional(),
 });
 
 const WorkoutSchema = z.object({
@@ -14,7 +19,7 @@ const WorkoutSchema = z.object({
   order: z.number(),
   title: z.string().min(3),
   description: z.string().optional(),
-  type: z.enum(["REST", "STRENGTH", "RUN"]),
+  type: z.enum(WORKOUT_TYPE),
   sets: z.array(WorkoutSetSchema),
 });
 
@@ -34,7 +39,8 @@ const WeekSchema = z.object({
 const PlanSchema = z.object({
   title: z.string().min(5).max(100),
   description: z.string().min(10),
-  level: z.enum(["BEGINNER", "INTERMEDIATE", "ADVANCED"]),
+  level: z.enum(LEVEL),
+  type: z.enum(WORKOUT_TYPE),
   weeks: z.array(WeekSchema),
 });
 
@@ -44,5 +50,6 @@ export const initialValues: PlanFormValues = {
   title: "",
   description: "",
   level: "BEGINNER",
+  type: "RUN",
   weeks: [],
 };
