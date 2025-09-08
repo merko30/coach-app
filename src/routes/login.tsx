@@ -56,7 +56,7 @@ const Login = () => {
 
   return (
     <main className="min-h-screen flex items-center justify-center bg-background">
-      <Card className="w-full max-w-4xl flex flex-col md:flex-row overflow-hidden shadow-lg border border-border">
+      <Card className="w-full max-w-4xl flex flex-col md:flex-row overflow-hidden shadow-lg border border-border py-0">
         {/* Left panel: Branding/Features */}
         <div className="hidden md:flex flex-col justify-center items-center bg-primary text-primary-foreground px-10 py-12 w-1/2">
           <UserPlus className="w-16 h-16 mb-6" />
