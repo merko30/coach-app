@@ -1,3 +1,4 @@
+import { type NavigateFn } from "@tanstack/react-router";
 import { AuthProviderSkeleton } from "@/components/AuthProviderSkeleton";
 import { createContext, useContext, useState, useEffect } from "react";
 import type { ReactNode } from "react";
@@ -18,7 +19,7 @@ export interface AuthContextType {
   user: User;
   loggedIn: boolean;
   loading: boolean;
-  logout: () => void;
+  logout: (callback: any) => Promise<void>;
   login: (data: Login) => Promise<void>;
 }
 
@@ -31,21 +32,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     async function checkAuth() {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        setLoading(false);
-        return;
-      }
       setLoading(true);
       try {
         const res = await fetch("http://localhost:8000/auth/me", {
+          credentials: "include",
           headers: {
-            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
           },
         });
         const json = await res.json();
+        console.log(res);
 
-        setUser(json?.user);
+        setUser(json);
         setLoggedIn(res.ok);
       } catch {
         setLoggedIn(false);
@@ -56,15 +54,23 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     checkAuth();
   }, []);
 
-  const logout = () => {
-    localStorage.removeItem("token");
-    setLoggedIn(false);
-    setUser(null);
-  };
+  const logout = (navigate: NavigateFn) =>
+    fetch("http://localhost:8000/auth/logout", {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then(() => {
+      navigate({ to: "/login" });
+      setLoggedIn(false);
+      setUser(null);
+    });
 
   const login = async (data: Login) => {
     const res = await fetch("http://localhost:8000/auth/login", {
       method: "POST",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
@@ -76,13 +82,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       throw new Error(error.message || "Registration failed");
     }
 
-    const responseData = await res.json();
+    const json = await res.json();
 
-    localStorage.setItem("token", responseData.token);
-    localStorage.setItem("refresh_token", responseData.refresh_token);
+    setUser(json);
     setLoggedIn(true);
-
-    return responseData;
   };
 
   if (loading) {

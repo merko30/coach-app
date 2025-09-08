@@ -9,10 +9,7 @@ const LogoutButton = () => {
   const { logout } = useAuth();
   const navigate = useNavigate();
 
-  const onLogout = () => {
-    logout();
-    navigate({ to: "/login" });
-  };
+  const onLogout = () => logout(navigate);
 
   return (
     <SidebarMenuItem className="mt-auto cursor-pointer list-none">
