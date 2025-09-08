@@ -2,12 +2,14 @@ import { type NavigateFn } from "@tanstack/react-router";
 import { AuthProviderSkeleton } from "@/components/AuthProviderSkeleton";
 import { createContext, useContext, useState, useEffect } from "react";
 import type { ReactNode } from "react";
+import authService from "@/services/auth";
 
 interface User {
   id: string;
   username: string;
   email: string;
   roles: string[];
+  plans: any[];
 }
 
 interface Login {
@@ -34,17 +36,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     async function checkAuth() {
       setLoading(true);
       try {
-        const res = await fetch("http://localhost:8000/auth/me", {
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        const json = await res.json();
-        console.log(res);
+        const response = await authService.getUser();
+        console.log(response);
+        const data = response.data;
 
-        setUser(json);
-        setLoggedIn(res.ok);
+        setUser(data);
+        setLoggedIn(true);
       } catch {
         setLoggedIn(false);
       } finally {
@@ -55,37 +52,26 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const logout = (navigate: NavigateFn) =>
-    fetch("http://localhost:8000/auth/logout", {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then(() => {
+    authService.logout().then(() => {
       navigate({ to: "/login" });
       setLoggedIn(false);
       setUser(null);
     });
 
   const login = async (data: Login) => {
-    const res = await fetch("http://localhost:8000/auth/login", {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+    try {
+      const response = await authService.login(data);
 
-    if (!res.ok) {
-      const error = await res.json();
-      throw new Error(error.message || "Registration failed");
+      console.log(response);
+      const user = response.data;
+
+      setUser(user);
+      setLoggedIn(true);
+    } catch (error: any) {
+      throw new Error(
+        error?.response?.data.detail.message ?? "Registration failed"
+      );
     }
-
-    const json = await res.json();
-
-    setUser(json);
-    setLoggedIn(true);
   };
 
   if (loading) {

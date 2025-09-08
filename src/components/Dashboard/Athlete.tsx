@@ -1,52 +1,29 @@
 import { useQuery } from "@tanstack/react-query";
 import { PlanCards } from "../PlanCards";
-
-const getPlansFn = async () => {
-  const response = await fetch("http://localhost:8000/plans", {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-
-  return await response.json();
-};
-
-const getAthletePlansFn = async () => {
-  const response = await fetch("http://localhost:8000/auth/user/plans", {
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
-      "Content-Type": "application/json",
-    },
-  });
-
-  return await response.json();
-};
+import plansService from "@/services/plans";
+import { useAuth } from "@/context/AuthProvider";
 
 const AthleteDashboard = () => {
+  const { user } = useAuth();
   const {
-    data: plansData,
+    data: plansReponse,
     isPending: plansLoading,
     error: plansError,
   } = useQuery({
-    queryFn: getPlansFn,
+    queryFn: plansService.getPlans,
     queryKey: ["plans"],
   });
 
-  const {
-    data: athletePlansData,
-    isPending: loading,
-    error,
-  } = useQuery({
-    queryFn: getAthletePlansFn,
-    queryKey: ["athlete-plans"],
-  });
+  const plansData = plansReponse?.data;
 
-  if (loading && plansLoading) {
+  console.log(user);
+
+  if (plansLoading) {
     return <div>Loading...</div>;
   }
 
-  if (athletePlansData && athletePlansData?.plans?.length) {
-    return athletePlansData.plans.map((plan: any) => (
+  if (user.plans && user.plans?.length) {
+    return user.plans?.map((plan: any) => (
       <div key={plan.id} className="p-6">
         {plan.name}
       </div>
