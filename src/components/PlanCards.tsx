@@ -17,7 +17,7 @@ export function PlanCards({
 }) {
   if (!plans?.length) return null;
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
       {plans.map((plan) => (
         <Card key={plan.id}>
           <CardHeader>
@@ -28,10 +28,22 @@ export function PlanCards({
             </div>
           </CardHeader>
           <CardContent>
-            <div className="mb-2 text-sm text-muted-foreground">
+            <p className="mb-4 text-sm text-muted-foreground">
+              Description:
+              <br />
               {plan.description?.length > 80
                 ? plan.description.slice(0, 80) + "..."
                 : plan.description}
+            </p>
+
+            <div className="flex items-center flex-wrap gap-2">
+              <img
+                src={plan.coach.user.avatar}
+                className="flex-none size-8 rounded-full border-2 border-gray-600"
+              />
+              <p className="text-sm">
+                {plan.coach.user.name ?? plan.coach.user.email}
+              </p>
             </div>
           </CardContent>
           <CardFooter className="mt-auto">

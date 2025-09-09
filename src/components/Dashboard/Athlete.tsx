@@ -16,8 +16,6 @@ const AthleteDashboard = () => {
 
   const plansData = plansReponse?.data;
 
-  console.log(user);
-
   if (plansLoading) {
     return <div>Loading...</div>;
   }
