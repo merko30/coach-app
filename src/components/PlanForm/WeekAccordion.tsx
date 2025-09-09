@@ -1,12 +1,7 @@
-import {
-  Accordion,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionContent,
-} from "@/components/ui/accordion";
 import DayForm from "./DayForm";
 import type { PlanFormValues } from "./constants";
 import { useFormikContext, type FieldArrayRenderProps } from "formik";
+import { Card } from "../ui/card";
 
 interface WeekAccordionProps {
   weekIdx: number;
@@ -20,20 +15,12 @@ export function WeekAccordion({
   const { values } = useFormikContext<PlanFormValues>();
   const days = values.weeks[weekIdx].days;
   return (
-    <Accordion type="single" className="w-full pr-2">
-      {days.map((day, dayIdx) => (
-        <AccordionItem key={day.id} value={String(day.id)}>
-          <AccordionTrigger>
-            Day {day.day_of_week + 1}
-            {day.workouts.length
-              ? " - " + day.workouts.map((workout) => workout.title).join("-")
-              : null}
-          </AccordionTrigger>
-          <AccordionContent>
-            <DayForm weekIdx={weekIdx} dayIdx={dayIdx} remove={remove} />
-          </AccordionContent>
-        </AccordionItem>
+    <div className="w-full flex gap-2">
+      {days.map((_, dayIdx) => (
+        <Card key={dayIdx} className="flex-1">
+          <DayForm weekIdx={weekIdx} dayIdx={dayIdx} remove={remove} />
+        </Card>
       ))}
-    </Accordion>
+    </div>
   );
 }

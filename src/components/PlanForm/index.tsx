@@ -157,22 +157,10 @@ export function PlanForm({
                           id={week.id!}
                           className="border-b border-gray-200 last:border-b-transparent px-2 py-4"
                         >
-                          <Accordion type="single" className="space-y-4">
-                            <AccordionItem
-                              key={week.id}
-                              value={String(week.id)}
-                            >
-                              <AccordionTrigger>
-                                Week {weekIdx + 1}
-                              </AccordionTrigger>
-                              <AccordionContent>
-                                <WeekAccordion
-                                  weekIdx={weekIdx}
-                                  remove={remove}
-                                />
-                              </AccordionContent>
-                            </AccordionItem>
-                          </Accordion>
+                          <h2 className="text-xl font-medium mb-2">
+                            Week {weekIdx + 1}
+                          </h2>
+                          <WeekAccordion weekIdx={weekIdx} remove={remove} />
                         </SortableItem>
                       ))}
                     </SortableContext>

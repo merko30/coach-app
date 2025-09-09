@@ -31,7 +31,7 @@ export function SortableItem({
     <div
       ref={setNodeRef}
       style={style}
-      className={cn("relative", className)}
+      className={cn("relative w-full flex items-center", className)}
       {...attributes}
     >
       <button
@@ -43,7 +43,7 @@ export function SortableItem({
       >
         <GripVertical className="w-4 h-4" />
       </button>
-      <div className="pl-7">{children}</div>
+      <div className="pl-7 w-full">{children}</div>
     </div>
   );
 }
