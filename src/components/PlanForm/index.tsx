@@ -27,12 +27,6 @@ import {
 import { SortableItem } from "./SortableItem";
 import { uuidv7 } from "uuidv7";
 import { FormikSelect } from "../FormikSelect";
-import {
-  Accordion,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionContent,
-} from "@/components/ui/accordion";
 import { WeekAccordion } from "./WeekAccordion";
 import { getFormattedOptions } from "@/lib/camelCase";
 
@@ -155,6 +149,7 @@ export function PlanForm({
                       {values.weeks.map((week, weekIdx) => (
                         <SortableItem
                           id={week.id!}
+                          key={week.id!}
                           className="border-b border-gray-200 last:border-b-transparent px-2 py-4"
                         >
                           <h2 className="text-xl font-medium mb-2">

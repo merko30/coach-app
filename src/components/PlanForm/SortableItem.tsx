@@ -8,6 +8,7 @@ export function SortableItem({
   id,
   children,
   className,
+  ...props
 }: {
   id: string | number;
   children: React.ReactNode;
@@ -33,6 +34,7 @@ export function SortableItem({
       style={style}
       className={cn("relative w-full flex items-center", className)}
       {...attributes}
+      {...props}
     >
       <button
         type="button"
