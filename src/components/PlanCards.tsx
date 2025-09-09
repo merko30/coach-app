@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "./ui/badge";
+import { User } from "lucide-react";
 
 export function PlanCards({
   plans,
@@ -37,10 +38,19 @@ export function PlanCards({
             </p>
 
             <div className="flex items-center flex-wrap gap-2">
-              <img
-                src={plan.coach.user.avatar}
-                className="flex-none size-8 rounded-full border-2 border-gray-600"
-              />
+              {plan.coach.user.avatar && (
+                <img
+                  src={plan.coach.user.avatar}
+                  className="flex-none size-8 rounded-full border-2"
+                />
+              )}
+
+              {!plan.coach.user.avatar && (
+                <User
+                  size={32}
+                  className="border-2 border-black rounded-full"
+                />
+              )}
               <p className="text-sm">
                 {plan.coach.user.name ?? plan.coach.user.email}
               </p>
