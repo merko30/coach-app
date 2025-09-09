@@ -7,6 +7,7 @@ import { Label } from "../ui/label";
 
 const schema = z
   .object({
+    name: z.string().min(6, "Name must contain at least 6 characters"),
     username: z.string().min(6, "Username must contain at least 6 characters"),
     email: z.string().email("Invalid email address"),
     password: z.string().min(8, "Password must contain at least 8 characters"),
@@ -20,6 +21,7 @@ const schema = z
   });
 
 type Errors = {
+  name?: string;
   email?: string;
   username?: string;
   password?: string;
@@ -41,6 +43,7 @@ const RegisterForm = ({
 
     const formData = new FormData(e.currentTarget);
     const data = {
+      name: formData.get("name")?.toString() || "",
       username: formData.get("username")?.toString() || "",
       email: formData.get("email")?.toString() || "",
       password: formData.get("password")?.toString() || "",
@@ -80,6 +83,18 @@ const RegisterForm = ({
           />
           {errors.username && (
             <p className="text-destructive text-sm mt-1">{errors.username}</p>
+          )}
+        </div>
+        <div>
+          <Label
+            htmlFor="name"
+            className="mb-1 block text-sm font-medium text-muted-foreground"
+          >
+            First and last name (display name)
+          </Label>
+          <Input name="name" id="name" className="w-full" autoComplete="name" />
+          {errors.name && (
+            <p className="text-destructive text-sm mt-1">{errors.name}</p>
           )}
         </div>
         <div>
