@@ -13,6 +13,7 @@ import { Route as RegisterRouteImport } from './routes/register'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CoachRegisterRouteImport } from './routes/coach/register'
 import { Route as AuthenticatedDashboardIndexRouteImport } from './routes/_authenticated/dashboard/index'
 import { Route as AuthenticatedDashboardClientsRouteImport } from './routes/_authenticated/dashboard/clients'
 import { Route as AuthenticatedDashboardPlansIndexRouteImport } from './routes/_authenticated/dashboard/plans/index'
@@ -35,6 +36,11 @@ const AuthenticatedRoute = AuthenticatedRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CoachRegisterRoute = CoachRegisterRouteImport.update({
+  id: '/coach/register',
+  path: '/coach/register',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedDashboardIndexRoute =
@@ -66,6 +72,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
+  '/coach/register': typeof CoachRegisterRoute
   '/dashboard/clients': typeof AuthenticatedDashboardClientsRoute
   '/dashboard': typeof AuthenticatedDashboardIndexRoute
   '/dashboard/plans/create': typeof AuthenticatedDashboardPlansCreateRoute
@@ -75,6 +82,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
+  '/coach/register': typeof CoachRegisterRoute
   '/dashboard/clients': typeof AuthenticatedDashboardClientsRoute
   '/dashboard': typeof AuthenticatedDashboardIndexRoute
   '/dashboard/plans/create': typeof AuthenticatedDashboardPlansCreateRoute
@@ -86,6 +94,7 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteWithChildren
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
+  '/coach/register': typeof CoachRegisterRoute
   '/_authenticated/dashboard/clients': typeof AuthenticatedDashboardClientsRoute
   '/_authenticated/dashboard/': typeof AuthenticatedDashboardIndexRoute
   '/_authenticated/dashboard/plans/create': typeof AuthenticatedDashboardPlansCreateRoute
@@ -97,6 +106,7 @@ export interface FileRouteTypes {
     | '/'
     | '/login'
     | '/register'
+    | '/coach/register'
     | '/dashboard/clients'
     | '/dashboard'
     | '/dashboard/plans/create'
@@ -106,6 +116,7 @@ export interface FileRouteTypes {
     | '/'
     | '/login'
     | '/register'
+    | '/coach/register'
     | '/dashboard/clients'
     | '/dashboard'
     | '/dashboard/plans/create'
@@ -116,6 +127,7 @@ export interface FileRouteTypes {
     | '/_authenticated'
     | '/login'
     | '/register'
+    | '/coach/register'
     | '/_authenticated/dashboard/clients'
     | '/_authenticated/dashboard/'
     | '/_authenticated/dashboard/plans/create'
@@ -127,6 +139,7 @@ export interface RootRouteChildren {
   AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
   LoginRoute: typeof LoginRoute
   RegisterRoute: typeof RegisterRoute
+  CoachRegisterRoute: typeof CoachRegisterRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -157,6 +170,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/coach/register': {
+      id: '/coach/register'
+      path: '/coach/register'
+      fullPath: '/coach/register'
+      preLoaderRoute: typeof CoachRegisterRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated/dashboard/': {
@@ -214,6 +234,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthenticatedRoute: AuthenticatedRouteWithChildren,
   LoginRoute: LoginRoute,
   RegisterRoute: RegisterRoute,
+  CoachRegisterRoute: CoachRegisterRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
