@@ -4,7 +4,6 @@ import {
   useFormikContext,
   type FieldArrayRenderProps,
 } from "formik";
-import type { PlanFormValues } from "./constants";
 import { Button } from "../ui/button";
 import { Trash } from "lucide-react";
 import { Label } from "../ui/label";
@@ -26,19 +25,16 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from "../ui/accordion";
+import type { DayFormValues } from "./DayFormModal";
+import { WORKOUT_TYPE } from "./constants";
+import { getFormattedOptions } from "@/lib/camelCase";
 
 const WorkoutForm = ({
-  weekIdx,
-  dayIdx,
   workoutIdx,
   remove,
-}: {
-  weekIdx: number;
-  dayIdx: number;
-  workoutIdx: number;
-} & Pick<FieldArrayRenderProps, "remove">) => {
-  const { values, setFieldValue } = useFormikContext<PlanFormValues>();
-  const workout = values.weeks[weekIdx].days[dayIdx].workouts[workoutIdx];
+}: { workoutIdx: number } & Pick<FieldArrayRenderProps, "remove">) => {
+  const { values, setFieldValue } = useFormikContext<DayFormValues>();
+  const workout = values.workouts[workoutIdx];
 
   return (
     <div className="my-4">
@@ -46,40 +42,30 @@ const WorkoutForm = ({
         <h4 className="text-xl font-semibold mb-4">
           Workout: {workout.title || `#${workoutIdx + 1}`}
         </h4>
-        <Button
-          type="button"
-          variant="destructive"
-          onClick={() => remove(workoutIdx)}
-        >
-          <Trash />
-        </Button>
+        {values.workouts.length > 1 && (
+          <Button
+            type="button"
+            variant="destructive"
+            onClick={() => remove(workoutIdx)}
+          >
+            <Trash />
+          </Button>
+        )}
       </div>
       <div className="space-y-2">
         <Label>Title</Label>
-        <Field
-          name={`weeks.${weekIdx}.days.${dayIdx}.workouts.${workoutIdx}.title`}
-          as={Input}
-        />
+        <Field name={`workouts.${workoutIdx}.title`} as={Input} />
         <Label>Description</Label>
-        <Field
-          name={`weeks.${weekIdx}.days.${dayIdx}.workouts.${workoutIdx}.description`}
-          as={Textarea}
-        />
+        <Field name={`workouts.${workoutIdx}.description`} as={Textarea} />
         <FormikSelect
           label="Type"
-          name={`weeks.${weekIdx}.days.${dayIdx}.workouts.${workoutIdx}.type`}
-          options={[
-            { value: "REST", label: "Rest" },
-            { value: "STRENGTH", label: "Strength" },
-            { value: "RUN", label: "Run" },
-          ]}
+          name={`workouts.${workoutIdx}.type`}
+          options={getFormattedOptions(WORKOUT_TYPE)}
           className="mb-4"
         />
       </div>
       {/* Sets DnD */}
-      <FieldArray
-        name={`weeks.${weekIdx}.days.${dayIdx}.workouts.${workoutIdx}.sets`}
-      >
+      <FieldArray name={`workouts.${workoutIdx}.sets`}>
         {({ push: pushSet, remove: removeSet, move: moveSet }) => (
           <>
             <div className="flex items-center justify-between">
@@ -101,7 +87,7 @@ const WorkoutForm = ({
             </div>
             {!workout.sets.length && (
               <div className="border border-gray-200 p-4 rounded-md bg-gray-50 py-12 text-center mt-4">
-                <p>No sets added yet. Click "Add Set" to get started.</p>
+                <p>No workout sets added yet.</p>
               </div>
             )}
             <DndContext
@@ -117,7 +103,7 @@ const WorkoutForm = ({
                   );
                   moveSet(oldIndex, newIndex);
                   setFieldValue(
-                    `weeks.${weekIdx}.days.${dayIdx}.workouts.${workoutIdx}.sets`,
+                    `workouts.${workoutIdx}.sets`,
                     arrayMove(workout.sets, oldIndex, newIndex).map((s, i) => ({
                       ...s,
                       order: i,
@@ -133,6 +119,7 @@ const WorkoutForm = ({
                 {workout.sets.map((set, setIdx) => (
                   <SortableItem
                     id={set.id!}
+                    key={set.id!}
                     className="border-b border-gray-200 pr-4 py-3 last-of-type:border-b-transparent"
                   >
                     <Accordion type="single" className="w-full">
@@ -140,8 +127,6 @@ const WorkoutForm = ({
                         <AccordionTrigger>Set #{setIdx + 1}</AccordionTrigger>
                         <AccordionContent>
                           <SetForm
-                            weekIdx={weekIdx}
-                            dayIdx={dayIdx}
                             workoutIdx={workoutIdx}
                             setIdx={setIdx}
                             remove={removeSet}

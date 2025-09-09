@@ -3,6 +3,7 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { GripVertical } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { twMerge } from "tailwind-merge";
 
 export function SortableItem({
   id,
@@ -21,7 +22,9 @@ export function SortableItem({
     transform,
     transition,
     isDragging,
+    items,
   } = useSortable({ id });
+
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
@@ -36,16 +39,20 @@ export function SortableItem({
       {...attributes}
       {...props}
     >
-      <button
-        type="button"
-        {...listeners}
-        className="absolute left-0 top-1/2 -translate-y-1/2 p-1 cursor-grab text-muted-foreground hover:text-foreground"
-        tabIndex={-1}
-        aria-label="Drag handle"
-      >
-        <GripVertical className="w-4 h-4" />
-      </button>
-      <div className="pl-7 w-full">{children}</div>
+      {items.length > 1 && (
+        <button
+          type="button"
+          {...listeners}
+          className="absolute left-0 top-1/2 -translate-y-1/2 p-1 cursor-grab text-muted-foreground hover:text-foreground"
+          tabIndex={-1}
+          aria-label="Drag handle"
+        >
+          <GripVertical className="w-4 h-4" />
+        </button>
+      )}
+      <div className={twMerge("w-full", items.length > 1 && "pl-7")}>
+        {children}
+      </div>
     </div>
   );
 }

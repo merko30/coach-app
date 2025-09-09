@@ -1,5 +1,5 @@
 import type { PlanFormValues } from "./constants";
-import { useFormikContext, type FieldArrayRenderProps } from "formik";
+import { useFormikContext } from "formik";
 import { Card } from "../ui/card";
 import { Pen } from "lucide-react";
 import { lazy, Suspense, useState } from "react";
@@ -10,10 +10,7 @@ interface WeekAccordionProps {
   remove: (idx: number) => void;
 }
 
-export function WeekAccordion({
-  weekIdx,
-  remove,
-}: WeekAccordionProps & Pick<FieldArrayRenderProps, "remove">) {
+export function WeekAccordion({ weekIdx }: WeekAccordionProps) {
   const { values } = useFormikContext<PlanFormValues>();
   const days = values.weeks[weekIdx].days;
 

@@ -8,14 +8,10 @@ import { getFormattedOptions } from "@/lib/camelCase";
 import { MEASURE_TYPE } from "./constants";
 
 const SetForm = ({
-  weekIdx,
-  dayIdx,
   workoutIdx,
   setIdx,
   remove,
 }: {
-  weekIdx: number;
-  dayIdx: number;
   workoutIdx: number;
   setIdx: number;
 } & Pick<FieldArrayRenderProps, "remove">) => {
@@ -33,15 +29,12 @@ const SetForm = ({
       </div>
       <div>
         <Label>Name</Label>
-        <Field
-          name={`weeks.${weekIdx}.days.${dayIdx}.workouts.${workoutIdx}.sets.${setIdx}.name`}
-          as={Input}
-        />
+        <Field name={`workouts.${workoutIdx}.sets.${setIdx}.name`} as={Input} />
       </div>
       <div>
         <Label>Description</Label>
         <Field
-          name={`weeks.${weekIdx}.days.${dayIdx}.workouts.${workoutIdx}.sets.${setIdx}.description`}
+          name={`workouts.${workoutIdx}.sets.${setIdx}.description`}
           as={Input}
         />
       </div>
@@ -49,7 +42,7 @@ const SetForm = ({
         <div>
           <Label>Active (reps, time, distance (m))</Label>
           <Field
-            name={`weeks.${weekIdx}.days.${dayIdx}.workouts.${workoutIdx}.sets.${setIdx}.active_value`}
+            name={`workouts.${workoutIdx}.sets.${setIdx}.active_value`}
             as={Input}
             type="number"
           />
@@ -57,15 +50,15 @@ const SetForm = ({
         <div>
           <Label>Active Measure</Label>
           <FormikSelect
-            name={`weeks.${weekIdx}.days.${dayIdx}.workouts.${workoutIdx}.sets.${setIdx}.active_measure_type`}
+            name={`workouts.${workoutIdx}.sets.${setIdx}.active_measure_type`}
             className="input"
             options={getFormattedOptions(MEASURE_TYPE)}
-          ></FormikSelect>
+          />
         </div>
         <div>
           <Label>Recovery Value</Label>
           <Field
-            name={`weeks.${weekIdx}.days.${dayIdx}.workouts.${workoutIdx}.sets.${setIdx}.recovery_value`}
+            name={`workouts.${workoutIdx}.sets.${setIdx}.recovery_value`}
             as={Input}
             type="number"
           />
@@ -73,9 +66,9 @@ const SetForm = ({
         <div>
           <Label>Recovery Measure</Label>
           <FormikSelect
-            name={`weeks.${weekIdx}.days.${dayIdx}.workouts.${workoutIdx}.sets.${setIdx}.recovery_measure_type`}
+            name={`workouts.${workoutIdx}.sets.${setIdx}.recovery_measure_type`}
             options={getFormattedOptions(MEASURE_TYPE)}
-          ></FormikSelect>
+          />
         </div>
       </div>
     </>
