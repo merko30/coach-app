@@ -10,7 +10,7 @@ const AthleteDashboard = () => {
     isPending: plansLoading,
     error: plansError,
   } = useQuery({
-    queryFn: plansService.getPlans,
+    queryFn: plansService.get,
     queryKey: ["plans"],
   });
 

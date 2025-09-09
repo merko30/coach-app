@@ -21,7 +21,7 @@ import { Label } from "@/components/ui/label";
 import {
   initialValues,
   LEVEL,
-  WORKOUT_TYPE,
+  PLAN_TYPES,
   type PlanFormValues,
 } from "./constants";
 import { SortableItem } from "./SortableItem";
@@ -84,7 +84,7 @@ export function PlanForm({
               <FormikSelect
                 label="Type"
                 name="type"
-                options={getFormattedOptions(WORKOUT_TYPE)}
+                options={getFormattedOptions(PLAN_TYPES)}
               />
             </div>
 

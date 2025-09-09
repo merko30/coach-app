@@ -2,6 +2,7 @@ import { z } from "zod";
 
 export const MEASURE_TYPE = ["DISTANCE", "TIME", "REPS"];
 export const WORKOUT_TYPE = ["STRENGTH", "RUN", "HYBRID"];
+export const PLAN_TYPES = ["STRENGTH", "RUN", "BIKE", "HYBRID"];
 export const LEVEL = ["BEGINNER", "INTERMEDIATE", "ADVANCED"];
 
 // --- Zod Schema ---
