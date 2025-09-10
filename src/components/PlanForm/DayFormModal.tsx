@@ -56,10 +56,13 @@ const DayFormModal = ({
       id: day.id ?? uuidv7(),
       workouts: day.workouts ?? [],
     },
-    onSubmit,
+    onSubmit: (values, { resetForm }) => {
+      onSubmit(values);
+      resetForm();
+    },
   });
 
-  const { setFieldValue, values } = formik;
+  const { setFieldValue, values, handleSubmit } = formik;
 
   const { workouts } = values;
 
@@ -144,7 +147,9 @@ const DayFormModal = ({
             </FieldArray>
           </div>
           <DialogFooter>
-            <Button>Save</Button>
+            <Button type="button" onClick={() => handleSubmit()}>
+              Save
+            </Button>
           </DialogFooter>
         </DialogContent>
       </FormikProvider>

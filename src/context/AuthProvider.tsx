@@ -37,7 +37,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setLoading(true);
       try {
         const response = await authService.getUser();
-        console.log(response);
         const data = response.data;
 
         setUser(data);
@@ -61,8 +60,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const login = async (data: Login) => {
     try {
       const response = await authService.login(data);
-
-      console.log(response);
       const user = response.data;
 
       setUser(user);

@@ -27,7 +27,7 @@ import {
 import { SortableItem } from "./SortableItem";
 import { uuidv7 } from "uuidv7";
 import { FormikSelect } from "../FormikSelect";
-import { WeekAccordion } from "./WeekAccordion";
+import Week from "./Week";
 import { getFormattedOptions } from "@/lib/camelCase";
 
 export function PlanForm({
@@ -155,7 +155,7 @@ export function PlanForm({
                           <h2 className="text-xl font-medium mb-2">
                             Week {weekIdx + 1}
                           </h2>
-                          <WeekAccordion weekIdx={weekIdx} remove={remove} />
+                          <Week weekIdx={weekIdx} remove={remove} />
                         </SortableItem>
                       ))}
                     </SortableContext>
