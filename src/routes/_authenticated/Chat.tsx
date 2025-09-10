@@ -2,29 +2,20 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useAuth } from "@/context/AuthProvider";
 import conversationsService from "@/services/conversations";
+import type { Conversation } from "@/types/conversations";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import type { AxiosResponse } from "axios";
-import { useEffect, useRef, useState } from "react";
-import { twMerge } from "tailwind-merge";
+import { MessageSquare } from "lucide-react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
+
+const ActiveConversation = lazy(
+  () => import("@/components/Chat/ActiveConversation")
+);
 
 export const Route = createFileRoute("/_authenticated/Chat")({
   component: RouteComponent,
 });
-
-interface Conversation {
-  id: number;
-  user: {
-    id: number;
-    avatar: string;
-    email: string;
-  };
-  messages: {
-    id: number;
-    sender_id: number;
-    content: string;
-  }[];
-}
 
 function RouteComponent() {
   const ws = useRef<WebSocket | null>(null);
@@ -41,16 +32,7 @@ function RouteComponent() {
     null
   );
 
-  const { data: singleConversationData, isLoading: loadingSingle } = useQuery<
-    AxiosResponse<Conversation>
-  >({
-    queryFn: () => conversationsService.getOne(activeConversation!),
-    queryKey: ["conversations", activeConversation],
-    enabled: !!activeConversation,
-  });
-
   const conversations = data?.data;
-  const singleConversation = singleConversationData?.data;
 
   const queryClient = useQueryClient();
   useEffect(() => {
@@ -102,8 +84,6 @@ function RouteComponent() {
     }
   };
 
-  console.log(singleConversation);
-
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -139,26 +119,24 @@ function RouteComponent() {
           )}
         </ul>
         <div className="h-full flex-1 flex flex-col">
-          <div
-            className="flex-1 h-[calc(100vh-3rem)] overflow-scroll"
-            ref={messagesContainerRef}
-          >
-            {singleConversation &&
-              singleConversation.messages.map((message) => (
-                <div className="flex flex-col w-full mb-2" key={message.id}>
-                  <div
-                    className={twMerge(
-                      "p-4 bg-blue-200 rounded-lg",
-                      message.sender_id === parseInt(user.id)
-                        ? "self-end"
-                        : "self-start"
-                    )}
-                  >
-                    {message.content}
-                  </div>
-                </div>
-              ))}
-          </div>
+          {activeConversation ? (
+            <Suspense
+              fallback={
+                <div className="flex-1 h-[calc(100vh-3rem)] bg-gray-50 animate-pulse rounded-md" />
+              }
+            >
+              <ActiveConversation
+                conversationId={activeConversation}
+                ref={messagesContainerRef}
+              />
+            </Suspense>
+          ) : (
+            <div className="flex-1 h-[calc(100vh-3rem)] mb-4 bg-gray-50 rounded-md flex flex-col items-center justify-center text-gray-400">
+              <MessageSquare />
+              <span>Select a conversation</span>
+            </div>
+          )}
+
           <div className="flex gap-4">
             <Input
               value={message}

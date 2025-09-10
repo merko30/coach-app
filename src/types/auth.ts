@@ -4,3 +4,11 @@ export type RegisterData = {
   password: string;
   is_coach?: boolean;
 };
+
+export interface User {
+  id: number;
+  avatar: string;
+  email: string;
+  name: string | null;
+  username: string;
+}
