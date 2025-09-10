@@ -25,7 +25,7 @@ const WorkoutSchema = z.object({
 });
 
 const DaySchema = z.object({
-  id: z.number().optional(),
+  id: z.string().optional(),
   order: z.number(),
   day_of_week: z.number().min(0).max(6),
   workouts: z.array(WorkoutSchema),
@@ -53,4 +53,24 @@ export const initialValues: PlanFormValues = {
   level: "BEGINNER",
   type: "RUN",
   weeks: [],
+};
+
+export type Workout = {
+  id?: string | number;
+  title: string;
+  description?: string;
+  type: string;
+  sets: Array<{
+    id?: string | number;
+    order: number;
+    active_value: number;
+    active_measure_type: string;
+    recovery_value?: number;
+    recovery_measure_type?: string;
+  }>;
+};
+
+export type DayFormValues = {
+  id?: number | string;
+  workouts: Workout[];
 };

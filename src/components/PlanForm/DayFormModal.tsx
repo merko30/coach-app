@@ -1,7 +1,7 @@
 import { Button } from "../ui/button";
 import { FieldArray, FormikProvider, useFormik } from "formik";
 import { closestCenter, DndContext } from "@dnd-kit/core";
-import type { PlanFormValues } from "./constants";
+import type { DayFormValues, PlanFormValues } from "./constants";
 import {
   arrayMove,
   SortableContext,
@@ -17,26 +17,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from "../ui/dialog";
-
-type Workout = {
-  id?: string | number;
-  title: string;
-  description?: string;
-  type: string;
-  sets: Array<{
-    id?: string | number;
-    order: number;
-    active_value: number;
-    active_measure_type: string;
-    recovery_value?: number;
-    recovery_measure_type?: string;
-  }>;
-};
-
-export type DayFormValues = {
-  id: number | string;
-  workouts: Workout[];
-};
 
 const DayFormModal = ({
   day,

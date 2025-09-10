@@ -1,9 +1,14 @@
 import type { PlanFormValues } from "./constants";
-import { useFormikContext } from "formik";
-import { Card } from "../ui/card";
-import { Pen } from "lucide-react";
+import { move, useFormikContext } from "formik";
 import { lazy, Suspense, useState } from "react";
-import type { DayFormValues } from "./DayFormModal";
+import type { DayFormValues } from "./constants";
+import {
+  arrayMove,
+  horizontalListSortingStrategy,
+  SortableContext,
+} from "@dnd-kit/sortable";
+import DayCard from "./DayCard";
+import { closestCenter, DndContext } from "@dnd-kit/core";
 
 const DayFormModal = lazy(() => import("./DayFormModal"));
 interface WeekProps {
@@ -18,40 +23,49 @@ const Week = ({ weekIdx }: WeekProps) => {
   const [modalOpen, setModalOpen] = useState<{ dayIdx: number } | null>(null);
 
   const onSaveDay = (values: DayFormValues) => {
-    setFieldValue(`weeks.${weekIdx}.days.${modalOpen?.dayIdx}`, values);
+    setFieldValue(`weeks.${weekIdx}.days.${modalOpen?.dayIdx}`, {
+      ...days[modalOpen?.dayIdx!],
+      ...values,
+    });
 
     setModalOpen(null);
   };
 
-  console.log(values);
-
   return (
     <div className="w-full flex gap-2">
-      {days.map((day, dayIdx) => {
-        const workoutsLength = day.workouts.length;
-        return (
-          <Card key={dayIdx} className="flex-1">
-            <div className="px-4 flex flex-col items-center">
-              <p className="text-xs text-center uppercase text-muted-foreground mb-2">
-                Day {dayIdx + 1}
-                <br />
-                {workoutsLength
-                  ? workoutsLength === 1
-                    ? day.workouts[0].title
-                    : `${workoutsLength} workouts`
-                  : "No workout"}
-              </p>
-              <span
-                role="button"
-                className="cursor-pointer"
-                onClick={() => setModalOpen({ dayIdx })}
-              >
-                <Pen />
-              </span>
-            </div>
-          </Card>
-        );
-      })}
+      <DndContext
+        collisionDetection={closestCenter}
+        onDragEnd={(event) => {
+          const { active, over } = event;
+
+          if (active.id !== over?.id) {
+            const oldIndex = days.findIndex((w) => w.day_of_week === active.id);
+            const newIndex = days.findIndex((w) => w.day_of_week === over?.id);
+            move(days, oldIndex, newIndex);
+            // update order
+            setFieldValue(
+              `weeks.${weekIdx}.days`,
+              arrayMove(days, oldIndex, newIndex).map((w, i) => ({
+                ...w,
+                day_of_week: i,
+              }))
+            );
+          }
+        }}
+      >
+        <SortableContext
+          items={days.map((w) => w.day_of_week!)}
+          strategy={horizontalListSortingStrategy}
+        >
+          {days.map((day, dayIdx) => (
+            <DayCard
+              day={day}
+              dayIdx={dayIdx}
+              onEdit={() => setModalOpen({ dayIdx })}
+            />
+          ))}
+        </SortableContext>
+      </DndContext>
       {modalOpen && (
         <Suspense fallback={null}>
           <DayFormModal
