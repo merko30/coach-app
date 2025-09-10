@@ -9,5 +9,8 @@ export interface Message {
 export interface Conversation {
   id: number;
   user: User;
+  user_id: number;
+  recipient_id: number;
+  recipient: User;
   messages: Message[];
 }

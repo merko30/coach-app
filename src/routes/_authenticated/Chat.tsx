@@ -1,13 +1,19 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { useAuth } from "@/context/AuthProvider";
-import conversationsService from "@/services/conversations";
-import type { Conversation } from "@/types/conversations";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import type { AxiosResponse } from "axios";
 import { MessageSquare } from "lucide-react";
-import { lazy, Suspense, useEffect, useRef, useState } from "react";
+import { lazy, Suspense, useRef, useState } from "react";
+
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { useAuth } from "@/context/AuthProvider";
+import useWebsocket from "@/hooks/useWebsocket";
+
+import ConversationList from "@/components/Chat/ConversationList";
+
+import conversationsService from "@/services/conversations";
+
+import type { Conversation } from "@/types/conversations";
 
 const ActiveConversation = lazy(
   () => import("@/components/Chat/ActiveConversation")
@@ -18,7 +24,6 @@ export const Route = createFileRoute("/_authenticated/Chat")({
 });
 
 function RouteComponent() {
-  const ws = useRef<WebSocket | null>(null);
   const messagesContainerRef = useRef<HTMLDivElement>(null);
   const [message, setMessage] = useState<string>("");
   const { user } = useAuth();
@@ -35,13 +40,9 @@ function RouteComponent() {
   const conversations = data?.data;
 
   const queryClient = useQueryClient();
-  useEffect(() => {
-    const websocket = new WebSocket("ws://localhost:8000/ws");
-    ws.current = websocket;
-    websocket.onopen = () => {
-      console.log("connected");
-    };
-    websocket.onmessage = (event) => {
+
+  const ws = useWebsocket({
+    onEvent: (event) => {
       console.log(event);
       const data = JSON.parse(event.data);
       if (data.type === "new_message") {
@@ -64,16 +65,12 @@ function RouteComponent() {
           messagesContainerRef.current.scrollHeight
         );
       }
-    };
-
-    return () => {
-      websocket.close();
-    };
-  }, [queryClient]);
+    },
+  });
 
   const onSend = () => {
-    if (ws.current) {
-      ws.current.send(
+    if (ws) {
+      ws.send(
         JSON.stringify({
           type: "message",
           conversation_id: 2,
@@ -91,33 +88,12 @@ function RouteComponent() {
   if (conversations) {
     return (
       <div className="flex gap-1 h-[calc(100vh-2rem)]">
-        <ul className="w-20 list-none">
-          {conversations.map(
-            (conversation: {
-              id: number;
-              user: {
-                id: number;
-                avatar: string;
-                email: string;
-              };
-            }) => (
-              <li
-                key={conversation.id}
-                onClick={() => setActiveConversation(conversation.id)}
-                className=""
-              >
-                <img
-                  src={conversation.user.avatar}
-                  className="size-16 rounded-full border border-gray-200"
-                />
-                {/* // show name on hover */}
-                {/* <span className="hov">
-                  {conversation.user.email}
-                </span> */}
-              </li>
-            )
-          )}
-        </ul>
+        <ConversationList
+          conversations={conversations}
+          onChangeConversation={(conversationId) =>
+            setActiveConversation(conversationId)
+          }
+        />
         <div className="h-full flex-1 flex flex-col">
           {activeConversation ? (
             <Suspense
@@ -131,9 +107,9 @@ function RouteComponent() {
               />
             </Suspense>
           ) : (
-            <div className="flex-1 h-[calc(100vh-3rem)] mb-4 bg-gray-50 rounded-md flex flex-col items-center justify-center text-gray-400">
-              <MessageSquare />
-              <span>Select a conversation</span>
+            <div className="flex-1 h-[calc(100vh-3rem)] mb-4 bg-gray-50 rounded-md flex flex-col items-center justify-center text-gray-400 gap-4">
+              <MessageSquare size={48} />
+              <span className="text-xl font-medium">Select a conversation</span>
             </div>
           )}
 
