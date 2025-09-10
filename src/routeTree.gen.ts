@@ -14,6 +14,7 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CoachRegisterRouteImport } from './routes/coach/register'
+import { Route as AuthenticatedChatRouteImport } from './routes/_authenticated/Chat'
 import { Route as AuthenticatedDashboardIndexRouteImport } from './routes/_authenticated/dashboard/index'
 import { Route as AuthenticatedDashboardClientsRouteImport } from './routes/_authenticated/dashboard/clients'
 import { Route as AuthenticatedDashboardPlansIndexRouteImport } from './routes/_authenticated/dashboard/plans/index'
@@ -42,6 +43,11 @@ const CoachRegisterRoute = CoachRegisterRouteImport.update({
   id: '/coach/register',
   path: '/coach/register',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedChatRoute = AuthenticatedChatRouteImport.update({
+  id: '/Chat',
+  path: '/Chat',
+  getParentRoute: () => AuthenticatedRoute,
 } as any)
 const AuthenticatedDashboardIndexRoute =
   AuthenticatedDashboardIndexRouteImport.update({
@@ -72,6 +78,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
+  '/Chat': typeof AuthenticatedChatRoute
   '/coach/register': typeof CoachRegisterRoute
   '/dashboard/clients': typeof AuthenticatedDashboardClientsRoute
   '/dashboard': typeof AuthenticatedDashboardIndexRoute
@@ -82,6 +89,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
+  '/Chat': typeof AuthenticatedChatRoute
   '/coach/register': typeof CoachRegisterRoute
   '/dashboard/clients': typeof AuthenticatedDashboardClientsRoute
   '/dashboard': typeof AuthenticatedDashboardIndexRoute
@@ -94,6 +102,7 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteWithChildren
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
+  '/_authenticated/Chat': typeof AuthenticatedChatRoute
   '/coach/register': typeof CoachRegisterRoute
   '/_authenticated/dashboard/clients': typeof AuthenticatedDashboardClientsRoute
   '/_authenticated/dashboard/': typeof AuthenticatedDashboardIndexRoute
@@ -106,6 +115,7 @@ export interface FileRouteTypes {
     | '/'
     | '/login'
     | '/register'
+    | '/Chat'
     | '/coach/register'
     | '/dashboard/clients'
     | '/dashboard'
@@ -116,6 +126,7 @@ export interface FileRouteTypes {
     | '/'
     | '/login'
     | '/register'
+    | '/Chat'
     | '/coach/register'
     | '/dashboard/clients'
     | '/dashboard'
@@ -127,6 +138,7 @@ export interface FileRouteTypes {
     | '/_authenticated'
     | '/login'
     | '/register'
+    | '/_authenticated/Chat'
     | '/coach/register'
     | '/_authenticated/dashboard/clients'
     | '/_authenticated/dashboard/'
@@ -179,6 +191,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CoachRegisterRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/Chat': {
+      id: '/_authenticated/Chat'
+      path: '/Chat'
+      fullPath: '/Chat'
+      preLoaderRoute: typeof AuthenticatedChatRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
     '/_authenticated/dashboard/': {
       id: '/_authenticated/dashboard/'
       path: '/dashboard'
@@ -211,6 +230,7 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedRouteChildren {
+  AuthenticatedChatRoute: typeof AuthenticatedChatRoute
   AuthenticatedDashboardClientsRoute: typeof AuthenticatedDashboardClientsRoute
   AuthenticatedDashboardIndexRoute: typeof AuthenticatedDashboardIndexRoute
   AuthenticatedDashboardPlansCreateRoute: typeof AuthenticatedDashboardPlansCreateRoute
@@ -218,6 +238,7 @@ interface AuthenticatedRouteChildren {
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
+  AuthenticatedChatRoute: AuthenticatedChatRoute,
   AuthenticatedDashboardClientsRoute: AuthenticatedDashboardClientsRoute,
   AuthenticatedDashboardIndexRoute: AuthenticatedDashboardIndexRoute,
   AuthenticatedDashboardPlansCreateRoute:
