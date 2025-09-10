@@ -2,7 +2,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import type { AxiosResponse } from "axios";
 import { MessageSquare } from "lucide-react";
-import { lazy, Suspense, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -14,6 +14,7 @@ import ConversationList from "@/components/Chat/ConversationList";
 import conversationsService from "@/services/conversations";
 
 import type { Conversation } from "@/types/conversations";
+import { twMerge } from "tailwind-merge";
 
 const ActiveConversation = lazy(
   () => import("@/components/Chat/ActiveConversation")
@@ -26,20 +27,20 @@ export const Route = createFileRoute("/_authenticated/Chat")({
 function RouteComponent() {
   const messagesContainerRef = useRef<HTMLDivElement>(null);
   const [message, setMessage] = useState<string>("");
+  const [activeConversation, setActiveConversation] = useState<number | null>(
+    null
+  );
+  const [error, setError] = useState<boolean>(false);
+
+  const queryClient = useQueryClient();
+
   const { user } = useAuth();
 
   const { data, isLoading: loading } = useQuery({
     queryFn: conversationsService.get,
     queryKey: ["conversations"],
   });
-
-  const [activeConversation, setActiveConversation] = useState<number | null>(
-    null
-  );
-
   const conversations = data?.data;
-
-  const queryClient = useQueryClient();
 
   const ws = useWebsocket({
     onEvent: (event) => {
@@ -69,6 +70,11 @@ function RouteComponent() {
   });
 
   const onSend = () => {
+    setError(false);
+    if (!message.length) {
+      setError(true);
+      return;
+    }
     if (ws) {
       ws.send(
         JSON.stringify({
@@ -80,6 +86,23 @@ function RouteComponent() {
       );
     }
   };
+
+  useEffect(() => {
+    const onKeydown = (event: KeyboardEvent) => {
+      // Only trigger when focused on the message input
+      const target = event.target as HTMLElement;
+      if (target && target.tagName === "INPUT") {
+        if (event.key === "Enter") {
+          event.preventDefault(); // prevent form submission
+          onSend();
+        }
+      }
+    };
+
+    document.addEventListener("keydown", onKeydown);
+
+    return () => document.removeEventListener("keydown", onKeydown);
+  }, [onSend]); // include onSend if it uses state like message
 
   if (loading) {
     return <div>Loading...</div>;
@@ -117,7 +140,11 @@ function RouteComponent() {
             <Input
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              className="p-8"
+              className={twMerge(
+                "p-8",
+                error &&
+                  "border-red-500 focus-visible:border-red-500 focus-visible:shadow-lg focus-visible:ring-2 focus-visible:ring-red-300"
+              )}
               placeholder="Your message"
             />
             <Button type="button" onClick={onSend} className="h-full">
