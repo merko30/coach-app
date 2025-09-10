@@ -1,5 +1,10 @@
 import { Button } from "../ui/button";
-import { FieldArray, FormikProvider, useFormik } from "formik";
+import {
+  FieldArray,
+  FormikProvider,
+  useFormik,
+  useFormikContext,
+} from "formik";
 import { closestCenter, DndContext } from "@dnd-kit/core";
 import type { DayFormValues, PlanFormValues } from "./constants";
 import {
@@ -31,6 +36,7 @@ const DayFormModal = ({
   onSubmit: any;
   onToggle: (open: boolean) => void;
 }) => {
+  const { values: parentValues } = useFormikContext<PlanFormValues>();
   const formik = useFormik<DayFormValues>({
     initialValues: {
       id: day.id ?? uuidv7(),
@@ -113,7 +119,7 @@ const DayFormModal = ({
                             order: workouts.length,
                             title: "",
                             description: "",
-                            type: "REST",
+                            type: parentValues.type ?? "RUN",
                             sets: [],
                           })
                         }

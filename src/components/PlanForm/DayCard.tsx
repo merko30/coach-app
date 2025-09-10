@@ -1,8 +1,18 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { Card } from "../ui/card";
+import { Card, CardHeader } from "../ui/card";
 import { GripVertical, Pen } from "lucide-react";
 import type { PlanFormValues } from "./constants";
+
+const DAY_NAMES = [
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday",
+];
 
 const DayCard = ({
   day,
@@ -31,7 +41,15 @@ const DayCard = ({
 
   const workoutsLength = day.workouts.length;
   return (
-    <Card className="flex-1" ref={setNodeRef} {...attributes} style={style}>
+    <Card
+      className="flex-1 gap-2"
+      ref={setNodeRef}
+      {...attributes}
+      style={style}
+    >
+      <CardHeader className="text-sm uppercase font-medium text-center">
+        {DAY_NAMES[day.day_of_week!]}
+      </CardHeader>
       <div className="px-4 flex flex-col items-center relative">
         <button
           type="button"
@@ -40,11 +58,9 @@ const DayCard = ({
           tabIndex={-1}
           aria-label="Drag handle"
         >
-          <GripVertical className="w-4 h-4" />
+          <GripVertical className="size-6" />
         </button>
-        <p className="text-xs text-center uppercase text-muted-foreground mb-2 mt-8">
-          Day {dayIdx + 1}
-          <br />
+        <p className="text-xs text-center uppercase text-muted-foreground mb-2 mt-10">
           {workoutsLength
             ? workoutsLength === 1
               ? day.workouts[0].title
