@@ -76,8 +76,8 @@ function RouteComponent() {
         <h1 className="text-3xl mb-8">Your profile</h1>
         <div className="flex items-center gap-4">
           <img
-            src={user.avatar || undefined}
-            className="size-16 rounded-full border-gray-100 border-2"
+            src={userData?.data.avatar_url || undefined}
+            className="size-16 rounded-full border-gray-100 border-2 object-cover"
           />
           <div>
             <h2 className="text-xl">{user.username}</h2>
@@ -100,8 +100,8 @@ function RouteComponent() {
           contentClass="flex-row md:flex-col lg:flex-row items-center"
         >
           <img
-            src={userData?.data.avatar || undefined}
-            className="size-16 flex-none rounded-full border-gray-100 border-2"
+            src={userData?.data.avatar_url || undefined}
+            className="size-16 flex-none rounded-full border-gray-100 border-2 object-cover"
           />
           <div>
             <Button onClick={() => fileInputRef.current?.click()} size="sm">

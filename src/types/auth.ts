@@ -11,6 +11,7 @@ export interface User {
   email: string;
   name: string | null;
   username: string;
+  avatar_url: string | null;
 }
 
 export interface UpdateData {

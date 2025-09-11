@@ -38,9 +38,9 @@ export function PlanCards({
             </p>
 
             <div className="flex items-center flex-wrap gap-2">
-              {plan.coach.user.avatar && (
+              {plan.coach.user.avatar_url && (
                 <img
-                  src={plan.coach.user.avatar}
+                  src={plan.coach.user.avatar_url}
                   className="flex-none size-8 rounded-full border-2"
                 />
               )}
