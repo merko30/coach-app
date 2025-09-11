@@ -40,7 +40,7 @@ const ActiveConversation = forwardRef<
             <div className="flex flex-col w-full mb-2" key={message.id}>
               <div
                 className={twMerge(
-                  "p-4 bg-blue-200 rounded-lg",
+                  "max-w-2/3 md:max-w-1/2 p-4 bg-blue-200 rounded-lg",
                   message.sender_id === parseInt(user.id)
                     ? "self-end"
                     : "self-start"
