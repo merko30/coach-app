@@ -1,19 +1,23 @@
+import { useRef } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Field, FormikProvider, useFormik } from "formik";
 import type { AxiosResponse } from "axios";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
+import Section from "@/components/Profile/Section";
+
 import { useAuth } from "@/context/AuthProvider";
 
-import Section from "@/components/Profile/Section";
-import { useMutation, useQuery } from "@tanstack/react-query";
 import authService from "@/services/auth";
 import coachesService from "@/services/coaches";
+
 import type { Coach } from "@/types/coaches";
+import type { User } from "@/types/auth";
 
 export const Route = createFileRoute("/_authenticated/profile")({
   component: RouteComponent,
@@ -23,19 +27,34 @@ function RouteComponent() {
   const { user } = useAuth();
   const isCoach = user.roles.includes("coach");
 
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+
+  const queryClient = useQueryClient();
+
+  const { data: userData } = useQuery<AxiosResponse<User>>({
+    queryFn: authService.getUser,
+    queryKey: ["user"],
+  });
+
   const { data } = useQuery<AxiosResponse<Coach>>({
     queryFn: coachesService.getCurrent,
     queryKey: ["current-coach"],
+    enabled: isCoach,
   });
 
   const { mutate } = useMutation({
     mutationFn: authService.update,
   });
 
+  const { mutate: updateAvatar } = useMutation({
+    mutationFn: authService.updateAvatar,
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["user"] }),
+  });
+
   const formik = useFormik({
     initialValues: {
-      name: user.name ?? "",
-      username: user.username ?? "",
+      name: userData?.data.name ?? "",
+      username: userData?.data.username ?? "",
       description: data?.data?.description ?? "",
     },
     enableReinitialize: true,
@@ -43,6 +62,13 @@ function RouteComponent() {
       mutate(values);
     },
   });
+
+  const onChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = e.target.files?.[0] ?? null;
+    if (selectedFile && selectedFile instanceof File) {
+      updateAvatar(selectedFile);
+    }
+  };
 
   return (
     <FormikProvider value={formik}>
@@ -71,13 +97,24 @@ function RouteComponent() {
         <Section
           title="Profile photo"
           subtitle="Change your profile photo"
-          contentClass="flex-row items-center"
+          contentClass="flex-row md:flex-col lg:flex-row items-center"
         >
           <img
-            src={user.avatar || undefined}
-            className="size-16 rounded-full border-gray-100 border-2"
+            src={userData?.data.avatar || undefined}
+            className="size-16 flex-none rounded-full border-gray-100 border-2"
           />
-          <Button size="sm">Upload</Button>
+          <div>
+            <Button onClick={() => fileInputRef.current?.click()}>
+              Change avatar
+            </Button>
+            <input
+              hidden
+              ref={fileInputRef}
+              accept="image/*"
+              type="file"
+              onChange={onChangeFile}
+            />
+          </div>
           <Button variant="destructive" size="sm">
             Remove profile photo
           </Button>

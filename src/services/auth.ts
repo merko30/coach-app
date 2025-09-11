@@ -7,6 +7,7 @@ const ENDPOINTS = {
   REGISTER: "/auth/register",
   USER: "/auth/me",
   REFRESH: "/auth/refresh",
+  AVATAR: "/auth/avatar",
 };
 
 const authService = {
@@ -17,6 +18,16 @@ const authService = {
   getUser: () => axios.get(ENDPOINTS.USER),
   refresh: () => axios.post(ENDPOINTS.REFRESH),
   update: (data: UpdateData) => axios.put(ENDPOINTS.USER, data),
+  updateAvatar: (file: File) => {
+    const formData = new FormData();
+    formData.append("file", file);
+
+    return axios.post(ENDPOINTS.AVATAR, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+  },
 };
 
 export default authService;
