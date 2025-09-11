@@ -1,4 +1,4 @@
-import { ChartBarIncreasing, Home, Sheet, Users } from "lucide-react";
+import { ChartBarIncreasing, Home, Sheet, User2, Users } from "lucide-react";
 
 import {
   Sidebar,
@@ -39,6 +39,11 @@ const items = [
     url: "/dashboard/progress",
     icon: ChartBarIncreasing,
     coach: false,
+  },
+  {
+    title: "Profile",
+    url: "/profile",
+    icon: User2,
   },
 ];
 
