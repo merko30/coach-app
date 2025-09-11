@@ -18,9 +18,11 @@ const authService = {
   getUser: () => axios.get(ENDPOINTS.USER),
   refresh: () => axios.post(ENDPOINTS.REFRESH),
   update: (data: UpdateData) => axios.put(ENDPOINTS.USER, data),
-  updateAvatar: (file: File) => {
+  updateAvatar: (file: File | null) => {
     const formData = new FormData();
-    formData.append("file", file);
+    if (file) {
+      formData.append("file", file);
+    }
 
     return axios.post(ENDPOINTS.AVATAR, formData, {
       headers: {

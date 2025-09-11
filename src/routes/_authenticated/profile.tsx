@@ -104,7 +104,7 @@ function RouteComponent() {
             className="size-16 flex-none rounded-full border-gray-100 border-2"
           />
           <div>
-            <Button onClick={() => fileInputRef.current?.click()}>
+            <Button onClick={() => fileInputRef.current?.click()} size="sm">
               Change avatar
             </Button>
             <input
@@ -115,7 +115,11 @@ function RouteComponent() {
               onChange={onChangeFile}
             />
           </div>
-          <Button variant="destructive" size="sm">
+          <Button
+            variant="destructive"
+            size="sm"
+            onClick={() => updateAvatar(null)}
+          >
             Remove profile photo
           </Button>
         </Section>
