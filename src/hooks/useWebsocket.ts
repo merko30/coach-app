@@ -2,8 +2,10 @@ import { useEffect, useRef } from "react";
 
 const useWebsocket = ({
   onEvent,
+  dependencies = [],
 }: {
   onEvent: ((this: WebSocket, ev: MessageEvent<any>) => any) | null;
+  dependencies?: any[];
 }): WebSocket | null => {
   const websocketRef = useRef<WebSocket | null>(null);
 
@@ -18,7 +20,7 @@ const useWebsocket = ({
     return () => {
       websocket.close();
     };
-  }, []);
+  }, dependencies);
 
   return websocketRef.current;
 };

@@ -2,7 +2,14 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import type { AxiosResponse } from "axios";
 import { MessageSquare } from "lucide-react";
-import { lazy, Suspense, useEffect, useRef, useState } from "react";
+import {
+  lazy,
+  Suspense,
+  useEffect,
+  useRef,
+  useState,
+  type ChangeEvent,
+} from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -24,12 +31,27 @@ export const Route = createFileRoute("/_authenticated/Chat")({
   component: RouteComponent,
 });
 
+export function debounce<T extends (...args: any[]) => void>(
+  func: T,
+  delay: number
+): (...args: Parameters<T>) => void {
+  let timeoutId: ReturnType<typeof setTimeout> | undefined;
+
+  return (...args: Parameters<T>) => {
+    if (timeoutId) clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
+      func(...args);
+    }, delay);
+  };
+}
+
 function RouteComponent() {
   const messagesContainerRef = useRef<HTMLDivElement>(null);
   const [message, setMessage] = useState<string>("");
   const [activeConversation, setActiveConversation] = useState<number | null>(
     null
   );
+  const [isPersonTyping, setIsPersonTyping] = useState(false);
   const [error, setError] = useState<boolean>(false);
 
   const queryClient = useQueryClient();
@@ -43,14 +65,32 @@ function RouteComponent() {
   const conversations = data?.data;
 
   const ws = useWebsocket({
+    dependencies: [activeConversation],
     onEvent: (event) => {
-      console.log(event);
       const data = JSON.parse(event.data);
+      if (data.type === "typing") {
+        if (
+          data.user_id !== user.id &&
+          data.conversation_id === activeConversation
+        ) {
+          setIsPersonTyping(true);
+        } else {
+          setIsPersonTyping(false);
+        }
+      }
+      if (data.type === "not-typing") {
+        if (
+          data.user_id !== user.id &&
+          data.conversation_id === activeConversation
+        ) {
+          setIsPersonTyping(false);
+        }
+      }
       if (data.type === "new_message") {
         queryClient.setQueryData(
           ["conversations", data.conversation_id],
           (oldData: AxiosResponse<Conversation>) => {
-            const { type, ...messageData } = data;
+            const { type: _, ...messageData } = data;
             return {
               ...oldData,
               data: {
@@ -104,6 +144,28 @@ function RouteComponent() {
     return () => document.removeEventListener("keydown", onKeydown);
   }, [onSend]); // include onSend if it uses state like message
 
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setMessage(e.target.value);
+
+    ws?.send(
+      JSON.stringify({
+        type: "typing",
+        conversation_id: activeConversation,
+        user_id: user.id,
+      })
+    );
+  };
+
+  const onBlur = () => {
+    ws?.send(
+      JSON.stringify({
+        type: "not-typing",
+        conversation_id: activeConversation,
+        user_id: user.id,
+      })
+    );
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -135,11 +197,12 @@ function RouteComponent() {
               <span className="text-xl font-medium">Select a conversation</span>
             </div>
           )}
-
+          {isPersonTyping && <div className="bg-red z-20">Drugi is typing</div>}
           <div className="flex gap-4 pl-6">
             <Input
               value={message}
-              onChange={(e) => setMessage(e.target.value)}
+              onChange={onChange}
+              onBlur={onBlur}
               className={twMerge(
                 "p-8",
                 error &&
