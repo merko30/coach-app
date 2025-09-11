@@ -50,6 +50,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     checkAuth();
   }, []);
 
+  useEffect(() => {
+    // refresh every 10 minutes
+    const interval = setInterval(
+      () => {
+        authService.refresh().catch(() => console.log("refresh failed"));
+      },
+      10 * 60 * 1000
+    );
+
+    return () => clearInterval(interval);
+  }, []);
+
   const logout = (navigate: NavigateFn) =>
     authService.logout().then(() => {
       navigate({ to: "/login" });

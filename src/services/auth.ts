@@ -6,6 +6,7 @@ const ENDPOINTS = {
   LOGOUT: "/auth/logout",
   REGISTER: "/auth/register",
   USER: "/auth/me",
+  REFRESH: "/auth/refresh",
 };
 
 const authService = {
@@ -14,6 +15,7 @@ const authService = {
   logout: () => axios.post(ENDPOINTS.LOGOUT),
   register: (data: RegisterData) => axios.post(ENDPOINTS.REGISTER, data),
   getUser: () => axios.get(ENDPOINTS.USER),
+  refresh: () => axios.post(ENDPOINTS.REFRESH),
 };
 
 export default authService;
