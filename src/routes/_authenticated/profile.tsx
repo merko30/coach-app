@@ -1,3 +1,4 @@
+import Section from "@/components/Profile/Section";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -25,61 +26,40 @@ function RouteComponent() {
           <p className="text-muted-foreground text-sm">{user.email}</p>
         </div>
       </div>
-      <div className="flex flex-col md:flex-row gap-12 py-8 border-b border-gray-100">
-        <div className="w-full md:w-1/3">
-          <h3 className="text-lg">Personal information</h3>
-          <p className="text-muted-foreground text-sm">Edit your information</p>
+      <Section title="Personal information" subtitle="Edit your information">
+        <div>
+          <Label>Name</Label>
+          <Input />
         </div>
-        <div className="w-full md:w-2/3">
-          <div className="w-full md:w-2/3 flex flex-col gap-4">
-            <div>
-              <Label>Name</Label>
-              <Input />
-            </div>
-            <div>
-              <Label>Username</Label>
-              <Input />
-            </div>
-          </div>
+        <div>
+          <Label>Username</Label>
+          <Input />
         </div>
-      </div>
-      <div className="flex flex-col md:flex-row gap-12 py-8 border-b border-gray-100">
-        <div className="w-full md:w-1/3">
-          <h3 className="text-lg">Profile photo</h3>
-          <p className="text-muted-foreground text-sm">
-            Change your profile photo
-          </p>
-        </div>
-        <div className="w-full md:w-2/3">
-          <div className="w-full md:w-2/3 flex items-center gap-4">
-            <img
-              src={user.avatar}
-              className="size-16 rounded-full border-gray-100 border-2"
-            />
-            <Button size="sm">Upload</Button>
-            <Button variant="destructive" size="sm">
-              Remove profile photo
-            </Button>
-          </div>
-        </div>
-      </div>
+      </Section>
+      <Section
+        title="Profile photo"
+        subtitle="Change your profile photo"
+        contentClass="flex-row items-center"
+      >
+        <img
+          src={user.avatar}
+          className="size-16 rounded-full border-gray-100 border-2"
+        />
+        <Button size="sm">Upload</Button>
+        <Button variant="destructive" size="sm">
+          Remove profile photo
+        </Button>
+      </Section>
       {isCoach && (
-        <div className="flex flex-col md:flex-row gap-12 py-8 border-b border-gray-100">
-          <div className="w-full md:w-1/3">
-            <h3 className="text-lg">Coach profile</h3>
-            <p className="text-muted-foreground text-sm">
-              Information about you as a coach
-            </p>
+        <Section
+          title="Coach profile"
+          subtitle="Information about you as a coach"
+        >
+          <div>
+            <Label>Description</Label>
+            <Textarea />
           </div>
-          <div className="w-full md:w-2/3">
-            <div className="w-full md:w-2/3 flex flex-col gap-4">
-              <div>
-                <Label>Description</Label>
-                <Textarea />
-              </div>
-            </div>
-          </div>
-        </div>
+        </Section>
       )}
     </div>
   );
