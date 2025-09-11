@@ -6,7 +6,8 @@ import authService from "@/services/auth";
 
 interface User {
   id: number;
-  avatar: string;
+  avatar: string | null;
+  name: string | null;
   username: string;
   email: string;
   roles: string[];

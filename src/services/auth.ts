@@ -1,5 +1,5 @@
 import axios from "@/lib/axios";
-import type { RegisterData } from "@/types/auth";
+import type { RegisterData, UpdateData } from "@/types/auth";
 
 const ENDPOINTS = {
   LOGIN: "/auth/login",
@@ -16,6 +16,7 @@ const authService = {
   register: (data: RegisterData) => axios.post(ENDPOINTS.REGISTER, data),
   getUser: () => axios.get(ENDPOINTS.USER),
   refresh: () => axios.post(ENDPOINTS.REFRESH),
+  update: (data: UpdateData) => axios.put(ENDPOINTS.USER, data),
 };
 
 export default authService;

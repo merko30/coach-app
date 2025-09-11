@@ -12,3 +12,9 @@ export interface User {
   name: string | null;
   username: string;
 }
+
+export interface UpdateData {
+  name: string;
+  username: string;
+  description: string;
+}
