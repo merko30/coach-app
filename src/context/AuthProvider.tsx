@@ -5,7 +5,7 @@ import type { ReactNode } from "react";
 import authService from "@/services/auth";
 
 interface User {
-  id: string;
+  id: number;
   username: string;
   email: string;
   roles: string[];

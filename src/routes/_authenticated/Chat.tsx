@@ -110,7 +110,7 @@ function RouteComponent() {
 
   if (conversations) {
     return (
-      <div className="flex gap-1 h-[calc(100vh-2rem)]">
+      <div className="flex h-[calc(100vh-2rem)]">
         <ConversationList
           conversations={conversations}
           onChangeConversation={(conversationId) =>
@@ -130,13 +130,13 @@ function RouteComponent() {
               />
             </Suspense>
           ) : (
-            <div className="flex-1 h-[calc(100vh-3rem)] mb-4 bg-gray-50 rounded-md flex flex-col items-center justify-center text-gray-400 gap-4">
+            <div className="flex-1 h-[calc(100vh-3rem)] mb-4 rounded-md flex flex-col items-center justify-center text-gray-400 gap-4">
               <MessageSquare size={48} />
               <span className="text-xl font-medium">Select a conversation</span>
             </div>
           )}
 
-          <div className="flex gap-4">
+          <div className="flex gap-4 pl-6">
             <Input
               value={message}
               onChange={(e) => setMessage(e.target.value)}
