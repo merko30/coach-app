@@ -12,8 +12,9 @@ const ActiveConversation = forwardRef<
   HTMLDivElement,
   {
     conversationId: number;
+    isPersonTyping: boolean;
   }
->(({ conversationId }, ref) => {
+>(({ conversationId, isPersonTyping }, ref) => {
   const { user } = useAuth();
   const { data, isLoading } = useQuery<AxiosResponse<Conversation>>({
     queryFn: () => conversationsService.getOne(conversationId!),
@@ -65,6 +66,11 @@ const ActiveConversation = forwardRef<
               </div>
             ))}
         </div>
+        {isPersonTyping && (
+          <span className="sticky bottom-2 left-2 p-3 bg-white rounded-lg text-xs text-muted-foreground">
+            {personChattingWith.name ?? personChattingWith.email} is typing...
+          </span>
+        )}
       </div>
     );
   }

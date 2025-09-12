@@ -189,6 +189,7 @@ function RouteComponent() {
               <ActiveConversation
                 conversationId={activeConversation}
                 ref={messagesContainerRef}
+                isPersonTyping={isPersonTyping}
               />
             </Suspense>
           ) : (
@@ -197,7 +198,6 @@ function RouteComponent() {
               <span className="text-xl font-medium">Select a conversation</span>
             </div>
           )}
-          {isPersonTyping && <div className="bg-red z-20">Drugi is typing</div>}
           <div className="flex gap-4 pl-6">
             <Input
               value={message}
