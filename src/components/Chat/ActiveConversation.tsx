@@ -46,10 +46,10 @@ const ActiveConversation = forwardRef<
       >
         <div className="sticky top-0 w-full flex items-center gap-4 p-4 bg-white shadow-md rounded-b-md">
           <img
-            src={personChattingWith.avatar}
+            src={personChattingWith.avatar_url || undefined}
             className="size-12 rounded-full border border-gray-300"
           />
-          <h3>{personChattingWith.email}</h3>
+          <h3>{personChattingWith.name ?? personChattingWith.username}</h3>
         </div>
         <div className="pl-6">
           {data.data &&
