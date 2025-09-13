@@ -11,6 +11,7 @@ const ENDPOINTS = {
   FORGOT_PASSWORD: "/auth/forgot-password",
   RESET_PASSWORD: "/auth/reset-password",
   UPDATE_PASSWORD: "/auth/update-password",
+  VERIFY_EMAIL: "/auth/verify-email",
 };
 
 const authService = {
@@ -41,6 +42,7 @@ const authService = {
     axios.post(ENDPOINTS.RESET_PASSWORD, data),
   updatePassword: (data: { old_password: string; password: string }) =>
     axios.put(ENDPOINTS.UPDATE_PASSWORD, data),
+  verifyEmail: (token: string) => axios.post(ENDPOINTS.VERIFY_EMAIL, { token }),
 };
 
 export default authService;
