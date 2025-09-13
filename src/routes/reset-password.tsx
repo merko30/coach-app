@@ -4,7 +4,6 @@ import {
   redirect,
   useLocation,
   useNavigate,
-  useParams,
 } from "@tanstack/react-router";
 import { useMutation } from "@tanstack/react-query";
 import { z } from "zod";
@@ -16,6 +15,7 @@ import { Button } from "@/components/ui/button";
 
 import authService from "@/services/auth";
 import { toast } from "sonner";
+import { AxiosError } from "axios";
 
 const schema = z
   .object({
@@ -79,6 +79,8 @@ const ResetPassword = () => {
     return mutate({ password, token: params.get("token")! });
   }
 
+  console.log(error);
+
   return (
     <main className="min-h-screen flex items-center justify-center bg-background">
       <Card className="w-full max-w-2xl overflow-hidden">
@@ -133,7 +135,8 @@ const ResetPassword = () => {
             </div>
             {error && (
               <p className="text-destructive text-sm mt-2 text-center">
-                {error.message}
+                {(error as AxiosError<{ detail: string }>)?.response?.data
+                  ?.detail ?? "Something went wrong"}
               </p>
             )}
             <Button
