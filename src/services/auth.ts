@@ -10,6 +10,7 @@ const ENDPOINTS = {
   AVATAR: "/auth/avatar",
   FORGOT_PASSWORD: "/auth/forgot-password",
   RESET_PASSWORD: "/auth/reset-password",
+  UPDATE_PASSWORD: "/auth/update-password",
 };
 
 const authService = {
@@ -38,6 +39,8 @@ const authService = {
     }),
   resetPassword: (data: { password: string; token: string }) =>
     axios.post(ENDPOINTS.RESET_PASSWORD, data),
+  updatePassword: (data: { old_password: string; password: string }) =>
+    axios.put(ENDPOINTS.UPDATE_PASSWORD, data),
 };
 
 export default authService;

@@ -48,7 +48,9 @@
     "tailwind-merge": "^3.3.1",
     "tailwindcss": "^4.1.12",
     "uuidv7": "^1.0.2",
-    "zod": "^4.1.5"
+    "yup": "^1.7.0",
+    "zod": "^4.1.5",
+    "zod-formik-adapter": "^2.0.0"
   },
   "devDependencies": {
     "@testing-library/dom": "^10.4.0",

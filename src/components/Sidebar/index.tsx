@@ -1,4 +1,11 @@
-import { ChartBarIncreasing, Home, Sheet, User2, Users } from "lucide-react";
+import {
+  ChartBarIncreasing,
+  Home,
+  Sheet,
+  Shield,
+  User2,
+  Users,
+} from "lucide-react";
 
 import {
   Sidebar,
@@ -14,6 +21,7 @@ import { Link } from "@tanstack/react-router";
 
 import LogoutButton from "./LogoutButton";
 import useIsCoach from "@/hooks/useIsCoach";
+import { twMerge } from "tailwind-merge";
 
 // Menu items.
 const items = [
@@ -44,6 +52,12 @@ const items = [
     title: "Profile",
     url: "/profile",
     icon: User2,
+    className: "mt-auto",
+  },
+  {
+    title: "Security",
+    url: "/security",
+    icon: Shield,
   },
 ];
 
@@ -57,14 +71,20 @@ export default function AppSidebar() {
             ST<span className="text-foreground">RUN</span>
           </SidebarGroupLabel>
           <SidebarGroupContent className="h-full">
-            <SidebarMenu>
+            <SidebarMenu className="h-full">
               {items
                 .filter(
                   (item) =>
                     (isCoach ? item.coach : !item.coach) || !("coach" in item)
                 )
                 .map((item) => (
-                  <SidebarMenuItem key={item.title} className="cursor-pointer">
+                  <SidebarMenuItem
+                    key={item.title}
+                    className={twMerge(
+                      "block cursor-pointer",
+                      item.className ?? ""
+                    )}
+                  >
                     <SidebarMenuButton asChild>
                       <Link to={item.url}>
                         <item.icon />
