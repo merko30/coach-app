@@ -9,6 +9,7 @@ const ENDPOINTS = {
   REFRESH: "/auth/refresh",
   AVATAR: "/auth/avatar",
   FORGOT_PASSWORD: "/auth/forgot-password",
+  RESET_PASSWORD: "/auth/reset-password",
 };
 
 const authService = {
@@ -35,6 +36,8 @@ const authService = {
     axios.post(ENDPOINTS.FORGOT_PASSWORD, {
       email,
     }),
+  resetPassword: (data: { password: string; token: string }) =>
+    axios.post(ENDPOINTS.RESET_PASSWORD, data),
 };
 
 export default authService;

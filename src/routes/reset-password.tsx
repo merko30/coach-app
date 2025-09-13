@@ -1,5 +1,11 @@
 import { useState } from "react";
-import { createFileRoute, redirect, useNavigate } from "@tanstack/react-router";
+import {
+  createFileRoute,
+  redirect,
+  useLocation,
+  useNavigate,
+  useParams,
+} from "@tanstack/react-router";
 import { useMutation } from "@tanstack/react-query";
 import { z } from "zod";
 
@@ -11,31 +17,50 @@ import { Button } from "@/components/ui/button";
 import authService from "@/services/auth";
 import { toast } from "sonner";
 
-const schema = z.object({
-  email: z.email("Invalid email address"),
-});
+const schema = z
+  .object({
+    password: z.string().min(8, "Password must contain at least 8 characters"),
+    confirmPassword: z
+      .string()
+      .min(8, "Password must contain at least 8 characters"),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords do not match",
+    path: ["confirmPassword"],
+  });
 
 type Errors = {
-  email?: string;
+  password?: string;
+  confirmPassword?: string;
+  token?: string;
 };
 
-const ForgotPassword = () => {
+const ResetPassword = () => {
   const [errors, setErrors] = useState<Errors>({});
+  const { search } = useLocation();
+  const navigate = useNavigate();
+  const params = new URLSearchParams(search);
   const {
     mutate,
     error,
     isPending: loading,
   } = useMutation({
-    mutationFn: authService.requestPasswordChange,
-    onSuccess: () => toast.success("Forgot password email has been sent"),
+    mutationFn: authService.resetPassword,
+    onSuccess: () => {
+      navigate({ to: "/login" });
+      toast.success("Your password has been reset");
+    },
   });
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
-    const email = formData.get("email")?.toString() || "";
-    const result = schema.safeParse({ email });
+    const data = {
+      password: formData.get("password")?.toString() || "",
+      confirmPassword: formData.get("confirmPassword")?.toString() || "",
+    };
+    const result = schema.safeParse(data);
     if (!result.success) {
       const fieldErrors: any = {};
       for (const err of result.error.issues) {
@@ -44,7 +69,14 @@ const ForgotPassword = () => {
       setErrors(fieldErrors);
       return;
     }
-    return mutate(email);
+
+    if (!params.get("token")) {
+      setErrors({ token: "Your link is invalid" });
+      return;
+    }
+
+    const { password } = data;
+    return mutate({ password, token: params.get("token")! });
   }
 
   return (
@@ -62,20 +94,41 @@ const ForgotPassword = () => {
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
               <Label
-                htmlFor="email"
+                htmlFor="password"
                 className="mb-1 block text-sm font-medium text-muted-foreground"
               >
-                Email
+                Password
               </Label>
               <Input
-                name="email"
-                id="email"
-                type="email"
+                name="password"
+                id="password"
+                type="password"
                 className="w-full"
-                autoComplete="email"
+                autoComplete="password"
               />
-              {errors.email && (
-                <p className="text-destructive text-sm mt-1">{errors.email}</p>
+              {errors.password && (
+                <p className="text-destructive text-sm mt-1">
+                  {errors.password}
+                </p>
+              )}
+            </div>
+            <div>
+              <Label
+                htmlFor="confirmPassword"
+                className="mb-1 block text-sm font-medium text-muted-foreground"
+              >
+                Confirm Password
+              </Label>
+              <Input
+                name="confirmPassword"
+                id="confirmPassword"
+                type="password"
+                className="w-full"
+              />
+              {errors.confirmPassword && (
+                <p className="text-destructive text-sm mt-1">
+                  {errors.confirmPassword}
+                </p>
               )}
             </div>
             {error && (
@@ -89,7 +142,7 @@ const ForgotPassword = () => {
               className="w-full mt-2 bg-primary text-primary-foreground hover:bg-secondary hover:text-secondary-foreground"
               disabled={loading}
             >
-              {loading ? "Loading..." : "Send the email"}
+              {loading ? "Loading..." : "Reset your password"}
             </Button>
           </form>
         </CardContent>
@@ -98,8 +151,8 @@ const ForgotPassword = () => {
   );
 };
 
-export const Route = createFileRoute("/forgot-password")({
-  component: ForgotPassword,
+export const Route = createFileRoute("/reset-password")({
+  component: ResetPassword,
   beforeLoad: ({ context }) => {
     // Redirect if already authenticated
     if (context.auth?.loggedIn) {

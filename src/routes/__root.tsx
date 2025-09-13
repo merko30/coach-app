@@ -2,6 +2,8 @@ import { createRootRouteWithContext, Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { TanstackDevtools } from "@tanstack/react-devtools";
 
+import { Toaster } from "@/components/ui/sonner";
+
 import appCss from "@/styles/app.css?url";
 import type { AuthContextType } from "@/context/AuthProvider";
 
@@ -12,6 +14,7 @@ interface RouterContext {
 export const Route = createRootRouteWithContext<RouterContext>()({
   component: () => (
     <>
+      <Toaster />
       <Outlet />
       <TanstackDevtools
         config={{
