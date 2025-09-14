@@ -17,6 +17,9 @@ export interface User {
 export interface UpdateData {
   name: string;
   username: string;
+}
+
+export interface CoachUpdateData {
   description: string;
   settings: Record<string, any>;
 }
