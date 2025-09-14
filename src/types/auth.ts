@@ -18,4 +18,5 @@ export interface UpdateData {
   name: string;
   username: string;
   description: string;
+  settings: Record<string, any>;
 }

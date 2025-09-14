@@ -18,6 +18,7 @@ import coachesService from "@/services/coaches";
 
 import type { Coach } from "@/types/coaches";
 import type { User } from "@/types/auth";
+import { Checkbox } from "@/components/ui/checkbox";
 
 export const Route = createFileRoute("/_authenticated/profile")({
   component: RouteComponent,
@@ -56,6 +57,10 @@ function RouteComponent() {
       name: userData?.data.name ?? "",
       username: userData?.data.username ?? "",
       description: data?.data?.description ?? "",
+      settings: data?.data?.settings || {
+        send_welcome_message: false,
+        welcome_message: `Hello {athlete_name}, welcome to my coaching!. I'm excited to work with you and help you achieve your fitness goals. Let's get started!`,
+      },
     },
     enableReinitialize: true,
     onSubmit: (values) => {
@@ -69,6 +74,8 @@ function RouteComponent() {
       updateAvatar(selectedFile);
     }
   };
+
+  const { values, setFieldValue } = formik;
 
   return (
     <FormikProvider value={formik}>
@@ -127,10 +134,29 @@ function RouteComponent() {
           <Section
             title="Coach profile"
             subtitle="Information about you as a coach"
+            contentClass="gap-5"
           >
             <div>
               <Label>Description</Label>
               <Field name="description" as={Textarea} />
+            </div>
+            <div className="flex items-center gap-2">
+              <Checkbox
+                name="settings.send_welcome_message"
+                checked={values.settings.send_welcome_message}
+                onCheckedChange={(checked) =>
+                  setFieldValue("settings.send_welcome_message", checked)
+                }
+              />
+              <Label className="mb-0">Send welcome message to athlete</Label>
+            </div>
+            <div>
+              <Label>Welcome message</Label>
+              <Field
+                name="settings.welcome_message"
+                as={Textarea}
+                disabled={!values.settings.send_welcome_message}
+              />
             </div>
           </Section>
         )}
