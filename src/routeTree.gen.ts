@@ -21,6 +21,7 @@ import { Route as AuthenticatedSecurityRouteImport } from './routes/_authenticat
 import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticated/profile'
 import { Route as AuthenticatedChatRouteImport } from './routes/_authenticated/Chat'
 import { Route as AuthenticatedDashboardIndexRouteImport } from './routes/_authenticated/dashboard/index'
+import { Route as AuthenticatedPlansPlanIdRouteImport } from './routes/_authenticated/plans/$planId'
 import { Route as AuthenticatedDashboardClientsRouteImport } from './routes/_authenticated/dashboard/clients'
 import { Route as AuthenticatedDashboardPlansIndexRouteImport } from './routes/_authenticated/dashboard/plans/index'
 import { Route as AuthenticatedDashboardPlansCreateRouteImport } from './routes/_authenticated/dashboard/plans/create'
@@ -85,6 +86,12 @@ const AuthenticatedDashboardIndexRoute =
     path: '/dashboard/',
     getParentRoute: () => AuthenticatedRoute,
   } as any)
+const AuthenticatedPlansPlanIdRoute =
+  AuthenticatedPlansPlanIdRouteImport.update({
+    id: '/plans/$planId',
+    path: '/plans/$planId',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 const AuthenticatedDashboardClientsRoute =
   AuthenticatedDashboardClientsRouteImport.update({
     id: '/dashboard/clients',
@@ -116,6 +123,7 @@ export interface FileRoutesByFullPath {
   '/security': typeof AuthenticatedSecurityRoute
   '/coach/register': typeof CoachRegisterRoute
   '/dashboard/clients': typeof AuthenticatedDashboardClientsRoute
+  '/plans/$planId': typeof AuthenticatedPlansPlanIdRoute
   '/dashboard': typeof AuthenticatedDashboardIndexRoute
   '/dashboard/plans/create': typeof AuthenticatedDashboardPlansCreateRoute
   '/dashboard/plans': typeof AuthenticatedDashboardPlansIndexRoute
@@ -132,6 +140,7 @@ export interface FileRoutesByTo {
   '/security': typeof AuthenticatedSecurityRoute
   '/coach/register': typeof CoachRegisterRoute
   '/dashboard/clients': typeof AuthenticatedDashboardClientsRoute
+  '/plans/$planId': typeof AuthenticatedPlansPlanIdRoute
   '/dashboard': typeof AuthenticatedDashboardIndexRoute
   '/dashboard/plans/create': typeof AuthenticatedDashboardPlansCreateRoute
   '/dashboard/plans': typeof AuthenticatedDashboardPlansIndexRoute
@@ -150,6 +159,7 @@ export interface FileRoutesById {
   '/_authenticated/security': typeof AuthenticatedSecurityRoute
   '/coach/register': typeof CoachRegisterRoute
   '/_authenticated/dashboard/clients': typeof AuthenticatedDashboardClientsRoute
+  '/_authenticated/plans/$planId': typeof AuthenticatedPlansPlanIdRoute
   '/_authenticated/dashboard/': typeof AuthenticatedDashboardIndexRoute
   '/_authenticated/dashboard/plans/create': typeof AuthenticatedDashboardPlansCreateRoute
   '/_authenticated/dashboard/plans/': typeof AuthenticatedDashboardPlansIndexRoute
@@ -168,6 +178,7 @@ export interface FileRouteTypes {
     | '/security'
     | '/coach/register'
     | '/dashboard/clients'
+    | '/plans/$planId'
     | '/dashboard'
     | '/dashboard/plans/create'
     | '/dashboard/plans'
@@ -184,6 +195,7 @@ export interface FileRouteTypes {
     | '/security'
     | '/coach/register'
     | '/dashboard/clients'
+    | '/plans/$planId'
     | '/dashboard'
     | '/dashboard/plans/create'
     | '/dashboard/plans'
@@ -201,6 +213,7 @@ export interface FileRouteTypes {
     | '/_authenticated/security'
     | '/coach/register'
     | '/_authenticated/dashboard/clients'
+    | '/_authenticated/plans/$planId'
     | '/_authenticated/dashboard/'
     | '/_authenticated/dashboard/plans/create'
     | '/_authenticated/dashboard/plans/'
@@ -303,6 +316,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardIndexRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/_authenticated/plans/$planId': {
+      id: '/_authenticated/plans/$planId'
+      path: '/plans/$planId'
+      fullPath: '/plans/$planId'
+      preLoaderRoute: typeof AuthenticatedPlansPlanIdRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
     '/_authenticated/dashboard/clients': {
       id: '/_authenticated/dashboard/clients'
       path: '/dashboard/clients'
@@ -332,6 +352,7 @@ interface AuthenticatedRouteChildren {
   AuthenticatedProfileRoute: typeof AuthenticatedProfileRoute
   AuthenticatedSecurityRoute: typeof AuthenticatedSecurityRoute
   AuthenticatedDashboardClientsRoute: typeof AuthenticatedDashboardClientsRoute
+  AuthenticatedPlansPlanIdRoute: typeof AuthenticatedPlansPlanIdRoute
   AuthenticatedDashboardIndexRoute: typeof AuthenticatedDashboardIndexRoute
   AuthenticatedDashboardPlansCreateRoute: typeof AuthenticatedDashboardPlansCreateRoute
   AuthenticatedDashboardPlansIndexRoute: typeof AuthenticatedDashboardPlansIndexRoute
@@ -342,6 +363,7 @@ const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedProfileRoute: AuthenticatedProfileRoute,
   AuthenticatedSecurityRoute: AuthenticatedSecurityRoute,
   AuthenticatedDashboardClientsRoute: AuthenticatedDashboardClientsRoute,
+  AuthenticatedPlansPlanIdRoute: AuthenticatedPlansPlanIdRoute,
   AuthenticatedDashboardIndexRoute: AuthenticatedDashboardIndexRoute,
   AuthenticatedDashboardPlansCreateRoute:
     AuthenticatedDashboardPlansCreateRoute,

@@ -8,6 +8,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "./ui/badge";
 import { User } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 
 export function PlanCards({
   plans,
@@ -57,8 +58,10 @@ export function PlanCards({
             </div>
           </CardContent>
           <CardFooter className="mt-auto">
-            <Button onClick={() => onPick?.(plan)} className="w-full">
-              Pick this plan
+            <Button asChild className="w-full">
+              <Link to="/plans/$planId" params={{ planId: plan.id }}>
+                See details
+              </Link>
             </Button>
           </CardFooter>
         </Card>

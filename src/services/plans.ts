@@ -8,6 +8,7 @@ const ENDPOINTS = {
 const plansService = {
   get: () => axiosInstance.get(ENDPOINTS.PLANS),
   create: (data: any) => axiosInstance.post(ENDPOINTS.PLANS, data),
+  getOne: (id: string) => axiosInstance.get(ENDPOINTS.PLAN(id)),
 };
 
 export default plansService;
