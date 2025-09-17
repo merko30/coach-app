@@ -1,5 +1,5 @@
-import { createFileRoute, useLoaderData } from "@tanstack/react-router";
-import { CheckCircle, DollarSign, Info, Star } from "lucide-react";
+import { createFileRoute } from "@tanstack/react-router";
+import { CheckCircle, Info } from "lucide-react";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -22,7 +22,7 @@ function RouteComponent() {
     <div className="container mx-auto max-w-5xl md:p-6 space-y-6">
       {/* Header */}
       <Card className="shadow-md">
-        <CardHeader className="flex flex-col sm:flex-row sm:items-center md:flex-col md:items-start lg:flex-row justify-between gap-4">
+        <CardHeader className="flex flex-col sm:flex-row sm:items-center md:flex-col md:items-start lg:items-center lg:flex-row justify-between gap-4">
           <div className="flex-none">
             <CardTitle className="text-2xl font-bold">{plan.title}</CardTitle>
             <p className="text-muted-foreground">{plan.description}</p>
@@ -95,8 +95,8 @@ function RouteComponent() {
             </TabsContent>
 
             <TabsContent value="info">
-              <div className="flex items-start gap-2">
-                <Info className="mt-1 text-blue-500" size={18} />
+              <div className="flex items-center gap-2">
+                <Info className="text-blue-500" size={18} />
                 <p className="text-sm text-muted-foreground">
                   Extra information about the plan, refund policies, or FAQ.
                 </p>
