@@ -23,6 +23,7 @@ import { Route as AuthenticatedChatRouteImport } from './routes/_authenticated/C
 import { Route as AuthenticatedDashboardIndexRouteImport } from './routes/_authenticated/dashboard/index'
 import { Route as AuthenticatedPlansPlanIdRouteImport } from './routes/_authenticated/plans/$planId'
 import { Route as AuthenticatedDashboardClientsRouteImport } from './routes/_authenticated/dashboard/clients'
+import { Route as AuthenticatedCheckoutPlanIdRouteImport } from './routes/_authenticated/checkout/$planId'
 import { Route as AuthenticatedDashboardPlansIndexRouteImport } from './routes/_authenticated/dashboard/plans/index'
 import { Route as AuthenticatedDashboardPlansCreateRouteImport } from './routes/_authenticated/dashboard/plans/create'
 
@@ -98,6 +99,12 @@ const AuthenticatedDashboardClientsRoute =
     path: '/dashboard/clients',
     getParentRoute: () => AuthenticatedRoute,
   } as any)
+const AuthenticatedCheckoutPlanIdRoute =
+  AuthenticatedCheckoutPlanIdRouteImport.update({
+    id: '/checkout/$planId',
+    path: '/checkout/$planId',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 const AuthenticatedDashboardPlansIndexRoute =
   AuthenticatedDashboardPlansIndexRouteImport.update({
     id: '/dashboard/plans/',
@@ -122,6 +129,7 @@ export interface FileRoutesByFullPath {
   '/profile': typeof AuthenticatedProfileRoute
   '/security': typeof AuthenticatedSecurityRoute
   '/coach/register': typeof CoachRegisterRoute
+  '/checkout/$planId': typeof AuthenticatedCheckoutPlanIdRoute
   '/dashboard/clients': typeof AuthenticatedDashboardClientsRoute
   '/plans/$planId': typeof AuthenticatedPlansPlanIdRoute
   '/dashboard': typeof AuthenticatedDashboardIndexRoute
@@ -139,6 +147,7 @@ export interface FileRoutesByTo {
   '/profile': typeof AuthenticatedProfileRoute
   '/security': typeof AuthenticatedSecurityRoute
   '/coach/register': typeof CoachRegisterRoute
+  '/checkout/$planId': typeof AuthenticatedCheckoutPlanIdRoute
   '/dashboard/clients': typeof AuthenticatedDashboardClientsRoute
   '/plans/$planId': typeof AuthenticatedPlansPlanIdRoute
   '/dashboard': typeof AuthenticatedDashboardIndexRoute
@@ -158,6 +167,7 @@ export interface FileRoutesById {
   '/_authenticated/profile': typeof AuthenticatedProfileRoute
   '/_authenticated/security': typeof AuthenticatedSecurityRoute
   '/coach/register': typeof CoachRegisterRoute
+  '/_authenticated/checkout/$planId': typeof AuthenticatedCheckoutPlanIdRoute
   '/_authenticated/dashboard/clients': typeof AuthenticatedDashboardClientsRoute
   '/_authenticated/plans/$planId': typeof AuthenticatedPlansPlanIdRoute
   '/_authenticated/dashboard/': typeof AuthenticatedDashboardIndexRoute
@@ -177,6 +187,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/security'
     | '/coach/register'
+    | '/checkout/$planId'
     | '/dashboard/clients'
     | '/plans/$planId'
     | '/dashboard'
@@ -194,6 +205,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/security'
     | '/coach/register'
+    | '/checkout/$planId'
     | '/dashboard/clients'
     | '/plans/$planId'
     | '/dashboard'
@@ -212,6 +224,7 @@ export interface FileRouteTypes {
     | '/_authenticated/profile'
     | '/_authenticated/security'
     | '/coach/register'
+    | '/_authenticated/checkout/$planId'
     | '/_authenticated/dashboard/clients'
     | '/_authenticated/plans/$planId'
     | '/_authenticated/dashboard/'
@@ -330,6 +343,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardClientsRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/_authenticated/checkout/$planId': {
+      id: '/_authenticated/checkout/$planId'
+      path: '/checkout/$planId'
+      fullPath: '/checkout/$planId'
+      preLoaderRoute: typeof AuthenticatedCheckoutPlanIdRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
     '/_authenticated/dashboard/plans/': {
       id: '/_authenticated/dashboard/plans/'
       path: '/dashboard/plans'
@@ -351,6 +371,7 @@ interface AuthenticatedRouteChildren {
   AuthenticatedChatRoute: typeof AuthenticatedChatRoute
   AuthenticatedProfileRoute: typeof AuthenticatedProfileRoute
   AuthenticatedSecurityRoute: typeof AuthenticatedSecurityRoute
+  AuthenticatedCheckoutPlanIdRoute: typeof AuthenticatedCheckoutPlanIdRoute
   AuthenticatedDashboardClientsRoute: typeof AuthenticatedDashboardClientsRoute
   AuthenticatedPlansPlanIdRoute: typeof AuthenticatedPlansPlanIdRoute
   AuthenticatedDashboardIndexRoute: typeof AuthenticatedDashboardIndexRoute
@@ -362,6 +383,7 @@ const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedChatRoute: AuthenticatedChatRoute,
   AuthenticatedProfileRoute: AuthenticatedProfileRoute,
   AuthenticatedSecurityRoute: AuthenticatedSecurityRoute,
+  AuthenticatedCheckoutPlanIdRoute: AuthenticatedCheckoutPlanIdRoute,
   AuthenticatedDashboardClientsRoute: AuthenticatedDashboardClientsRoute,
   AuthenticatedPlansPlanIdRoute: AuthenticatedPlansPlanIdRoute,
   AuthenticatedDashboardIndexRoute: AuthenticatedDashboardIndexRoute,

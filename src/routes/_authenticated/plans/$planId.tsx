@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { CheckCircle, Info } from "lucide-react";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -39,7 +39,11 @@ function RouteComponent() {
                   {plan.price} BAM
                 </div>
               )}
-              <Button className="w-full sm:w-auto">Get this plan</Button>
+              <Button className="w-full sm:w-auto" asChild>
+                <Link to="/checkout/$planId" params={{ planId: plan.id }}>
+                  Get this plan
+                </Link>
+              </Button>
             </div>
           </div>
         </CardHeader>
