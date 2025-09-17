@@ -5,6 +5,7 @@ import { MessageSquare } from "lucide-react";
 import {
   lazy,
   Suspense,
+  useCallback,
   useEffect,
   useRef,
   useState,
@@ -119,7 +120,7 @@ function RouteComponent() {
       ws.send(
         JSON.stringify({
           type: "message",
-          conversation_id: 2,
+          conversation_id: activeConversation,
           sender_id: user.id,
           content: message,
         })

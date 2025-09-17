@@ -19,7 +19,6 @@ const ActiveConversation = forwardRef<
   const { data, isLoading } = useQuery<AxiosResponse<Conversation>>({
     queryFn: () => conversationsService.getOne(conversationId!),
     queryKey: ["conversations", conversationId],
-    enabled: !!conversationId,
   });
 
   useEffect(() => {

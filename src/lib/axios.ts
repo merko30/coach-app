@@ -63,7 +63,7 @@ axiosInstance.interceptors.response.use(
       } catch (err) {
         processQueue(err, null);
         axios.post(`${import.meta.env.VITE_API_URL}/auth/logout`, {});
-        window.location.href = "/login";
+        //window.location.href = "/login";
         return Promise.reject(err);
       } finally {
         isRefreshing = false;
