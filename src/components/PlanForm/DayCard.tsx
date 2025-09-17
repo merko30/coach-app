@@ -7,11 +7,9 @@ import { DAY_NAMES } from "@/constants";
 
 const DayCard = ({
   day,
-  dayIdx,
   onEdit,
 }: {
   day: PlanFormValues["weeks"][number]["days"][number];
-  dayIdx: number;
   onEdit: () => void;
 }) => {
   const {

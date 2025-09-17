@@ -24,7 +24,7 @@ const Week = ({ weekIdx }: WeekProps) => {
 
   const onSaveDay = (values: DayFormValues) => {
     setFieldValue(`weeks.${weekIdx}.days.${modalOpen?.dayIdx}`, {
-      ...days[modalOpen?.dayIdx!],
+      ...days[modalOpen!.dayIdx!],
       ...values,
     });
 
@@ -58,11 +58,7 @@ const Week = ({ weekIdx }: WeekProps) => {
           strategy={horizontalListSortingStrategy}
         >
           {days.map((day, dayIdx) => (
-            <DayCard
-              day={day}
-              dayIdx={dayIdx}
-              onEdit={() => setModalOpen({ dayIdx })}
-            />
+            <DayCard day={day} onEdit={() => setModalOpen({ dayIdx })} />
           ))}
         </SortableContext>
       </DndContext>

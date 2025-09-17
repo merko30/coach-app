@@ -1,5 +1,3 @@
-import { format } from "date-fns";
-
 interface Workout {
   title: string;
   description?: string;
