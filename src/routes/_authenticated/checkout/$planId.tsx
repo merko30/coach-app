@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -17,8 +17,11 @@ export default function CheckoutPage() {
   const data = Route.useLoaderData();
   const plan = data.data;
 
+  const navigate = useNavigate();
+
   const { mutate } = useMutation({
     mutationFn: plansService.createOrder,
+    onSuccess: () => navigate({ to: "/dashboard" }),
   });
 
   const onPayAndComplete = () => {
