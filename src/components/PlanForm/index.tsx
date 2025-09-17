@@ -69,6 +69,15 @@ export function PlanForm({
                   </div>
                 )}
             </div>
+            <div className="space-y-2">
+              <Label htmlFor="features">Features</Label>
+              <Field as={Textarea} name="features" />
+              {getIn(touched, "features") && getIn(errors, "features") && (
+                <div className="text-red-500 text-xs">
+                  {getIn(errors, "features")}
+                </div>
+              )}
+            </div>
             <div className="flex flex-col md:flex-row gap-4">
               <FormikSelect
                 label="Level"

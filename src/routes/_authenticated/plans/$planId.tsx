@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import plansService from "@/services/plans";
+import { ReadonlyDayCard } from "@/components/PlanForm/ReadonlyDayCard";
 
 export const Route = createFileRoute("/_authenticated/plans/$planId")({
   component: RouteComponent,
@@ -17,25 +18,29 @@ function RouteComponent() {
   const data = Route.useLoaderData();
 
   const plan = data.data;
-  console.log(plan);
   return (
-    <div className="container mx-auto max-w-5xl p-6 space-y-6">
+    <div className="container mx-auto max-w-5xl md:p-6 space-y-6">
       {/* Header */}
       <Card className="shadow-md">
-        <CardHeader className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-          <div>
+        <CardHeader className="flex flex-col sm:flex-row sm:items-center md:flex-col md:items-start lg:flex-row justify-between gap-4">
+          <div className="flex-none">
             <CardTitle className="text-2xl font-bold">{plan.title}</CardTitle>
             <p className="text-muted-foreground">{plan.description}</p>
           </div>
-          <div className="flex items-center gap-4">
-            <Badge variant="secondary">{plan.level}</Badge>
-            <Badge variant="outline">{plan.type}</Badge>
-            {plan.price && (
-              <div className="flex items-center gap-1 font-semibold text-lg">
-                <DollarSign size={18} /> {plan.price}
-              </div>
-            )}
-            <Button>Get this plan</Button>
+          <div className="flex w-full justify-between items-center lg:justify-end lg:gap-4">
+            <div className="w-full flex flex-col lg:w-auto gap-2">
+              <Badge variant="secondary">{plan.level}</Badge>
+              <Badge variant="outline">{plan.type}</Badge>
+            </div>
+
+            <div className="flex gap-4 flex-col items-center">
+              {plan.price && (
+                <div className="flex items-center gap-1 font-semibold text-lg">
+                  {plan.price} BAM
+                </div>
+              )}
+              <Button className="w-full sm:w-auto">Get this plan</Button>
+            </div>
           </div>
         </CardHeader>
       </Card>
@@ -60,10 +65,16 @@ function RouteComponent() {
           </div>
           {/* Right side: Tabs */}
           <Tabs defaultValue="features">
-            <TabsList className="mb-4">
-              <TabsTrigger value="features">Features</TabsTrigger>
-              <TabsTrigger value="weeks">First week preview</TabsTrigger>
-              <TabsTrigger value="info">More Info</TabsTrigger>
+            <TabsList className="my-8 sm:mt-0 flex-col w-full sm:flex-row">
+              <TabsTrigger value="features" className="w-full">
+                Features
+              </TabsTrigger>
+              <TabsTrigger value="weeks" className="w-full">
+                First week preview
+              </TabsTrigger>
+              <TabsTrigger value="info" className="w-full">
+                More Info
+              </TabsTrigger>
             </TabsList>
 
             <TabsContent value="features" className="space-y-2">
@@ -76,9 +87,11 @@ function RouteComponent() {
             </TabsContent>
 
             <TabsContent value="weeks">
-              <p className="text-sm text-muted-foreground">
-                Weeks overview will be displayed here.
-              </p>
+              <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-7 gap-2">
+                {plan.first_week.days.map((day: any, i: number) => (
+                  <ReadonlyDayCard key={day.id} day={day} />
+                ))}
+              </div>
             </TabsContent>
 
             <TabsContent value="info">

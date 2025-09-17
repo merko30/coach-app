@@ -10,13 +10,7 @@ import { Badge } from "./ui/badge";
 import { User } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 
-export function PlanCards({
-  plans,
-  onPick,
-}: {
-  plans: any[];
-  onPick?: (plan: any) => void;
-}) {
+export function PlanCards({ plans }: { plans: any[] }) {
   if (!plans?.length) return null;
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">

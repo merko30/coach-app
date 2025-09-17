@@ -41,6 +41,9 @@ const PlanSchema = z.object({
   title: z.string().min(5).max(100),
   description: z.string().min(10),
   level: z.enum(LEVEL),
+  features: z.array(
+    z.string().min(8, "Feature must contain at least 8 characters")
+  ),
   type: z.enum(WORKOUT_TYPE),
   weeks: z.array(WeekSchema),
 });
@@ -53,6 +56,7 @@ export const initialValues: PlanFormValues = {
   level: "BEGINNER",
   type: "RUN",
   weeks: [],
+  features: [],
 };
 
 export type Workout = {

@@ -3,16 +3,7 @@ import { CSS } from "@dnd-kit/utilities";
 import { Card, CardHeader } from "../ui/card";
 import { GripVertical, Pen } from "lucide-react";
 import type { PlanFormValues } from "./constants";
-
-const DAY_NAMES = [
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-  "Sunday",
-];
+import { DAY_NAMES } from "@/constants";
 
 const DayCard = ({
   day,
@@ -65,7 +56,7 @@ const DayCard = ({
             ? workoutsLength === 1
               ? day.workouts[0].title
               : `${workoutsLength} workouts`
-            : "No workout"}
+            : "Rest"}
         </p>
         <span role="button" className="cursor-pointer" onClick={onEdit}>
           <Pen />
