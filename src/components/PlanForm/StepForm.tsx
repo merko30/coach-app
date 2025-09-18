@@ -1,4 +1,9 @@
-import { Field, useFormikContext, type FieldArrayRenderProps } from "formik";
+import {
+  Field,
+  useFormikContext,
+  type FieldArrayRenderProps,
+  type FieldProps,
+} from "formik";
 import { Button } from "../ui/button";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
@@ -6,6 +11,7 @@ import { Trash } from "lucide-react";
 import { FormikSelect } from "../FormikSelect";
 import { capitalize, getFormattedOptions } from "@/lib/stringHelpers";
 import { type DayFormValues, MEASURE_TYPE } from "./constants";
+import { TimeInput } from "./TimeInput";
 
 const NON_VALUE_TYPES = ["REST", "WARM_UP", "COOL_DOWN"];
 
@@ -17,7 +23,11 @@ const StepForm = ({
   workoutIdx: number;
   stepIdx: number;
 } & Pick<FieldArrayRenderProps, "remove">) => {
-  const { values } = useFormikContext<DayFormValues>();
+  const { values, setFieldValue } = useFormikContext<DayFormValues>();
+  console.log(values);
+
+  const type = values.workouts[workoutIdx].steps[stepIdx].type;
+  const isTimeType = type === "TIME";
   return (
     <>
       <div className="flex flex-row justify-between items-center">
@@ -50,18 +60,28 @@ const StepForm = ({
               options={getFormattedOptions(MEASURE_TYPE)}
             />
           </div>
-          {!NON_VALUE_TYPES.includes(
-            values.workouts[workoutIdx].steps[stepIdx].type
-          ) && (
+          {!NON_VALUE_TYPES.includes(type) && (
             <div className="flex-1">
-              <Label>
-                {capitalize(values.workouts[workoutIdx].steps[stepIdx].type)}
-              </Label>
-              <Field
-                name={`workouts.${workoutIdx}.steps.${stepIdx}.value`}
-                as={Input}
-                type="number"
-              />
+              {!isTimeType && <Label>{capitalize(type)}</Label>}
+
+              {isTimeType ? (
+                <TimeInput
+                  className="flex-1"
+                  onChange={(seconds: number) =>
+                    setFieldValue(
+                      `workouts.${workoutIdx}.steps.${stepIdx}.value`,
+                      seconds
+                    )
+                  }
+                />
+              ) : (
+                <Field
+                  name={`workouts.${workoutIdx}.steps.${stepIdx}.value`}
+                  as={Input}
+                  type="number"
+                  className="w-full"
+                />
+              )}
             </div>
           )}
           <div className="flex-1">
