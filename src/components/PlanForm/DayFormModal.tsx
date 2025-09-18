@@ -120,7 +120,7 @@ const DayFormModal = ({
                             title: "",
                             description: "",
                             type: parentValues.type ?? "RUN",
-                            sets: [],
+                            steps: [],
                           })
                         }
                       >

@@ -28,7 +28,7 @@ import { SortableItem } from "./SortableItem";
 import { uuidv7 } from "uuidv7";
 import { FormikSelect } from "../FormikSelect";
 import Week from "./Week";
-import { getFormattedOptions } from "@/lib/camelCase";
+import { getFormattedOptions } from "@/lib/stringHelpers";
 
 export function PlanForm({
   onSubmit,

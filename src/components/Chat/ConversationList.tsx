@@ -10,7 +10,7 @@ const ConversationList = ({
 }) => {
   const { user } = useAuth();
   return (
-    <ul className="pl-0 pr-4 flex flex-col items-center list-none border-r border-gray-300">
+    <ul className="pl-0 pr-4 flex flex-col gap-2 items-center list-none border-r border-gray-300">
       {conversations.map(
         (conversation: {
           id: number;

@@ -50,7 +50,7 @@ const ActiveConversation = forwardRef<
           />
           <h3>{personChattingWith.name ?? personChattingWith.username}</h3>
         </div>
-        <div className="pl-6">
+        <div className="pl-6 pt-4">
           {data.data &&
             conversation.messages.map((message) => (
               <div className="flex flex-col w-full mb-2" key={message.id}>

@@ -16,7 +16,7 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { SortableItem } from "./SortableItem";
-import SetForm from "./SetForm";
+import StepForm from "./StepForm";
 import { uuidv7 } from "uuidv7";
 import { FormikSelect } from "../FormikSelect";
 import {
@@ -25,9 +25,9 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from "../ui/accordion";
-import type { DayFormValues } from "./DayFormModal";
+import type { DayFormValues } from "./constants";
 import { WORKOUT_TYPE } from "./constants";
-import { getFormattedOptions } from "@/lib/camelCase";
+import { getFormattedOptions } from "@/lib/stringHelpers";
 
 const WorkoutForm = ({
   workoutIdx,
@@ -64,30 +64,31 @@ const WorkoutForm = ({
           className="mb-4"
         />
       </div>
-      {/* Sets DnD */}
-      <FieldArray name={`workouts.${workoutIdx}.sets`}>
-        {({ push: pushSet, remove: removeSet, move: moveSet }) => (
+      {/* Steps DnD */}
+      <FieldArray name={`workouts.${workoutIdx}.steps`}>
+        {({ push: pushStep, remove: removeStep, move: moveStep }) => (
           <>
             <div className="flex items-center justify-between">
-              <h5 className="text-lg font-semibold">Sets</h5>
+              <h5 className="text-lg font-semibold">Steps</h5>
               <Button
                 type="button"
                 onClick={() =>
-                  pushSet({
+                  pushStep({
                     id: uuidv7(),
-                    order: workout.sets.length,
-                    active_value: 0,
-                    active_measure_type: "REPS",
+                    order: workout.steps.length,
+                    value: 0,
+                    type: "REPS",
+                    repetitions: 1,
                   })
                 }
                 className="block ml-auto"
               >
-                Add Set
+                Add Step
               </Button>
             </div>
-            {!workout.sets.length && (
+            {!workout.steps.length && (
               <div className="border border-gray-200 p-4 rounded-md bg-gray-50 py-12 text-center mt-4">
-                <p>No workout sets added yet.</p>
+                <p>No workout steps added yet.</p>
               </div>
             )}
             <DndContext
@@ -95,41 +96,43 @@ const WorkoutForm = ({
               onDragEnd={(event) => {
                 const { active, over } = event;
                 if (active.id !== over?.id) {
-                  const oldIndex = workout.sets.findIndex(
+                  const oldIndex = workout.steps.findIndex(
                     (s) => s.id === active.id
                   );
-                  const newIndex = workout.sets.findIndex(
+                  const newIndex = workout.steps.findIndex(
                     (s) => s.id === over?.id
                   );
-                  moveSet(oldIndex, newIndex);
+                  moveStep(oldIndex, newIndex);
                   setFieldValue(
-                    `workouts.${workoutIdx}.sets`,
-                    arrayMove(workout.sets, oldIndex, newIndex).map((s, i) => ({
-                      ...s,
-                      order: i,
-                    }))
+                    `workouts.${workoutIdx}.steps`,
+                    arrayMove(workout.steps, oldIndex, newIndex).map(
+                      (s, i) => ({
+                        ...s,
+                        order: i,
+                      })
+                    )
                   );
                 }
               }}
             >
               <SortableContext
-                items={workout.sets.map((s) => s.id!)}
+                items={workout.steps.map((s) => s.id!)}
                 strategy={verticalListSortingStrategy}
               >
-                {workout.sets.map((set, setIdx) => (
+                {workout.steps.map((step, stepIdx) => (
                   <SortableItem
-                    id={set.id!}
-                    key={set.id!}
+                    id={step.id!}
+                    key={step.id!}
                     className="border-b border-gray-200 pr-4 py-3 last-of-type:border-b-transparent"
                   >
                     <Accordion type="single" className="w-full">
-                      <AccordionItem key={set.id} value={String(set.id)}>
-                        <AccordionTrigger>Set #{setIdx + 1}</AccordionTrigger>
+                      <AccordionItem key={step.id} value={String(step.id)}>
+                        <AccordionTrigger>Step #{stepIdx + 1}</AccordionTrigger>
                         <AccordionContent>
-                          <SetForm
+                          <StepForm
                             workoutIdx={workoutIdx}
-                            setIdx={setIdx}
-                            remove={removeSet}
+                            stepIdx={stepIdx}
+                            remove={removeStep}
                           />
                         </AccordionContent>
                       </AccordionItem>

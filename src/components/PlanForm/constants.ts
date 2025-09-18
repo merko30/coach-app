@@ -1,18 +1,24 @@
 import { z } from "zod";
 
-export const MEASURE_TYPE = ["DISTANCE", "TIME", "REPS"];
+export const MEASURE_TYPE = [
+  "DISTANCE",
+  "TIME",
+  "REPS",
+  "REST",
+  "COOL_DOWN",
+  "WARM_UP",
+];
 export const WORKOUT_TYPE = ["STRENGTH", "RUN", "HYBRID"];
 export const PLAN_TYPES = ["STRENGTH", "RUN", "BIKE", "HYBRID"];
 export const LEVEL = ["BEGINNER", "INTERMEDIATE", "ADVANCED"];
 
 // --- Zod Schema ---
-const WorkoutSetSchema = z.object({
+const WorkoutStepSchema = z.object({
   id: z.number().optional(),
   order: z.number(),
-  active_value: z.number().min(1),
-  active_measure_type: z.enum(MEASURE_TYPE),
-  recovery_value: z.number().optional(),
-  recovery_measure_type: z.enum(MEASURE_TYPE).optional(),
+  value: z.number().min(1),
+  type: z.enum(MEASURE_TYPE),
+  repetitions: z.number().min(1),
 });
 
 const WorkoutSchema = z.object({
@@ -21,7 +27,7 @@ const WorkoutSchema = z.object({
   title: z.string().min(3),
   description: z.string().optional(),
   type: z.enum(WORKOUT_TYPE),
-  sets: z.array(WorkoutSetSchema),
+  steps: z.array(WorkoutStepSchema),
 });
 
 const DaySchema = z.object({
@@ -64,13 +70,12 @@ export type Workout = {
   title: string;
   description?: string;
   type: string;
-  sets: Array<{
+  steps: Array<{
     id?: string | number;
     order: number;
-    active_value: number;
-    active_measure_type: string;
-    recovery_value?: number;
-    recovery_measure_type?: string;
+    value: number;
+    type: string;
+    repetitions: number | null;
   }>;
 };
 
