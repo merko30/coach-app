@@ -7,6 +7,8 @@ import { FormikSelect } from "../FormikSelect";
 import { capitalize, getFormattedOptions } from "@/lib/stringHelpers";
 import { type DayFormValues, MEASURE_TYPE } from "./constants";
 
+const NON_VALUE_TYPES = ["REST", "WARM_UP", "COOL_DOWN"];
+
 const StepForm = ({
   workoutIdx,
   stepIdx,
@@ -28,40 +30,55 @@ const StepForm = ({
           <Trash />
         </Button>
       </div>
-      <div>
-        <Label>Name</Label>
-        <Field
-          name={`workouts.${workoutIdx}.steps.${stepIdx}.name`}
-          as={Input}
-        />
-      </div>
-      <div>
-        <Label>Description</Label>
-        <Field
-          name={`workouts.${workoutIdx}.steps.${stepIdx}.description`}
-          as={Input}
-        />
-      </div>
-      <div className="grid grid-cols-2 gap-2">
-        <div>
-          <Label>
-            {capitalize(values.workouts[workoutIdx].steps[stepIdx].type)}
-          </Label>
-          <Field
-            name={`workouts.${workoutIdx}.steps.${stepIdx}.active_value`}
-            as={Input}
-            type="number"
-          />
+      <div className="flex flex-col md:flex-row gap-4 mb-4">
+        <div className="flex-1">
+          <div>
+            <Label>Name (optional)</Label>
+            <Field
+              name={`workouts.${workoutIdx}.steps.${stepIdx}.name`}
+              placeholder="Push-ups, VO2 max interval..."
+              as={Input}
+            />
+          </div>
         </div>
-        <div>
-          <Label>Type</Label>
-          <FormikSelect
-            name={`workouts.${workoutIdx}.steps.${stepIdx}.type`}
-            className="input"
-            options={getFormattedOptions(MEASURE_TYPE)}
-          />
+        <div className="flex-1 flex items-center gap-2">
+          <div className="flex-1">
+            <Label>Type</Label>
+            <FormikSelect
+              name={`workouts.${workoutIdx}.steps.${stepIdx}.type`}
+              className="input"
+              options={getFormattedOptions(MEASURE_TYPE)}
+            />
+          </div>
+          {!NON_VALUE_TYPES.includes(
+            values.workouts[workoutIdx].steps[stepIdx].type
+          ) && (
+            <div className="flex-1">
+              <Label>
+                {capitalize(values.workouts[workoutIdx].steps[stepIdx].type)}
+              </Label>
+              <Field
+                name={`workouts.${workoutIdx}.steps.${stepIdx}.value`}
+                as={Input}
+                type="number"
+              />
+            </div>
+          )}
+          <div className="flex-1">
+            <Label>Repeat</Label>
+            <Field
+              name={`workouts.${workoutIdx}.steps.${stepIdx}.repetitions`}
+              as={Input}
+              type="number"
+            />
+          </div>
         </div>
       </div>
+      <Field
+        name={`workouts.${workoutIdx}.steps.${stepIdx}.description`}
+        as={Input}
+        placeholder="Description (optional)"
+      />
     </>
   );
 };

@@ -125,18 +125,11 @@ const WorkoutForm = ({
                     key={step.id!}
                     className="border-b border-gray-200 pr-4 py-3 last-of-type:border-b-transparent"
                   >
-                    <Accordion type="single" className="w-full">
-                      <AccordionItem key={step.id} value={String(step.id)}>
-                        <AccordionTrigger>Step #{stepIdx + 1}</AccordionTrigger>
-                        <AccordionContent>
-                          <StepForm
-                            workoutIdx={workoutIdx}
-                            stepIdx={stepIdx}
-                            remove={removeStep}
-                          />
-                        </AccordionContent>
-                      </AccordionItem>
-                    </Accordion>
+                    <StepForm
+                      workoutIdx={workoutIdx}
+                      stepIdx={stepIdx}
+                      remove={removeStep}
+                    />
                   </SortableItem>
                 ))}
               </SortableContext>
