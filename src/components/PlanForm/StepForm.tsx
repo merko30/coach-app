@@ -57,6 +57,13 @@ const StepForm = ({
             <FormikSelect
               name={`workouts.${workoutIdx}.steps.${stepIdx}.type`}
               className="input"
+              onChange={() => {
+                // Reset value when type changes
+                setFieldValue(
+                  `workouts.${workoutIdx}.steps.${stepIdx}.value`,
+                  0
+                );
+              }}
               options={getFormattedOptions(MEASURE_TYPE)}
             />
           </div>

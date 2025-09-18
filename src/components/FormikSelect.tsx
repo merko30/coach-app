@@ -21,6 +21,7 @@ interface FormikSelectProps {
   placeholder?: string;
   className?: string;
   disabled?: boolean;
+  onChange?: (value: string) => void;
 }
 
 export function FormikSelect({
@@ -30,6 +31,7 @@ export function FormikSelect({
   placeholder,
   className,
   disabled,
+  onChange,
 }: FormikSelectProps) {
   const [field, meta, helpers] = useField(name);
 
@@ -38,7 +40,10 @@ export function FormikSelect({
       {label && <Label htmlFor={name}>{label}</Label>}
       <Select
         value={field.value || ""}
-        onValueChange={(val) => helpers.setValue(val)}
+        onValueChange={(val) => {
+          helpers.setValue(val);
+          onChange?.(val);
+        }}
         disabled={disabled}
         name={name}
       >
