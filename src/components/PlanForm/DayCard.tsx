@@ -19,7 +19,7 @@ const DayCard = ({
     transform,
     transition,
     isDragging,
-  } = useSortable({ id: day.day_of_week! });
+  } = useSortable({ id: day.id! });
 
   const style = {
     transform: CSS.Transform.toString(transform),

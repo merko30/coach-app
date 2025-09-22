@@ -10,6 +10,7 @@ import {
 import { DndContext, closestCenter } from "@dnd-kit/core";
 import {
   arrayMove,
+  horizontalListSortingStrategy,
   SortableContext,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
@@ -118,13 +119,6 @@ export function PlanForm({
                       Add Week
                     </Button>
                   </div>
-                  {!values.weeks.length && (
-                    <div className="border border-gray-200 p-4 rounded-md bg-gray-50 py-12 text-center">
-                      <p>
-                        No weeks added yet. Click "Add Week" to get started.
-                      </p>
-                    </div>
-                  )}
                   <DndContext
                     collisionDetection={closestCenter}
                     onDragEnd={(event) => {
@@ -153,7 +147,7 @@ export function PlanForm({
                   >
                     <SortableContext
                       items={values.weeks.map((w) => w.id!)}
-                      strategy={verticalListSortingStrategy}
+                      strategy={horizontalListSortingStrategy}
                     >
                       {values.weeks.map((week, weekIdx) => (
                         <SortableItem

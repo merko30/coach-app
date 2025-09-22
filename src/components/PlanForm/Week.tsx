@@ -39,8 +39,8 @@ const Week = ({ weekIdx }: WeekProps) => {
           const { active, over } = event;
 
           if (active.id !== over?.id) {
-            const oldIndex = days.findIndex((w) => w.day_of_week === active.id);
-            const newIndex = days.findIndex((w) => w.day_of_week === over?.id);
+            const oldIndex = days.findIndex((w) => w.id === active.id);
+            const newIndex = days.findIndex((w) => w.id === over?.id);
             move(days, oldIndex, newIndex);
             // update order
             setFieldValue(
@@ -54,7 +54,7 @@ const Week = ({ weekIdx }: WeekProps) => {
         }}
       >
         <SortableContext
-          items={days.map((w) => w.day_of_week!)}
+          items={days.map((w) => w.id!)}
           strategy={horizontalListSortingStrategy}
         >
           {days.map((day, dayIdx) => (

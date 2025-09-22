@@ -1,3 +1,4 @@
+import { uuidv4 } from "uuidv7";
 import { z } from "zod";
 
 export const MEASURE_TYPE = [
@@ -38,7 +39,7 @@ const DaySchema = z.object({
 });
 
 const WeekSchema = z.object({
-  id: z.number().optional(),
+  id: z.number().or(z.string()).optional(),
   order: z.number(),
   days: z.array(DaySchema),
 });
@@ -61,13 +62,27 @@ export const initialValues: PlanFormValues = {
   description: "",
   level: "BEGINNER",
   type: "RUN",
-  weeks: [],
+  weeks: [
+    {
+      order: 0,
+      id: uuidv4(),
+      days: Array(7)
+        .fill(0)
+        .map((_, i) => ({
+          id: uuidv4(),
+          order: i,
+          day_of_week: i,
+          workouts: [],
+        })),
+    },
+  ],
   features: [],
 };
 
 export type Workout = {
   id?: string | number;
   title: string;
+  order: number;
   description?: string;
   type: string;
   steps: Array<{

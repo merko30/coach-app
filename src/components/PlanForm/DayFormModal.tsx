@@ -37,10 +37,20 @@ const DayFormModal = ({
   onToggle: (open: boolean) => void;
 }) => {
   const { values: parentValues } = useFormikContext<PlanFormValues>();
+
   const formik = useFormik<DayFormValues>({
     initialValues: {
       id: day.id ?? uuidv7(),
-      workouts: day.workouts ?? [],
+      workouts: [
+        {
+          id: uuidv7(),
+          order: 0,
+          title: "",
+          description: "",
+          type: parentValues.type ?? "RUN",
+          steps: [],
+        },
+      ],
     },
     onSubmit: (values, { resetForm }) => {
       onSubmit(values);
