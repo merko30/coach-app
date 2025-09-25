@@ -8,6 +8,7 @@ export const MEASURE_TYPE = [
   "REST",
   "COOL_DOWN",
   "WARM_UP",
+  "REPEAT", // Add REPEAT type for repeat steps
 ];
 export const WORKOUT_TYPE = ["STRENGTH", "RUN", "HYBRID"];
 export const PLAN_TYPES = ["STRENGTH", "RUN", "BIKE", "HYBRID"];
@@ -79,19 +80,23 @@ export const initialValues: PlanFormValues = {
   features: [],
 };
 
+export type Step = {
+  id?: string | number;
+  order: number;
+  value: number;
+  type: string;
+  repetitions: number | null;
+  steps: Array<Step>;
+  step_id: number | null;
+};
+
 export type Workout = {
   id?: string | number;
   title: string;
   order: number;
   description?: string;
   type: string;
-  steps: Array<{
-    id?: string | number;
-    order: number;
-    value: number;
-    type: string;
-    repetitions: number | null;
-  }>;
+  steps: Array<Step>;
 };
 
 export type DayFormValues = {

@@ -9,25 +9,14 @@ import { Trash } from "lucide-react";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
-import { closestCenter, DndContext } from "@dnd-kit/core";
-import {
-  arrayMove,
-  SortableContext,
-  verticalListSortingStrategy,
-} from "@dnd-kit/sortable";
-import { SortableItem } from "./SortableItem";
-import StepForm from "./StepForm";
 import { uuidv7 } from "uuidv7";
 import { FormikSelect } from "../FormikSelect";
-import {
-  Accordion,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionContent,
-} from "../ui/accordion";
 import type { DayFormValues } from "./constants";
 import { WORKOUT_TYPE } from "./constants";
 import { getFormattedOptions } from "@/lib/stringHelpers";
+import { SortableTree } from "./Tree/SortableTree";
+import type { TreeItems } from "./Tree/types";
+import type { UniqueIdentifier } from "@dnd-kit/core";
 
 const WorkoutForm = ({
   workoutIdx,
@@ -35,6 +24,21 @@ const WorkoutForm = ({
 }: { workoutIdx: number } & Pick<FieldArrayRenderProps, "remove">) => {
   const { values, setFieldValue } = useFormikContext<DayFormValues>();
   const workout = values.workouts[workoutIdx];
+
+  const stepsWithSubstepIdxAndWorkoutIdx: TreeItems = workout.steps.map(
+    (step, stepIdx) => ({
+      ...step,
+      id: step.id! as UniqueIdentifier,
+      workoutIdx,
+      stepIdx,
+      steps: step.steps?.map((subStep, subStepIdx) => ({
+        id: subStep.id! as UniqueIdentifier,
+        workoutIdx,
+        stepIdx,
+        subStepIdx,
+      })) as TreeItems,
+    })
+  );
 
   return (
     <div className="my-4">
@@ -70,70 +74,48 @@ const WorkoutForm = ({
           <>
             <div className="flex items-center justify-between">
               <h5 className="text-lg font-semibold">Steps</h5>
-              <Button
-                type="button"
-                onClick={() =>
-                  pushStep({
-                    id: uuidv7(),
-                    order: workout.steps.length,
-                    value: 0,
-                    type: "REPS",
-                    repetitions: 1,
-                  })
-                }
-                className="block ml-auto"
-              >
-                Add Step
-              </Button>
+              <div className="flex items-center gap-2">
+                <Button
+                  type="button"
+                  onClick={() =>
+                    pushStep({
+                      id: uuidv7(),
+                      order: workout.steps.length,
+                      value: 0,
+                      type: "REPS",
+                      repetitions: 1,
+                      steps: [],
+                    })
+                  }
+                  className="block ml-auto"
+                >
+                  Add Step
+                </Button>
+                <Button
+                  type="button"
+                  onClick={() =>
+                    pushStep({
+                      id: uuidv7(),
+                      order: workout.steps.length,
+                      value: 0,
+                      type: "REPEAT",
+                      steps: [],
+                      repetitions: 2,
+                    })
+                  }
+                  className="block ml-auto"
+                >
+                  Add Repeat
+                </Button>
+              </div>
             </div>
             {!workout.steps.length && (
               <div className="border border-gray-200 p-4 rounded-md bg-gray-50 py-12 text-center mt-4">
                 <p>No workout steps added yet.</p>
               </div>
             )}
-            <DndContext
-              collisionDetection={closestCenter}
-              onDragEnd={(event) => {
-                const { active, over } = event;
-                if (active.id !== over?.id) {
-                  const oldIndex = workout.steps.findIndex(
-                    (s) => s.id === active.id
-                  );
-                  const newIndex = workout.steps.findIndex(
-                    (s) => s.id === over?.id
-                  );
-                  moveStep(oldIndex, newIndex);
-                  setFieldValue(
-                    `workouts.${workoutIdx}.steps`,
-                    arrayMove(workout.steps, oldIndex, newIndex).map(
-                      (s, i) => ({
-                        ...s,
-                        order: i,
-                      })
-                    )
-                  );
-                }
-              }}
-            >
-              <SortableContext
-                items={workout.steps.map((s) => s.id!)}
-                strategy={verticalListSortingStrategy}
-              >
-                {workout.steps.map((step, stepIdx) => (
-                  <SortableItem
-                    id={step.id!}
-                    key={step.id!}
-                    className="border-b border-gray-200 pr-4 py-3 last-of-type:border-b-transparent"
-                  >
-                    <StepForm
-                      workoutIdx={workoutIdx}
-                      stepIdx={stepIdx}
-                      remove={removeStep}
-                    />
-                  </SortableItem>
-                ))}
-              </SortableContext>
-            </DndContext>
+            {/* Single DnD context for all steps and substeps */}
+            <SortableTree defaultItems={stepsWithSubstepIdxAndWorkoutIdx} />
           </>
         )}
       </FieldArray>

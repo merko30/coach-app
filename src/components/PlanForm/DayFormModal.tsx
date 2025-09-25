@@ -104,11 +104,6 @@ const DayFormModal = ({
                     strategy={verticalListSortingStrategy}
                   >
                     <div className="space-y-2">
-                      {workouts.length === 0 && (
-                        <div className="text-muted-foreground text-sm italic py-2 my-2 text-center border rounded bg-gray-50">
-                          Is it a rest day?
-                        </div>
-                      )}
                       {workouts.map((workout, workoutIdx) => (
                         <SortableItem
                           key={workout.id}
@@ -117,6 +112,7 @@ const DayFormModal = ({
                         >
                           <WorkoutForm
                             workoutIdx={workoutIdx}
+                            // TODO: reset order after remove
                             remove={removeWorkout}
                           />
                         </SortableItem>
