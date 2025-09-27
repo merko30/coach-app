@@ -55,6 +55,9 @@ export const TreeItem = forwardRef<HTMLDivElement, Props>(
       repetitions: _repetitions,
       ...liProps
     } = props;
+
+    console.log({ depth, indentationWidth });
+
     return (
       <li
         className={twMerge(
@@ -63,8 +66,7 @@ export const TreeItem = forwardRef<HTMLDivElement, Props>(
           ghost && styles.ghost,
           indicator && styles.indicator,
           disableSelection && styles.disableSelection,
-          disableInteraction && styles.disableInteraction,
-          depth === 0 ? "ml-0" : `ml-[${indentationWidth * depth}px]`
+          disableInteraction && styles.disableInteraction
         )}
         ref={wrapperRef}
         // style={
@@ -74,8 +76,15 @@ export const TreeItem = forwardRef<HTMLDivElement, Props>(
         // }
         {...liProps}
       >
-        <Grip className={styles.Handle} {...props.handleProps} />
-        <div className={styles.TreeItem} ref={ref} style={style}>
+        <div
+          className={twMerge(
+            "flex items-center gap-2 border border-gray-200 px-4",
+            depth === 0 ? "" : `bg-gray-50 ml-8`
+          )}
+          ref={ref}
+          style={style}
+        >
+          <Grip className={styles.Handle} {...props.handleProps} />
           <StepForm
             workoutIdx={props.workoutIdx}
             stepIdx={props.stepIdx}

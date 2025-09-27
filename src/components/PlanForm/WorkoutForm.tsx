@@ -72,7 +72,7 @@ const WorkoutForm = ({
       <FieldArray name={`workouts.${workoutIdx}.steps`}>
         {({ push: pushStep, remove: removeStep, move: moveStep }) => (
           <>
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between mb-4">
               <h5 className="text-lg font-semibold">Steps</h5>
               <div className="flex items-center gap-2">
                 <Button

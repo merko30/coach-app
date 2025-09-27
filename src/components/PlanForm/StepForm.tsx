@@ -30,44 +30,25 @@ export default function StepForm({
   const isRepeat = type === "REPEAT";
 
   if (isRepeat) {
-    const substeps = step.steps ?? [];
     return (
-      <div className={twMerge("relative w-full h-full rounded-md border p-4")}>
-        <div className="w-full flex flex-row justify-between items-center p-3 mb-2">
-          <span className="text-lg font-semibold">Repeat</span>
-          <div className="flex items-center gap-1">
-            <Label className="mr-1">Reps</Label>
-            <Field
-              name={`workouts.${workoutIdx}.steps.${stepIdx}.repetitions`}
-              as={Input}
-              type="number"
-              min={1}
-              className="w-16"
-            />
-          </div>
+      <div className="w-full flex flex-row justify-between items-center p-3 mb-2">
+        <span className="text-lg font-semibold">Repeat</span>
+        <div className="flex items-center gap-1">
+          <Label className="mr-1">Reps</Label>
+          <Field
+            name={`workouts.${workoutIdx}.steps.${stepIdx}.repetitions`}
+            as={Input}
+            type="number"
+            min={1}
+            className="w-16"
+          />
         </div>
-
-        {substeps.length === 0 ? (
-          <div className="border border-dashed border-gray-400 rounded p-4 my-2 bg-gray-50 text-center text-gray-500">
-            Drag steps here to add to this repeat
-          </div>
-        ) : (
-          substeps.map((sub, subIdx) => (
-            <div key={sub.id} className="w-full ml-4">
-              <StepForm
-                workoutIdx={workoutIdx}
-                stepIdx={stepIdx}
-                subStepIdx={subIdx}
-              />
-            </div>
-          ))
-        )}
       </div>
     );
   }
 
   return (
-    <div className="w-full relative border rounded-md p-4 mb-2 bg-white">
+    <div className="w-full relative p-4 mb-2">
       <div className="w-full flex flex-row justify-between items-center">
         <span className="text-lg font-semibold mb-3">Step</span>
         <Button
