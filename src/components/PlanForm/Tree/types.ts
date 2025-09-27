@@ -9,6 +9,7 @@ export interface TreeItem {
   workoutIdx: number;
   stepIdx: number;
   subStepIdx?: number;
+  type?: string;
 }
 
 export type TreeItems = TreeItem[];
@@ -17,6 +18,7 @@ export interface FlattenedItem extends TreeItem {
   step_id: UniqueIdentifier | null;
   depth: number;
   index: number;
+  type?: string;
 }
 
 export type SensorContext = RefObject<{

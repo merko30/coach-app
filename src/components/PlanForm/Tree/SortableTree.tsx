@@ -279,13 +279,29 @@ export function SortableTree({
     resetState();
 
     if (projected && over) {
-      const { depth, parentId } = projected;
+      let { depth, parentId } = projected;
       const clonedItems: FlattenedItem[] = JSON.parse(
         JSON.stringify(flattenTree(items))
       );
       const overIndex = clonedItems.findIndex(({ id }) => id === over.id);
       const activeIndex = clonedItems.findIndex(({ id }) => id === active.id);
       const activeTreeItem = clonedItems[activeIndex];
+
+      // Disable nesting of repeat-type steps: always keep them at depth 0
+      if (activeTreeItem.type === "REPEAT") {
+        depth = 0;
+        parentId = null;
+      } else {
+        // Only allow nesting under repeat-type steps
+        if (parentId) {
+          const parentItem = clonedItems.find(({ id }) => id === parentId);
+          if (!parentItem || parentItem.type !== "REPEAT") {
+            // Not a repeat step, so do not nest; make it a sibling
+            parentId = null;
+            depth = 0;
+          }
+        }
+      }
 
       clonedItems[activeIndex] = {
         ...activeTreeItem,
