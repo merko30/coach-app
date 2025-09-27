@@ -99,13 +99,12 @@ export function buildTree(flattenedItems: FlattenedItem[]): TreeItems {
     id: "root",
     steps: [],
     step_id: null,
-
     workoutIdx: -1,
     stepIdx: -1,
     subStepIdx: -1,
   };
   const nodes: Record<string, TreeItem> = { [root.id]: root };
-  const items = flattenedItems.map((item) => ({ ...item, children: [] }));
+  const items = flattenedItems.map((item) => ({ ...item, steps: [] }));
 
   for (const item of items) {
     const { id, steps } = item;

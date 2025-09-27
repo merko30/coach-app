@@ -58,7 +58,11 @@ const Week = ({ weekIdx }: WeekProps) => {
           strategy={horizontalListSortingStrategy}
         >
           {days.map((day, dayIdx) => (
-            <DayCard day={day} onEdit={() => setModalOpen({ dayIdx })} />
+            <DayCard
+              key={day.id}
+              day={day}
+              onEdit={() => setModalOpen({ dayIdx })}
+            />
           ))}
         </SortableContext>
       </DndContext>

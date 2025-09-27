@@ -167,6 +167,8 @@ export function SortableTree({
     },
   };
 
+  console.log(flattenedItems);
+
   return (
     <DndContext
       accessibility={{ announcements }}
@@ -180,22 +182,26 @@ export function SortableTree({
       onDragCancel={handleDragCancel}
     >
       <SortableContext items={sortedIds} strategy={verticalListSortingStrategy}>
-        {flattenedItems.map(({ id, steps, collapsed, depth, ...props }) => (
-          <SortableTreeItem
-            key={id}
-            id={id}
-            value={id.toString()}
-            depth={id === activeId && projected ? projected.depth : depth}
-            indentationWidth={indentationWidth}
-            indicator={indicator}
-            collapsed={Boolean(collapsed && steps.length)}
-            onCollapse={
-              collapsible && steps.length ? () => handleCollapse(id) : undefined
-            }
-            onRemove={removable ? () => handleRemove(id) : undefined}
-            {...props}
-          />
-        ))}
+        {flattenedItems.map(({ id, steps, collapsed, depth, ...props }) => {
+          return (
+            <SortableTreeItem
+              key={id}
+              id={id}
+              value={id.toString()}
+              depth={id === activeId && projected ? projected.depth : depth}
+              indentationWidth={indentationWidth}
+              indicator={indicator}
+              collapsed={Boolean(collapsed && steps.length)}
+              onCollapse={
+                collapsible && steps.length
+                  ? () => handleCollapse(id)
+                  : undefined
+              }
+              onRemove={removable ? () => handleRemove(id) : undefined}
+              {...props}
+            />
+          );
+        })}
         {createPortal(
           <DragOverlay
             dropAnimation={dropAnimationConfig}
@@ -227,6 +233,7 @@ export function SortableTree({
 
     if (activeItem) {
       setCurrentPosition({
+        // might be .parentId
         parentId: activeItem.step_id,
         overId: activeId,
       });

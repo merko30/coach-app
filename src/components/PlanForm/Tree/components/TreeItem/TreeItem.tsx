@@ -3,6 +3,7 @@ import React, { forwardRef, type HTMLAttributes } from "react";
 import styles from "./TreeItem.module.css";
 import StepForm from "@/components/PlanForm/StepForm";
 import { twMerge } from "tailwind-merge";
+import { Grip } from "lucide-react";
 
 export interface Props extends Omit<HTMLAttributes<HTMLLIElement>, "id"> {
   childCount?: number;
@@ -22,6 +23,9 @@ export interface Props extends Omit<HTMLAttributes<HTMLLIElement>, "id"> {
   workoutIdx: number;
   stepIdx: number;
   subStepIdx?: number;
+  type?: string;
+  order?: number;
+  repetitions?: number;
 }
 
 export const TreeItem = forwardRef<HTMLDivElement, Props>(
@@ -40,8 +44,17 @@ export const TreeItem = forwardRef<HTMLDivElement, Props>(
     },
     ref
   ) => {
-    console.log(props);
-
+    const {
+      stepIdx: _stepIdx,
+      workoutIdx: _workoutIdx,
+      subStepIdx: _subStepIdx,
+      // handleProps: _handleProps,
+      value: _value,
+      type: _type,
+      order: _order,
+      repetitions: _repetitions,
+      ...liProps
+    } = props;
     return (
       <li
         className={twMerge(
@@ -50,16 +63,18 @@ export const TreeItem = forwardRef<HTMLDivElement, Props>(
           ghost && styles.ghost,
           indicator && styles.indicator,
           disableSelection && styles.disableSelection,
-          disableInteraction && styles.disableInteraction
+          disableInteraction && styles.disableInteraction,
+          depth === 0 ? "ml-0" : `ml-[${indentationWidth * depth}px]`
         )}
         ref={wrapperRef}
-        style={
-          {
-            "--spacing": `${indentationWidth * depth}px`,
-          } as React.CSSProperties
-        }
-        {...props}
+        // style={
+        //   {
+        //     "--spacing": `${indentationWidth * depth}px`,
+        //   } as React.CSSProperties
+        // }
+        {...liProps}
       >
+        <Grip className={styles.Handle} {...props.handleProps} />
         <div className={styles.TreeItem} ref={ref} style={style}>
           <StepForm
             workoutIdx={props.workoutIdx}

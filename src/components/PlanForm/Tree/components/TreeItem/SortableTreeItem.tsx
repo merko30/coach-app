@@ -34,8 +34,6 @@ export function SortableTreeItem({ id, depth, ...props }: Props) {
     transition,
   };
 
-  console.log("props in sortable tree item", props);
-
   return (
     <TreeItem
       ref={setDraggableNodeRef}

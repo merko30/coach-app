@@ -30,7 +30,7 @@
       .TreeItem {
         position: relative;
         padding: 0;
-        height: 8px;
+        /* height: 8px; */
         border-color: #2389ff;
         background-color: #56a1f8;
 
@@ -39,7 +39,7 @@
           left: -8px;
           top: -4px;
           display: block;
-          content: '';
+          content: "";
           width: 12px;
           height: 12px;
           border-radius: 50%;
@@ -95,7 +95,7 @@
   align-items: center;
   justify-content: center;
   width: 24px;
-  height: 24px;
+  /* height: 24px; */
   border-radius: 50%;
   background-color: #2389ff;
   font-size: 0.8rem;
