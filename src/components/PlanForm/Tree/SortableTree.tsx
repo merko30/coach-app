@@ -93,7 +93,32 @@ export function SortableTree({
   } | null>(null);
 
   useEffect(() => {
-    setItems(defaultItems);
+    setItems((old) => {
+      // if length is the same, do nothing
+      if (old.length === defaultItems.length) return old;
+      // find new items that are not in old
+      const newItems = defaultItems.filter(
+        (newItem) => !old.some((oldItem) => oldItem.id === newItem.id)
+      );
+      // if there are new items, add them to the end of old
+      if (newItems.length > 0) {
+        return [...old, ...newItems];
+      }
+      // if items were removed, filter old to only have items that are in new
+      if (old.length > defaultItems.length) {
+        return old.filter((oldItem) =>
+          defaultItems.some((newItem) => newItem.id === oldItem.id)
+        );
+      }
+
+      // update values of existing items
+      return old.map((oldItem) => {
+        const newItem = defaultItems.find(
+          (newItem) => newItem.id === oldItem.id
+        );
+        return newItem ? { ...oldItem, ...newItem } : oldItem;
+      });
+    });
   }, [defaultItems]);
 
   const flattenedItems = useMemo(() => {
