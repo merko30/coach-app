@@ -21,12 +21,18 @@ export default function StepForm({
 }) {
   const { values, setFieldValue } = useFormikContext<DayFormValues>();
 
-  console.log({ subStepIdx });
+  const isSubStep = typeof subStepIdx !== "undefined";
 
-  const step = subStepIdx
-    ? values.workouts[workoutIdx].steps[stepIdx].steps?.[subStepIdx]
+  const step = isSubStep
+    ? values.workouts[workoutIdx].steps[stepIdx]?.steps?.[subStepIdx]
     : values.workouts[workoutIdx].steps[stepIdx];
-  const type = step.type;
+
+  const fieldName = isSubStep
+    ? `workouts.${workoutIdx}.steps.${stepIdx}.steps.${subStepIdx}`
+    : `workouts.${workoutIdx}.steps.${stepIdx}`;
+
+  if (!step) return null;
+  const type = step?.type;
   const isTimeType = type === "TIME";
   const isRepeat = type === "REPEAT";
 
@@ -58,7 +64,7 @@ export default function StepForm({
           onClick={() =>
             setFieldValue(
               `workouts.${workoutIdx}.steps`,
-              values.workouts[workoutIdx].steps.filter((_, i) => i !== stepIdx)
+              values.workouts[workoutIdx].steps?.filter((_, i) => i !== stepIdx)
             )
           }
         >
@@ -69,7 +75,7 @@ export default function StepForm({
         <div className="flex-1">
           <Label>Name (optional)</Label>
           <Field
-            name={`workouts.${workoutIdx}.steps.${stepIdx}.name`}
+            name={`${fieldName}.name`}
             placeholder="Push-ups, VO2 max interval..."
             as={Input}
           />
@@ -78,13 +84,10 @@ export default function StepForm({
           <div className="flex-1">
             <Label>Type</Label>
             <FormikSelect
-              name={`workouts.${workoutIdx}.steps.${stepIdx}.type`}
+              name={`${fieldName}.type`}
               className="input"
               onChange={() => {
-                setFieldValue(
-                  `workouts.${workoutIdx}.steps.${stepIdx}.value`,
-                  0
-                );
+                setFieldValue(`${fieldName}.value`, 0);
               }}
               options={getFormattedOptions(MEASURE_TYPE)}
             />
@@ -96,15 +99,12 @@ export default function StepForm({
                 <TimeInput
                   className="flex-1"
                   onChange={(seconds: number) =>
-                    setFieldValue(
-                      `workouts.${workoutIdx}.steps.${stepIdx}.value`,
-                      seconds
-                    )
+                    setFieldValue(`${fieldName}.value`, seconds)
                   }
                 />
               ) : (
                 <Field
-                  name={`workouts.${workoutIdx}.steps.${stepIdx}.value`}
+                  name={`${fieldName}.value`}
                   as={Input}
                   type="number"
                   className="w-full"
@@ -115,7 +115,7 @@ export default function StepForm({
         </div>
       </div>
       <Field
-        name={`workouts.${workoutIdx}.steps.${stepIdx}.description`}
+        name={`${fieldName}.description`}
         as={Input}
         placeholder="Description (optional)"
       />

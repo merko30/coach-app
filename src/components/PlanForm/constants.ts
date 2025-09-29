@@ -85,7 +85,7 @@ export type Step = {
   order: number;
   value: number;
   type: string;
-  repetitions: number | null;
+  repetitions: number;
   steps: Array<Step>;
   step_id: number | null;
 };

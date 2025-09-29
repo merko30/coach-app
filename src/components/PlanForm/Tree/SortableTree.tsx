@@ -96,14 +96,10 @@ export function SortableTree({
 
   useEffect(() => {
     setItems((old) => {
-      // 1. Handle added or removed items
-      const updated = defaultItems.map((newItem) => {
-        const oldItem = old.find((o) => o.id === newItem.id);
-        return oldItem ? { ...oldItem, ...newItem } : newItem;
-      });
-
-      // 2. Preserve order of defaultItems, remove missing ones automatically
-      return updated;
+      if (JSON.stringify(old) !== JSON.stringify(defaultItems)) {
+        return defaultItems;
+      }
+      return old;
     });
   }, [defaultItems]);
 

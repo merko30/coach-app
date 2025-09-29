@@ -89,7 +89,6 @@ function flatten(
       step_id: parentId,
       depth,
       index,
-      type: item.type,
     };
     let children: FlattenedItem[] = [];
     if (item.steps && item.steps.length > 0) {
@@ -100,7 +99,6 @@ function flatten(
           depth: depth + 1,
           index: childIdx,
           subStepIdx: childIdx,
-          type: child.type,
         })),
         item.id,
         depth + 1
@@ -122,12 +120,12 @@ export function buildTree(flattenedItems: FlattenedItem[]): TreeItems {
     workoutIdx: -1,
     stepIdx: -1,
     subStepIdx: -1,
+    type: "REPS",
   };
   const nodes: Record<string, TreeItem> = { [root.id]: root };
   const items = flattenedItems.map((item) => ({
     ...item,
     steps: [],
-    type: item.type,
   }));
 
   for (const item of items) {
@@ -142,6 +140,7 @@ export function buildTree(flattenedItems: FlattenedItem[]): TreeItems {
       workoutIdx: item.workoutIdx,
       stepIdx: item.stepIdx,
       subStepIdx: item.subStepIdx,
+      type: item.type,
     };
     parent.steps.push(item);
   }

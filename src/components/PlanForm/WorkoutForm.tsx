@@ -11,12 +11,12 @@ import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 import { uuidv7 } from "uuidv7";
 import { FormikSelect } from "../FormikSelect";
-import type { DayFormValues } from "./constants";
+import type { DayFormValues, Step } from "./constants";
 import { WORKOUT_TYPE } from "./constants";
 import { getFormattedOptions } from "@/lib/stringHelpers";
 import { SortableTree } from "./Tree/SortableTree";
 import type { TreeItems } from "./Tree/types";
-import { useEffect, useState } from "react";
+import { useCallback, useMemo } from "react";
 import type { UniqueIdentifier } from "@dnd-kit/core";
 
 const WorkoutForm = ({
@@ -25,6 +25,69 @@ const WorkoutForm = ({
 }: { workoutIdx: number } & Pick<FieldArrayRenderProps, "remove">) => {
   const { values, setFieldValue } = useFormikContext<DayFormValues>();
   const workout = values.workouts[workoutIdx];
+
+  const convertTreeToFormik = useCallback(
+    (newItems: TreeItems) => {
+      const newItemsWithFormik = newItems.map((item) => {
+        const flattenedFormikStepsValues = values.workouts[
+          workoutIdx
+        ].steps.reduce<Step[]>((acc, step) => {
+          acc.push(step);
+          if (step.steps && step.steps.length > 0) {
+            acc = acc.concat(step.steps);
+          }
+          return acc;
+        }, []);
+        const formikValues = flattenedFormikStepsValues.find(
+          (step) => step.id === item.id
+        );
+
+        console.log(formikValues);
+
+        return {
+          ...item,
+          ...formikValues,
+          steps:
+            item.steps?.map((subStep) => {
+              const formikSubValues = flattenedFormikStepsValues.find(
+                (step) => step.id === subStep.id
+              );
+              return {
+                ...subStep,
+                ...formikSubValues,
+                steps: [],
+              };
+            }) || [],
+        };
+      });
+
+      console.log(newItemsWithFormik);
+
+      setFieldValue(`workouts.${workoutIdx}.steps`, newItemsWithFormik);
+    },
+    [setFieldValue, values.workouts, workoutIdx]
+  );
+
+  const defaultItems = useMemo(
+    () =>
+      workout.steps.map((step, index) => ({
+        ...step,
+        id: step.id as UniqueIdentifier,
+        workoutIdx,
+        stepIdx: index,
+        subStepIdx: undefined,
+        type: step.type,
+        steps: step.steps?.map((subStep, subIndex) => ({
+          ...subStep,
+          id: subStep.id as UniqueIdentifier,
+          workoutIdx,
+          stepIdx: index,
+          subStepIdx: subIndex,
+          steps: [],
+        })),
+      })),
+    [workout.steps]
+  );
 
   return (
     <div className="my-4">
@@ -56,7 +119,7 @@ const WorkoutForm = ({
       </div>
       {/* Steps DnD */}
       <FieldArray name={`workouts.${workoutIdx}.steps`}>
-        {({ push: pushStep, remove: removeStep, move: moveStep }) => (
+        {({ push: pushStep }) => (
           <>
             <div className="flex items-center justify-between mb-4">
               <h5 className="text-lg font-semibold">Steps</h5>
@@ -102,25 +165,8 @@ const WorkoutForm = ({
             )}
             {/* Single DnD context for all steps and substeps */}
             <SortableTree
-              defaultItems={workout.steps.map((step, index) => ({
-                ...step,
-                id: step.id as UniqueIdentifier,
-                workoutIdx,
-                stepIdx: index,
-                subStepIdx: undefined,
-                steps: step.steps?.map((subStep, subIndex) => ({
-                  ...subStep,
-                  id: subStep.id as UniqueIdentifier,
-                  workoutIdx,
-                  stepIdx: index,
-                  subStepIdx: subIndex,
-                  steps: [],
-                })),
-              }))}
-              // treeItems={treeItems} --- IGNORE ---
-              onSetItems={(newItems) => {
-                console.log("new items from sortable tree", newItems);
-              }}
+              defaultItems={defaultItems}
+              onSetItems={convertTreeToFormik}
             />
           </>
         )}
