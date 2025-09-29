@@ -84,7 +84,13 @@ function flatten(
   depth = 0
 ): FlattenedItem[] {
   return items.reduce<FlattenedItem[]>((acc, item, index) => {
-  const base: FlattenedItem = { ...item, step_id: parentId, depth, index, type: item.type };
+    const base: FlattenedItem = {
+      ...item,
+      step_id: parentId,
+      depth,
+      index,
+      type: item.type,
+    };
     let children: FlattenedItem[] = [];
     if (item.steps && item.steps.length > 0) {
       children = flatten(
@@ -100,11 +106,7 @@ function flatten(
         depth + 1
       );
     }
-    return [
-      ...acc,
-      base,
-      ...children,
-    ];
+    return [...acc, base, ...children];
   }, []);
 }
 

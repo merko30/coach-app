@@ -16,6 +16,7 @@ import { WORKOUT_TYPE } from "./constants";
 import { getFormattedOptions } from "@/lib/stringHelpers";
 import { SortableTree } from "./Tree/SortableTree";
 import type { TreeItems } from "./Tree/types";
+import { useEffect, useState } from "react";
 import type { UniqueIdentifier } from "@dnd-kit/core";
 
 const WorkoutForm = ({
@@ -24,21 +25,6 @@ const WorkoutForm = ({
 }: { workoutIdx: number } & Pick<FieldArrayRenderProps, "remove">) => {
   const { values, setFieldValue } = useFormikContext<DayFormValues>();
   const workout = values.workouts[workoutIdx];
-
-  const stepsWithSubstepIdxAndWorkoutIdx: TreeItems = workout.steps.map(
-    (step, stepIdx) => ({
-      ...step,
-      id: step.id! as UniqueIdentifier,
-      workoutIdx,
-      stepIdx,
-      steps: step.steps?.map((subStep, subStepIdx) => ({
-        id: subStep.id! as UniqueIdentifier,
-        workoutIdx,
-        stepIdx,
-        subStepIdx,
-      })) as TreeItems,
-    })
-  );
 
   return (
     <div className="my-4">
@@ -116,10 +102,24 @@ const WorkoutForm = ({
             )}
             {/* Single DnD context for all steps and substeps */}
             <SortableTree
-              defaultItems={stepsWithSubstepIdxAndWorkoutIdx}
+              defaultItems={workout.steps.map((step, index) => ({
+                ...step,
+                id: step.id as UniqueIdentifier,
+                workoutIdx,
+                stepIdx: index,
+                subStepIdx: undefined,
+                steps: step.steps?.map((subStep, subIndex) => ({
+                  ...subStep,
+                  id: subStep.id as UniqueIdentifier,
+                  workoutIdx,
+                  stepIdx: index,
+                  subStepIdx: subIndex,
+                  steps: [],
+                })),
+              }))}
+              // treeItems={treeItems} --- IGNORE ---
               onSetItems={(newItems) => {
-                
-                // setFieldValue(...);
+                console.log("new items from sortable tree", newItems);
               }}
             />
           </>
