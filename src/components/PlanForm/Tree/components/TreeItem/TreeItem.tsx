@@ -1,4 +1,4 @@
-import React, { forwardRef, type HTMLAttributes } from "react";
+import { forwardRef, type HTMLAttributes } from "react";
 
 import styles from "./TreeItem.module.css";
 import StepForm from "@/components/PlanForm/StepForm";
@@ -45,9 +45,9 @@ export const TreeItem = forwardRef<HTMLDivElement, Props>(
     ref
   ) => {
     const {
-      stepIdx: _stepIdx,
-      workoutIdx: _workoutIdx,
-      subStepIdx: _subStepIdx,
+      stepIdx,
+      workoutIdx,
+      subStepIdx,
       // handleProps: _handleProps,
       value: _value,
       type: _type,
@@ -55,8 +55,6 @@ export const TreeItem = forwardRef<HTMLDivElement, Props>(
       repetitions: _repetitions,
       ...liProps
     } = props;
-
-    console.log({ depth, indentationWidth });
 
     return (
       <li
@@ -78,17 +76,17 @@ export const TreeItem = forwardRef<HTMLDivElement, Props>(
       >
         <div
           className={twMerge(
-            "flex items-center gap-2 border border-gray-200 px-4",
-            depth === 0 ? "" : `bg-gray-50 ml-8`
+            "flex items-center gap-2 border border-gray-200 px-4"
+            // depth === 0 ? "" : `bg-gray-50 ml-8`
           )}
           ref={ref}
-          style={style}
+          style={{ ...style, marginLeft: depth * indentationWidth }}
         >
           <Grip className={styles.Handle} {...props.handleProps} />
           <StepForm
-            workoutIdx={props.workoutIdx}
-            stepIdx={props.stepIdx}
-            subStepIdx={props.subStepIdx}
+            workoutIdx={workoutIdx}
+            stepIdx={stepIdx}
+            subStepIdx={subStepIdx}
           />
         </div>
       </li>

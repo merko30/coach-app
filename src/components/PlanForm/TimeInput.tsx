@@ -15,7 +15,7 @@ export function TimeInput({
   onChange,
   label,
   className,
-  ...props
+  // ...props
 }: TimeInputProps) {
   const [h, setH] = useState(Math.floor(seconds / 3600));
   const [m, setM] = useState(Math.floor((seconds % 3600) / 60));
@@ -35,8 +35,6 @@ export function TimeInput({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [h, m, s]);
-
-  console.log(props);
 
   return (
     <div className={twMerge("flex items-center gap-1", className)}>

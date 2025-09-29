@@ -21,13 +21,15 @@ export function getProjection(
   const activeItem = items[activeItemIndex];
   const newItems = arrayMove(items, activeItemIndex, overItemIndex);
   const previousItem = newItems[overItemIndex - 1];
-  const nextItem = newItems[overItemIndex + 1];
+  // const nextItem = newItems[overItemIndex + 1];
   const dragDepth = getDragDepth(dragOffset, indentationWidth);
   const projectedDepth = activeItem.depth + dragDepth;
   const maxDepth = getMaxDepth({
     previousItem,
   });
-  const minDepth = getMinDepth({ nextItem });
+  // can't unnest non-last type if this is applied
+  // const minDepth = getMinDepth({ nextItem });
+  const minDepth = 0;
   let depth = projectedDepth;
 
   if (projectedDepth >= maxDepth) {
@@ -68,13 +70,13 @@ function getMaxDepth({ previousItem }: { previousItem: FlattenedItem }) {
   return 0;
 }
 
-function getMinDepth({ nextItem }: { nextItem: FlattenedItem }) {
-  if (nextItem) {
-    return nextItem.depth;
-  }
+// function getMinDepth({ nextItem }: { nextItem: FlattenedItem }) {
+//   if (nextItem) {
+//     return nextItem.depth;
+//   }
 
-  return 0;
-}
+//   return 0;
+// }
 
 function flatten(
   items: TreeItems,
@@ -82,10 +84,26 @@ function flatten(
   depth = 0
 ): FlattenedItem[] {
   return items.reduce<FlattenedItem[]>((acc, item, index) => {
+  const base: FlattenedItem = { ...item, step_id: parentId, depth, index, type: item.type };
+    let children: FlattenedItem[] = [];
+    if (item.steps && item.steps.length > 0) {
+      children = flatten(
+        item.steps.map((child, childIdx) => ({
+          ...child,
+          step_id: item.id,
+          depth: depth + 1,
+          index: childIdx,
+          subStepIdx: childIdx,
+          type: child.type,
+        })),
+        item.id,
+        depth + 1
+      );
+    }
     return [
       ...acc,
-      { ...item, parentId, depth, index, type: item.type },
-      ...flatten(item.steps, item.id, depth + 1),
+      base,
+      ...children,
     ];
   }, []);
 }

@@ -19,7 +19,6 @@ const AthleteDashboard = () => {
     queryKey: ["plans"],
   });
 
-  console.log(user.plans);
   const plansData = plansReponse?.data;
 
   if (plansLoading) {

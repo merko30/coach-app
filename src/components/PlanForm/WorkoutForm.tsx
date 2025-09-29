@@ -115,7 +115,13 @@ const WorkoutForm = ({
               </div>
             )}
             {/* Single DnD context for all steps and substeps */}
-            <SortableTree defaultItems={stepsWithSubstepIdxAndWorkoutIdx} />
+            <SortableTree
+              defaultItems={stepsWithSubstepIdxAndWorkoutIdx}
+              onSetItems={(newItems) => {
+                
+                // setFieldValue(...);
+              }}
+            />
           </>
         )}
       </FieldArray>

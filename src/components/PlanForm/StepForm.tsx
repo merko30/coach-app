@@ -7,7 +7,6 @@ import { FormikSelect } from "../FormikSelect";
 import { capitalize, getFormattedOptions } from "@/lib/stringHelpers";
 import { type DayFormValues, MEASURE_TYPE } from "./constants";
 import { TimeInput } from "./TimeInput";
-import { twMerge } from "tailwind-merge";
 
 const NON_VALUE_TYPES = ["REST", "WARM_UP", "COOL_DOWN"];
 
@@ -21,6 +20,8 @@ export default function StepForm({
   subStepIdx?: number;
 }) {
   const { values, setFieldValue } = useFormikContext<DayFormValues>();
+
+  console.log({ subStepIdx });
 
   const step = subStepIdx
     ? values.workouts[workoutIdx].steps[stepIdx].steps?.[subStepIdx]
